@@ -2,9 +2,9 @@ Steps to start dev server ...
 
 ( Get into this folder, or cd as written below )
 
-*cd horizon 3d
-npm i
-npm run dev*
+*cd horizon 3d*
+*npm i*
+*npm run dev*
 
 ... then open localhost:3000 and view the amazingly solved problem!
 
