@@ -28,7 +28,7 @@ const projects = [{ ... }]
 ...
 ```
 
-Then, add a line to make use of this variable:
+Then, add a line (or four) to make use of this variable:
 ```js
 ...
 function animate() {
