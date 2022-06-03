@@ -1,6 +1,7 @@
 import '/style.css'
-import * as THREE from 'https://cdn.skypack.dev/three';
-import { TrackballControls } from 'https://cdn.skypack.dev/three@0.132.2/examples/jsm/controls/TrackballControls.js';
+import * as THREE from 'three';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+import { TrackballControls } from 'three/examples/jsm/controls/TrackballControls.js';
 
 const canvas = document.querySelector('.tiny-globe');
 const overlay = canvas.getContext('2d');
@@ -72,13 +73,13 @@ function init() {
 
   // Planet object
   // Group globe and markers together
-  // const loader = new GLTFLoader();
-  // loader.load(
-  // 	'https://communityportal.io/assets/objects/low-poly-planet.gltf',
-  // 	object => group.add(object.scene),
-  // 	xhr => console.log((xhr.loaded / xhr.total * 100 ) + '% loaded'),
-  // 	error => console.log('An error happened'),
-  // );
+  const loader = new GLTFLoader();
+  loader.load(
+    'low-poly-planet.gltf',
+    object => group.add(object.scene),
+    xhr => console.log("Poly (planet) " + (xhr.loaded / xhr.total * 100 ) + '% loaded'),
+    error => console.log('An error happened:', error),
+  );
 
   // Lighting
   sunlight = new THREE.DirectionalLight(0xf0fff0, 3.5);
