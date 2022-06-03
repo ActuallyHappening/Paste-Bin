@@ -180,6 +180,7 @@ function init() {
  * Updates animation frame.
  */
 function animate() {
+    debugCounter++;
     zoomLevel = controls.target.distanceTo(controls.object.position);
     //console.log(controls.object.position) // 'Camera' position
     const axis = new THREE.Vector3(0, 1, 0) // Y axis to revolve around
@@ -253,6 +254,7 @@ function updateMarkerPositions() {
 
       let vector = group.children[index].position.clone()
       vector.project(camera);
+      const point = vector.clone()
 
       vector.x = Math.round((0.5 + vector.x / 2) * (renderer.domElement.width / window.devicePixelRatio));
       vector.y = Math.round((0.5 - vector.y / 2) * (renderer.domElement.height / window.devicePixelRatio));
@@ -262,7 +264,22 @@ function updateMarkerPositions() {
 
       let should = false; // Whether the project point is behind or not
 
-      
+      const raycaster = new THREE.Raycaster()
+      raycaster.setFromCamera(point, camera);
+      const intersects = raycaster.intersectObjects(scene.children)
+      if (debugCounter % 1000 == 69) console.log(intersects)
+      let seenSelf = false;
+      intersects.forEach((intersect, i) => {
+        if (intersect.object == project.mesh) seenSelf = true
+        if (intersect.object == planet) {
+          //console.log("Planet spotted ...")
+          if (seenSelf);//console.log("INFRONT!")
+          else {
+            //console.log("BEHIND")
+            should = true
+          }
+        }
+      })
 
       project.element.classList.toggle(
           'is-behind',
