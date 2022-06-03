@@ -16,10 +16,10 @@ const leeWayFactor = 0.8; // Determines the grace given due to planet curvature 
 
 const shouldDebug = true;
 const showExtraObjects = true;
-const randomOrbitals = false; // Sadly I am not bothered to do compilcated math to make hte labels work out :)
+const randomOrbitals = true; // Sadly I am not bothered to do compilcated math to make hte labels work out :)
 let debugCounter = 0;
 
-const numExtraProjects = 1;
+const numExtraProjects = 10;
 let quickAndDirtyDegreeCounter = 0; /****************** NEW **********************/
 
 let projects = [/* {
@@ -74,7 +74,7 @@ for (let i = 0; i < numExtraProjects; i++) {
 
 //if (shouldDebug) projects = []
 
-let group = new THREE.Group();
+let group = new THREE.Group(); // MUST Sync with projects (not bothered to refactor at the moment)
 let sunlight;
 let renderer;
 let controls;
@@ -236,28 +236,18 @@ function updateMarkerSizes() {
 }
 
 
+function getRealPixelsTopLeft(vector, aCamera) {
+  vector = vector.clone()
+  vector.project(aCamera)
+  vector.x = Math.round((0.5 + vector.x / 2) * (renderer.domElement.width / window.devicePixelRatio));
+  vector.y = Math.round((0.5 - vector.y / 2) * (renderer.domElement.height / window.devicePixelRatio));
+  return vector
+}
+
 /*
 Is in front, used to calculate if an *object* is in front of an *obstacle* given a *camera*
 */
 function isInFront(aCamera, anObstacle, anObject) {
-  const raycaster = new THREE.Raycaster();
-  const point = new THREE.Vector2();
-
-  // Calculate NDC which are (-1 to +1) for each components of point
-  let mesh3DPosition = anObstacle.position.clone()
-  let projected3DPosition = mesh3DPosition.project(aCamera)
-  //console.table({ "mesh": mesh3DPosition, "projected": projected3DPosition })
-  point.set(projected3DPosition.x, projected3DPosition.y)
-
-  raycaster.setFromCamera(point, aCamera)
-  
-  let intersections = raycaster.intersectObject(anObstacle)
-  if (showExtraObjects) {
-    intersections.forEach((intersectedObject) => {
-      //console.log("intersected", intersectedObject)
-      //intersectedObject.object.material.color.set(0xff0000)
-    })
-  }
 
 }
 
@@ -269,14 +259,17 @@ function updateMarkerPositions() {
 
     projects.forEach((project, index) => {
 
-        let vector = new THREE.Vector3(
+        /* let vector = new THREE.Vector3(
             project.coords.x,
             project.coords.y,
             project.coords.z,
-        ).clone();
-        /* ******* CHANGED ****** */
-      vector.applyAxisAngle(project?.orbitalAxis ?? axis, quickAndDirtyDegreeCounter/projects.length); // BLACK MAGIC the number 5 works for some reason!
+        ).clone(); */
+      /* ******* CHANGED ****** */
+      //console.log(project?.orbitalAxis ?? axis)
+      //vector.applyAxisAngle(project?.orbitalAxis ?? axis, quickAndDirtyDegreeCounter/projects.length); // OK it is not black magic just the length of the list :) no idea why!
       // Any workaround is going to have to manually compute above line! TODO
+
+      let vector = group.children[index].position.clone()
       vector.project(camera);
 
       // Breaking lines for randomOrbitals const (top of main.js)
