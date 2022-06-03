@@ -11,7 +11,7 @@ const camera = new THREE.PerspectiveCamera(
 );
 
 
-const orbitalDistance = 75;
+const orbitalDistance = 120;
 const leeWayFactor = 0.8; // Determines the grace given due to planet curvature
 
 const shouldDebug = true;
@@ -24,7 +24,7 @@ const projects = [{
         coords: { x: 0, y: 0, z: 0 },
         url: '/#',
     },
-    {
+    /* {
         name: 'A',
         coords: { x: orbitalDistance, y: orbitalDistance, z: orbitalDistance },
         url: '/#',
@@ -43,8 +43,29 @@ const projects = [{
         name: 'D',
         coords: { x: orbitalDistance, y: -orbitalDistance, z: orbitalDistance },
         url: '/#',
-    },
+    }, */
 ];
+
+function randomNum(range) {
+  return (Math.random()-0.5)*range
+}
+
+function generateRandomOrbitalVector(distance) {
+  const vec = new THREE.Vector3(randomNum(distance), randomNum(distance), randomNum(distance))
+  vec.project(camera)
+  vec.setLength(distance)
+  return vec
+}
+
+for (let i = 0; i < 10; i++) {
+  const orbit = generateRandomOrbitalVector(orbitalDistance)
+  console.log(orbit)
+  projects.push({
+    name: 'Random: ' + i,
+    coords: { x: orbit.x, y: orbit.y, z: orbit.z },
+    url: '/#',
+  })
+}
 
 let group = new THREE.Group();
 let sunlight;
@@ -210,7 +231,7 @@ function updateMarkerPositions() {
             project.coords.z,
         ).clone();
         /* ******* CHANGED ****** */
-      vector.applyAxisAngle(axis, quickAndDirtyDegreeCounter/5); // BLACK MAGIC the number 5 works for some reason!
+      vector.applyAxisAngle(axis, quickAndDirtyDegreeCounter/projects.length); // BLACK MAGIC the number 5 works for some reason!
       // Any workaround is going to have to manually compute above line! TODO
       vector.project(camera);
 
