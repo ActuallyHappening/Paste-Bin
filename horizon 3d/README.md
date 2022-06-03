@@ -1,5 +1,4 @@
-# IT DOES NOT WORK LIKE A CHARM!
-***Still working on it!***
+***Still actively working on it!***
 
 Steps to start dev server ...
 

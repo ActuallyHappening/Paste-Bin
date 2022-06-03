@@ -9,6 +9,11 @@ const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(
     55, window.innerWidth / window.innerHeight, 1, 1500
 );
+
+
+const orbitalDistance = 75;
+const leeWayFactor = 1; // Determines the grace given due to planet curvature
+
 const shouldDebug = true;
 let debugCounter = 0;
 
@@ -21,22 +26,22 @@ const projects = [{
     },
     {
         name: 'A',
-        coords: { x: 50, y: 50, z: 50 },
+        coords: { x: orbitalDistance, y: orbitalDistance, z: orbitalDistance },
         url: '/#',
     },
     {
         name: 'B',
-        coords: { x: -50, y: 50, z: 50 },
+        coords: { x: -orbitalDistance, y: orbitalDistance, z: orbitalDistance },
         url: '/#',
     },
     {
         name: 'C',
-        coords: { x: -50, y: -50, z: 50 },
+        coords: { x: -orbitalDistance, y: -orbitalDistance, z: orbitalDistance },
         url: '/#',
     },
     {
         name: 'D',
-        coords: { x: 50, y: -50, z: 50 },
+        coords: { x: orbitalDistance, y: -orbitalDistance, z: orbitalDistance },
         url: '/#',
     },
 ];
@@ -80,7 +85,7 @@ function init() {
   const loader = new GLTFLoader();
   loader.load(
     'low-poly-planet.gltf',
-    object => group.add(object.scene),
+    object => { if (!false) { scene.add(object.scene) } },
     xhr => console.log("Poly (planet) " + (xhr.loaded / xhr.total * 100 ) + '% loaded'),
     error => console.log('An error happened:', error),
   );
