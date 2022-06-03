@@ -59,7 +59,7 @@ function generateRandomOrbitalVector(distance) {
 
 for (let i = 0; i < 10; i++) {
   const orbit = generateRandomOrbitalVector(orbitalDistance)
-  console.log(orbit)
+  //console.log(orbit)
   projects.push({
     name: 'Random: ' + i,
     coords: { x: orbit.x, y: orbit.y, z: orbit.z },
