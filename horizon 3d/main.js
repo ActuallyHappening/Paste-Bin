@@ -12,20 +12,21 @@ const camera = new THREE.PerspectiveCamera(
 
 
 const orbitalDistance = 120;
-const leeWayFactor = 0.8; // Determines the grace given due to planet curvature
+const leeWayFactor = 0.8; // Determines the grace given due to planet curvature ** DEPRECIATED **
 
 const shouldDebug = true;
+const showExtraObjects = true;
 const randomOrbitals = false; // Sadly I am not bothered to do compilcated math to make hte labels work out :)
 let debugCounter = 0;
 
-const numExtraProjects = 10;
+const numExtraProjects = 1;
 let quickAndDirtyDegreeCounter = 0; /****************** NEW **********************/
 
-let projects = [{
+let projects = [/* {
         name: 'Center',
         coords: { x: 0, y: 0, z: 0 },
         url: '/#',
-    },
+    }, */
     /* {
         name: 'A',
         coords: { x: orbitalDistance, y: orbitalDistance, z: orbitalDistance },
@@ -81,6 +82,7 @@ let zoomLevel;
 let markerPoints2D;
 
 let planet; // Object for planet
+let planetGraphics; // Group for loaded planet graphics
 
 init();
 animate();
@@ -115,18 +117,18 @@ function init() {
   loader.load(
     'low-poly-planet.gltf',
     object => {
-      planet = object.scene
-      scene.add(planet)
-      console.log("Planet added", planet)
+      planetGraphics = object.scene
+      scene.add(planetGraphics)
+      console.log("PlanetG added", planetGraphics)
     },
     xhr => console.log("Poly (planet) " + (xhr.loaded / xhr.total * 100 ) + '% loaded'),
     error => console.log('An error happened:', error),
   );
 
   let planetGeometry = new THREE.SphereGeometry(orbitalDistance * 0.9)
-  let planetMaterial = new THREE.MeshPhysicalMaterial()
+  let planetMaterial = new THREE.MeshPhysicalMaterial({color: 0x0fff0f})
   planet = new THREE.Mesh(planetGeometry, planetMaterial)
-  scene.add(planet)
+  if (showExtraObjects) scene.add(planet)
  
 
   // Lighting
@@ -181,16 +183,15 @@ function init() {
 function animate() {
     zoomLevel = controls.target.distanceTo(controls.object.position);
     //console.log(controls.object.position) // 'Camera' position
-  const axis = new THREE.Vector3(0, 1, 0) // Y axis to revolve around
-  
-  /********************* NEW ****************** */
-  const increase = 0.01; // Rotates by this amount
-  group.children.forEach((projectRef, index) => {
+    const axis = new THREE.Vector3(0, 1, 0) // Y axis to revolve around
     
-    projectRef.position.applyAxisAngle(projects[index]?.orbitalAxis ?? axis, increase); // Apply rotation to each individual project point
-    quickAndDirtyDegreeCounter += increase; // Also, to make calculating the label positions work, use this quick and dirty solution :)
-  })
-
+    /********************* NEW ****************** */
+    const increase = 0.01; // Rotates by this amount
+    group.children.forEach((projectRef, index) => {
+      projectRef.position.applyAxisAngle(projects[index]?.orbitalAxis ?? axis, increase); // Apply rotation to each individual project point
+      quickAndDirtyDegreeCounter += increase; // Also, to make calculating the label positions work, use this quick and dirty solution :)
+    })
+    if (planetGraphics) planetGraphics.rotation.y += increase
     //group.rotation.y += 0.005; // ********* OLD BUGGY LINE ************
 
     controls.update();
@@ -236,6 +237,31 @@ function updateMarkerSizes() {
 
 
 /*
+Is in front, used to calculate if an *object* is in front of an *obstacle* given a *camera*
+*/
+function isInFront(aCamera, anObstacle, anObject) {
+  const raycaster = new THREE.Raycaster();
+  const point = new THREE.Vector2();
+
+  // Calculate NDC which are (-1 to +1) for each components of point
+  let mesh3DPosition = anObstacle.position.clone()
+  let projected3DPosition = mesh3DPosition.project(aCamera)
+  //console.table({ "mesh": mesh3DPosition, "projected": projected3DPosition })
+  point.set(projected3DPosition.x, projected3DPosition.y)
+
+  raycaster.setFromCamera(point, aCamera)
+  
+  let intersections = raycaster.intersectObject(anObstacle)
+  if (showExtraObjects) {
+    intersections.forEach((intersectedObject) => {
+      //console.log("intersected", intersectedObject)
+      //intersectedObject.object.material.color.set(0xff0000)
+    })
+  }
+
+}
+
+/*
  * Update hotspot positions.
  */
 function updateMarkerPositions() {
@@ -253,6 +279,7 @@ function updateMarkerPositions() {
       // Any workaround is going to have to manually compute above line! TODO
       vector.project(camera);
 
+      // Breaking lines for randomOrbitals const (top of main.js)
       vector.x = Math.round((0.5 + vector.x / 2) * (renderer.domElement.width / window.devicePixelRatio));
       vector.y = Math.round((0.5 - vector.y / 2) * (renderer.domElement.height / window.devicePixelRatio));
 
@@ -270,7 +297,8 @@ function updateMarkerPositions() {
       let should = false; // Whether the project point is behind or not
       //if (distanceToProject + leeWayAddition > distanceToCenter) { should = true; } // BAD CODE TODO
 
-      // Calculate if should
+      // Calculate if behind planet
+      isInFront(camera, projects[0].mesh, group[index])
 
       project.element.classList.toggle(
           'is-behind',
