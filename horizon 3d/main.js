@@ -15,11 +15,13 @@ const orbitalDistance = 120;
 const leeWayFactor = 0.8; // Determines the grace given due to planet curvature
 
 const shouldDebug = true;
+const randomOrbitals = false; // Sadly I am not bothered to do compilcated math to make hte labels work out :)
 let debugCounter = 0;
 
+const numExtraProjects = 10;
 let quickAndDirtyDegreeCounter = 0; /****************** NEW **********************/
 
-const projects = [{
+let projects = [{
         name: 'Center',
         coords: { x: 0, y: 0, z: 0 },
         url: '/#',
@@ -46,8 +48,8 @@ const projects = [{
     }, */
 ];
 
-function randomNum(range) {
-  return (Math.random()-0.5)*range
+function randomNum(range = 1) {
+  return (Math.random()-0.5)*range*2
 }
 
 function generateRandomOrbitalVector(distance) {
@@ -57,7 +59,7 @@ function generateRandomOrbitalVector(distance) {
   return vec
 }
 
-for (let i = 0; i < 10; i++) {
+for (let i = 0; i < numExtraProjects; i++) {
   const orbit = generateRandomOrbitalVector(orbitalDistance)
   //console.log(orbit)
   projects.push({
@@ -65,7 +67,11 @@ for (let i = 0; i < 10; i++) {
     coords: { x: orbit.x, y: orbit.y, z: orbit.z },
     url: '/#',
   })
+  if (randomOrbitals) { projects[projects.length - 1].orbitalAxis = new THREE.Vector3(randomNum(1), randomNum(1), randomNum(1)) }
+
 }
+
+//if (shouldDebug) projects = []
 
 let group = new THREE.Group();
 let sunlight;
@@ -73,6 +79,8 @@ let renderer;
 let controls;
 let zoomLevel;
 let markerPoints2D;
+
+let planet; // Object for planet
 
 init();
 animate();
@@ -106,11 +114,20 @@ function init() {
   const loader = new GLTFLoader();
   loader.load(
     'low-poly-planet.gltf',
-    object => { if (!false) { scene.add(object.scene) } },
+    object => {
+      planet = object.scene
+      scene.add(planet)
+      console.log("Planet added", planet)
+    },
     xhr => console.log("Poly (planet) " + (xhr.loaded / xhr.total * 100 ) + '% loaded'),
     error => console.log('An error happened:', error),
   );
-  //loader.scale = 0.5;
+
+  let planetGeometry = new THREE.SphereGeometry(orbitalDistance * 0.9)
+  let planetMaterial = new THREE.MeshPhysicalMaterial()
+  planet = new THREE.Mesh(planetGeometry, planetMaterial)
+  scene.add(planet)
+ 
 
   // Lighting
   sunlight = new THREE.DirectionalLight(0xf0fff0, 3.5);
@@ -167,9 +184,10 @@ function animate() {
   const axis = new THREE.Vector3(0, 1, 0) // Y axis to revolve around
   
   /********************* NEW ****************** */
+  const increase = 0.01; // Rotates by this amount
   group.children.forEach((projectRef, index) => {
-    const increase = 0.01; // Rotates by this amount
-    projectRef.position.applyAxisAngle(axis, increase); // Apply rotation to each individual project point
+    
+    projectRef.position.applyAxisAngle(projects[index]?.orbitalAxis ?? axis, increase); // Apply rotation to each individual project point
     quickAndDirtyDegreeCounter += increase; // Also, to make calculating the label positions work, use this quick and dirty solution :)
   })
 
@@ -231,7 +249,7 @@ function updateMarkerPositions() {
             project.coords.z,
         ).clone();
         /* ******* CHANGED ****** */
-      vector.applyAxisAngle(axis, quickAndDirtyDegreeCounter/projects.length); // BLACK MAGIC the number 5 works for some reason!
+      vector.applyAxisAngle(project?.orbitalAxis ?? axis, quickAndDirtyDegreeCounter/projects.length); // BLACK MAGIC the number 5 works for some reason!
       // Any workaround is going to have to manually compute above line! TODO
       vector.project(camera);
 
@@ -243,14 +261,17 @@ function updateMarkerPositions() {
 
     
         /* **** Only Refactored ***** */
-      // Track if items move behind globe
+      /* // Track if items move behind globe
       const distanceToCenter = camera.position.distanceTo(new THREE.Vector3(0, 0, 0));
       const distanceToProject = camera.position.distanceTo(project.mesh.position);
 
-      const leeWayAddition = Math.abs(project.mesh.position.y) * leeWayFactor // Accounts for curvature of planet
+      const leeWayAddition = Math.abs(project.mesh.position.y) * leeWayFactor // Accounts for curvature of planet */
 
       let should = false; // Whether the project point is behind or not
-      if (distanceToProject + leeWayAddition > distanceToCenter) { should = true; }
+      //if (distanceToProject + leeWayAddition > distanceToCenter) { should = true; } // BAD CODE TODO
+
+      // Calculate if should
+
       project.element.classList.toggle(
           'is-behind',
           should
