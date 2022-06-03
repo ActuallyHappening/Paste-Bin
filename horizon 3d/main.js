@@ -10,43 +10,53 @@ const camera = new THREE.PerspectiveCamera(
     55, window.innerWidth / window.innerHeight, 1, 1500
 );
 
+const ENABLE_COOL_FEATURES = false;
 
-const orbitalDistance = 120;
+const useDefaultProjects = !ENABLE_COOL_FEATURES;
+const randomOrbitals = ENABLE_COOL_FEATURES; // Is pretty cool, set to true to see!
 
-const shouldDebug = true;
-const showExtraObjects = true;
-const randomOrbitals = true; // Is pretty cool!
+const orbitalDistance = 100; // Changes distance of projects from center
+
+// Enable when debugging :)
+const shouldDebug = ENABLE_COOL_FEATURES;
+const showExtraObjects = false;
+
 let debugCounter = 0;
 
-const numExtraProjects = 10;
+const numExtraProjects = ENABLE_COOL_FEATURES ? 20 : 10; // Only applies when useDefaultProjects is false
 let quickAndDirtyDegreeCounter = 0; /****************** NEW **********************/
 
-let projects = [/* {
-        name: 'Center',
-        coords: { x: 0, y: 0, z: 0 },
-        url: '/#',
-    }, */
-    /* {
-        name: 'A',
-        coords: { x: orbitalDistance, y: orbitalDistance, z: orbitalDistance },
-        url: '/#',
-    },
-    {
-        name: 'B',
-        coords: { x: -orbitalDistance, y: orbitalDistance, z: orbitalDistance },
-        url: '/#',
-    },
-    {
-        name: 'C',
-        coords: { x: -orbitalDistance, y: -orbitalDistance, z: orbitalDistance },
-        url: '/#',
-    },
-    {
-        name: 'D',
-        coords: { x: orbitalDistance, y: -orbitalDistance, z: orbitalDistance },
-        url: '/#',
-    }, */
-];
+let projects;
+if (useDefaultProjects) {
+  projects = [{
+    name: 'Center',
+    coords: { x: 0, y: 0, z: 0 },
+    url: '/#',
+  },
+  {
+    name: 'A',
+    coords: { x: orbitalDistance, y: orbitalDistance, z: orbitalDistance },
+    url: '/#',
+  },
+  {
+    name: 'B',
+    coords: { x: -orbitalDistance, y: orbitalDistance, z: orbitalDistance },
+    url: '/#',
+  },
+  {
+    name: 'C',
+    coords: { x: -orbitalDistance, y: -orbitalDistance, z: orbitalDistance },
+    url: '/#',
+  },
+  {
+    name: 'D',
+    coords: { x: orbitalDistance, y: -orbitalDistance, z: orbitalDistance },
+    url: '/#',
+  },
+  ];
+} else {
+  projects = []
+}
 
 function randomNum(range = 1) {
   return (Math.random()-0.5)*range*2
@@ -59,16 +69,17 @@ function generateRandomOrbitalVector(distance) {
   return vec
 }
 
-for (let i = 0; i < numExtraProjects; i++) {
-  const orbit = generateRandomOrbitalVector(orbitalDistance)
-  //console.log(orbit)
-  projects.push({
-    name: 'Random: ' + i,
-    coords: { x: orbit.x, y: orbit.y, z: orbit.z },
-    url: '/#',
-  })
-  if (randomOrbitals) { projects[projects.length - 1].orbitalAxis = new THREE.Vector3(randomNum(1), randomNum(1), randomNum(1)) }
-
+if (!useDefaultProjects) {
+  for (let i = 0; i < numExtraProjects; i++) {
+    const orbit = generateRandomOrbitalVector(orbitalDistance)
+    //console.log(orbit)
+    projects.push({
+      name: 'Random: ' + i,
+      coords: { x: orbit.x, y: orbit.y, z: orbit.z },
+      url: '/#',
+    })
+    if (randomOrbitals) { projects[projects.length - 1].orbitalAxis = new THREE.Vector3(randomNum(1), randomNum(1), randomNum(1)) }
+  }
 }
 
 //if (shouldDebug) projects = []
@@ -118,16 +129,17 @@ function init() {
     object => {
       planetGraphics = object.scene
       scene.add(planetGraphics)
-      console.log("PlanetG added", planetGraphics)
+      if (shouldDebug) console.log("PlanetG added", planetGraphics)
     },
     xhr => console.log("Poly (planet) " + (xhr.loaded / xhr.total * 100 ) + '% loaded'),
     error => console.log('An error happened:', error),
   );
 
-  let planetGeometry = new THREE.SphereGeometry(orbitalDistance * 0.9)
+  let planetGeometry = new THREE.SphereGeometry(100) // HARDCODED just note it techniquely should scale from above graphics import (not bothered right now)
   let planetMaterial = new THREE.MeshPhysicalMaterial({color: 0x0fff0f})
   planet = new THREE.Mesh(planetGeometry, planetMaterial)
-  if (showExtraObjects) scene.add(planet)
+  scene.add(planet)
+  if (!showExtraObjects) planet.visible = false
  
 
   // Lighting
@@ -161,7 +173,7 @@ function init() {
       project.coords.y,
       project.coords.z,
     );
-    mesh.visible = shouldDebug;
+    mesh.visible = showExtraObjects;
     group.add(mesh);
 
     canvas.insertAdjacentHTML('afterend', html);
@@ -191,13 +203,12 @@ function animate() {
       projectRef.position.applyAxisAngle(projects[index]?.orbitalAxis ?? axis, increase); // Apply rotation to each individual project point
       quickAndDirtyDegreeCounter += increase; // Also, to make calculating the label positions work, use this quick and dirty solution :)
     })
-    if (planetGraphics) planetGraphics.rotation.y += increase
+    if (planetGraphics) planetGraphics.rotation.y += increase;
     //group.rotation.y += 0.005; // ********* OLD BUGGY LINE ************
 
     controls.update();
     renderer.render(scene, camera);
     //group.updateMatrixWorld; // Don't know what that was there!
-    //updateCoolLines();
     updateMarkerSizes();
     updateMarkerPositions();
     requestAnimationFrame(animate);
@@ -267,7 +278,7 @@ function updateMarkerPositions() {
       const raycaster = new THREE.Raycaster()
       raycaster.setFromCamera(point, camera);
       const intersects = raycaster.intersectObjects(scene.children)
-      if (debugCounter % 1000 == 69) console.log(intersects)
+      //if (debugCounter % 1000 == 69) console.log(intersects)
       let seenSelf = false;
       intersects.forEach((intersect, i) => {
         if (intersect.object == project.mesh) seenSelf = true
