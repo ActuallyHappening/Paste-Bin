@@ -12,11 +12,10 @@ const camera = new THREE.PerspectiveCamera(
 
 
 const orbitalDistance = 120;
-const leeWayFactor = 0.8; // Determines the grace given due to planet curvature ** DEPRECIATED **
 
 const shouldDebug = true;
 const showExtraObjects = true;
-const randomOrbitals = true; // Sadly I am not bothered to do compilcated math to make hte labels work out :)
+const randomOrbitals = true; // Is pretty cool!
 let debugCounter = 0;
 
 const numExtraProjects = 10;
@@ -245,13 +244,6 @@ function getRealPixelsTopLeft(vector, aCamera) {
 }
 
 /*
-Is in front, used to calculate if an *object* is in front of an *obstacle* given a *camera*
-*/
-function isInFront(aCamera, anObstacle, anObject) {
-
-}
-
-/*
  * Update hotspot positions.
  */
 function updateMarkerPositions() {
@@ -259,39 +251,18 @@ function updateMarkerPositions() {
 
     projects.forEach((project, index) => {
 
-        /* let vector = new THREE.Vector3(
-            project.coords.x,
-            project.coords.y,
-            project.coords.z,
-        ).clone(); */
-      /* ******* CHANGED ****** */
-      //console.log(project?.orbitalAxis ?? axis)
-      //vector.applyAxisAngle(project?.orbitalAxis ?? axis, quickAndDirtyDegreeCounter/projects.length); // OK it is not black magic just the length of the list :) no idea why!
-      // Any workaround is going to have to manually compute above line! TODO
-
       let vector = group.children[index].position.clone()
       vector.project(camera);
 
-      // Breaking lines for randomOrbitals const (top of main.js)
       vector.x = Math.round((0.5 + vector.x / 2) * (renderer.domElement.width / window.devicePixelRatio));
       vector.y = Math.round((0.5 - vector.y / 2) * (renderer.domElement.height / window.devicePixelRatio));
 
       project.element.style.top = `${vector.y}px`;
       project.element.style.left = `${vector.x}px`;
 
-    
-        /* **** Only Refactored ***** */
-      /* // Track if items move behind globe
-      const distanceToCenter = camera.position.distanceTo(new THREE.Vector3(0, 0, 0));
-      const distanceToProject = camera.position.distanceTo(project.mesh.position);
-
-      const leeWayAddition = Math.abs(project.mesh.position.y) * leeWayFactor // Accounts for curvature of planet */
-
       let should = false; // Whether the project point is behind or not
-      //if (distanceToProject + leeWayAddition > distanceToCenter) { should = true; } // BAD CODE TODO
 
-      // Calculate if behind planet
-      isInFront(camera, projects[0].mesh, group[index])
+      
 
       project.element.classList.toggle(
           'is-behind',
