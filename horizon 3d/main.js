@@ -12,7 +12,7 @@ const camera = new THREE.PerspectiveCamera(
 
 
 const orbitalDistance = 75;
-const leeWayFactor = 1; // Determines the grace given due to planet curvature
+const leeWayFactor = 0.8; // Determines the grace given due to planet curvature
 
 const shouldDebug = true;
 let debugCounter = 0;
@@ -226,10 +226,10 @@ function updateMarkerPositions() {
       const distanceToCenter = camera.position.distanceTo(new THREE.Vector3(0, 0, 0));
       const distanceToProject = camera.position.distanceTo(project.mesh.position);
 
-
+      const leeWayAddition = Math.abs(project.mesh.position.y) * leeWayFactor // Accounts for curvature of planet
 
       let should = false; // Whether the project point is behind or not
-      if (distanceToProject > distanceToCenter) { should = true; }
+      if (distanceToProject + leeWayAddition > distanceToCenter) { should = true; }
       project.element.classList.toggle(
           'is-behind',
           should
