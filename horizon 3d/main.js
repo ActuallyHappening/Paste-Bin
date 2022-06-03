@@ -9,6 +9,8 @@ const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(
     55, window.innerWidth / window.innerHeight, 1, 1500
 );
+const shouldDebug = true;
+let debugCounter = 0;
 
 let quickAndDirtyDegreeCounter = 0; /****************** NEW **********************/
 
@@ -19,22 +21,22 @@ const projects = [{
     },
     {
         name: 'A',
-        coords: { x: 100, y: 100, z: 100 },
+        coords: { x: 50, y: 50, z: 50 },
         url: '/#',
     },
     {
         name: 'B',
-        coords: { x: -100, y: 100, z: 100 },
+        coords: { x: -50, y: 50, z: 50 },
         url: '/#',
     },
     {
         name: 'C',
-        coords: { x: -100, y: -100, z: 100 },
+        coords: { x: -50, y: -50, z: 50 },
         url: '/#',
     },
     {
         name: 'D',
-        coords: { x: 100, y: -100, z: 100 },
+        coords: { x: 50, y: -50, z: 50 },
         url: '/#',
     },
 ];
@@ -57,8 +59,10 @@ function init() {
   window.addEventListener('resize', handleWindowResize, false);
 
   // Helpers
-  //scene.add(new THREE.GridHelper(1500, 100));
-  //scene.add(new THREE.AxesHelper(500));
+  if (shouldDebug){
+    scene.add(new THREE.GridHelper(1500, 100));
+    scene.add(new THREE.AxesHelper(500));
+  }
 
   // Camera
   camera.position.x = 0;
@@ -80,6 +84,7 @@ function init() {
     xhr => console.log("Poly (planet) " + (xhr.loaded / xhr.total * 100 ) + '% loaded'),
     error => console.log('An error happened:', error),
   );
+  //loader.scale = 0.5;
 
   // Lighting
   sunlight = new THREE.DirectionalLight(0xf0fff0, 3.5);
@@ -112,7 +117,7 @@ function init() {
       project.coords.y,
       project.coords.z,
     );
-    mesh.visible = false;
+    mesh.visible = shouldDebug;
     group.add(mesh);
 
     canvas.insertAdjacentHTML('afterend', html);
@@ -198,9 +203,9 @@ function updateMarkerPositions() {
             project.coords.x,
             project.coords.y,
             project.coords.z,
-        );
+        ).clone();
         /* ******* CHANGED ****** */
-      vector.applyAxisAngle(axis, quickAndDirtyDegreeCounter / (5)); // BLACK MAGIC WT* I HAVE GENUINELY NO IDEA WHY THIS WORKS!
+      vector.applyAxisAngle(axis, quickAndDirtyDegreeCounter/5); // BLACK MAGIC the number 5 works for some reason!
       // Any workaround is going to have to manually compute above line! TODO
       vector.project(camera);
 
@@ -215,6 +220,9 @@ function updateMarkerPositions() {
       // Track if items move behind globe
       const distanceToCenter = camera.position.distanceTo(new THREE.Vector3(0, 0, 0));
       const distanceToProject = camera.position.distanceTo(project.mesh.position);
+
+
+
       let should = false; // Whether the project point is behind or not
       if (distanceToProject > distanceToCenter) { should = true; }
       project.element.classList.toggle(
