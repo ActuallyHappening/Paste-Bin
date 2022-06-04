@@ -24,7 +24,6 @@ const showExtraObjects = false;
 let debugCounter = 0;
 
 const numExtraProjects = ENABLE_COOL_FEATURES ? 20 : 10; // Only applies when useDefaultProjects is false
-let quickAndDirtyDegreeCounter = 0; /****************** NEW **********************/
 
 let projects;
 if (useDefaultProjects) {
@@ -201,7 +200,6 @@ function animate() {
     const increase = 0.01; // Rotates by this amount
     group.children.forEach((projectRef, index) => {
       projectRef.position.applyAxisAngle(projects[index]?.orbitalAxis ?? axis, increase); // Apply rotation to each individual project point
-      quickAndDirtyDegreeCounter += increase; // Also, to make calculating the label positions work, use this quick and dirty solution :)
     })
     if (planetGraphics) planetGraphics.rotation.y += increase;
     //group.rotation.y += 0.005; // ********* OLD BUGGY LINE ************
