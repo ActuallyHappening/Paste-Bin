@@ -9,20 +9,20 @@ const camera = new THREE.PerspectiveCamera(
     55, window.innerWidth / window.innerHeight, 1, 1500
 );
 
-const ENABLE_COOL_FEATURES = false;
+const ENABLE_COOL_FEATURES = true;
 
-const useDefaultProjects = !ENABLE_COOL_FEATURES;
-const randomOrbitals = ENABLE_COOL_FEATURES; // Is pretty cool, set to true to see!
+const useDefaultProjects = true;
+const randomOrbitals = false; // Is pretty cool, set to true to see!
 
 const orbitalDistance = 100; // Changes distance of projects from center
 
 // Enable when debugging :)
 const shouldDebug = ENABLE_COOL_FEATURES;
-const showExtraObjects = false;
+const showExtraObjects = ENABLE_COOL_FEATURES;
 
 let debugCounter = 0;
 
-const numExtraProjects = ENABLE_COOL_FEATURES ? 20 : 10; // Only applies when useDefaultProjects is false
+const numExtraProjects = 10; // Only applies when useDefaultProjects is false
 
 let projects;
 if (useDefaultProjects) {
@@ -139,6 +139,7 @@ function init() {
   planet = new THREE.Mesh(planetGeometry, planetMaterial)
   scene.add(planet)
   if (!showExtraObjects) planet.visible = false
+  else planet.visible = true
 
 
   // Lighting
@@ -147,10 +148,10 @@ function init() {
 
   // Controls
   controls = new TrackballControls(camera, renderer.domElement);
-  controls.minDistance = 250;
-  controls.maxDistance = 1499;
+  controls.minDistance = 500;
+  controls.maxDistance = 500;
   controls.rotateSpeed = 1.0;
-  controls.zoomSpeed = 1.2;
+  controls.zoomSpeed = 0.01;
   controls.panSpeed = 0.8;
 
   // Project markers
