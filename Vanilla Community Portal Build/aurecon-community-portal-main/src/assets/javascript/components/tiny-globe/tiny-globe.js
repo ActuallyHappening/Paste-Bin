@@ -9,7 +9,7 @@ const camera = new THREE.PerspectiveCamera(
     55, window.innerWidth / window.innerHeight, 1, 1500
 );
 
-const ENABLE_COOL_FEATURES = true;
+const ENABLE_COOL_FEATURES = false;
 
 const useDefaultProjects = true;
 const randomOrbitals = false; // Is pretty cool, set to true to see!
