@@ -1,61 +1,113 @@
-import * as THREE from 'three';
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
-import { TrackballControls } from 'three/examples/jsm/controls/TrackballControls.js';
+<!-- All scripts by Caleb Yates -->
+<!-- SCROL DOWN -->
+<html>
+  <!-- SCROLL DOWN -->
+  <head>
+    <title>Class Case Study</title>
+  </head>
+  <!-- KEEP SCROLLING! -->
+  <body>
+    <script>
+      // DOWN, your almost there!
+      sqrt = Math.sqrt;
+      square_root = sqrt
+      squareroot = sqrt
+      squareRoot = sqrt
+      studentAttempt = function(x1, y1, z1, x2, y2, z2) {
+        // Keep scrolling
+        
+        let length_of_first_vector = 69 // DONT touch this line!
+        let length_of_second_vector = 420 // DONT touch this line either!
+        // Set your own answer under **here** below!
+        
+        // How to set your answer:
+        length_of_first_vector = 123456
+        length_of_first_vector = 69696969
+        length_of_second_vector = 420420420
 
-const canvas = document.querySelector('.tiny-globe');
+        /*
+          To multiply: x * y
+          To divide: x / y
+          To add: x + y
+          To subtract: x - y
+          To square root (hint hint!): sqrt(x)
+        */
+        // e.g.
+        sqrt(69);
+        69 * 420;
+        69 - 420;
+        69 / 420;
+        69 + 420;
+
+        // More sqrt:
+        sqrt(69696969);
+        sqrt(x1);
+        sqrt(y2);
+        sqrt(z1);
+        // etc.
+        
+        // e.g.
+        length_of_first_vector = sqrt(42069);
+        length_of_second_vector = 69 * 420;
+        length_of_first_vector = 69 - 420;
+        length_of_second_vector = x2 / 420; // Use variables wherever you like
+        length_of_first_vector = 69 + z1;
+        
+        /* THE TASK
+
+          1. Find a formula for the length (magnitude) of the first and second 3D vectors.
+          2. Write this formula in code (helpful examples above) like:
+              length_of_first_vector = sqrt(... * ... + ... / whatever you want here its math)
+          3. Open the document (or reload) and see the planet properly!
+
+        */
+        /**************** HERE ***************/
+
+        length_of_first_vector  = "*** DELETE THIS AND PUT HERE ***"
+        length_of_second_vector = "*** DELETE THIS AND PUT HERE ***"
+        
+        /**************** STOP ***************/
+        
+        return length_of_first_vector > length_of_second_vector
+        
+      }
+      </script>
+    <main class="content content--fullscreen">
+    <canvas id="THE-canvas"></canvas>
+    </main>
+    <!-- Put your code just above here -->
+    <!-- DONT scroll down :) answers -->
+    <script>
+      // Answer:
+      //length_of_first_vector = sqrt(x1 * x1 + y1 * y1 + z1 * z1);
+      //length_of_second_vector = sqrt(x2 * x2 + y2 * y2 + z2 * z2);
+    </script>
+  
+    <script type="module">
+      // Actual code (just ignore :)
+import * as THREE from 'https://cdn.skypack.dev/three@0.132.2';
+import { GLTFLoader } from 'https://cdn.skypack.dev/three@0.132.2/examples/jsm/loaders/GLTFLoader.js';
+import { TrackballControls} from 'https://cdn.skypack.dev/three@0.132.2/examples/jsm/controls/TrackballControls.js';
+
+const canvas = document.querySelector('#THE-canvas');
 const overlay = canvas.getContext('2d');
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(
     55, window.innerWidth / window.innerHeight, 1, 1500
 );
 
-const ENABLE_COOL_FEATURES = false;
-
-const useDefaultProjects = true;
-const randomOrbitals = false; // Is pretty cool, set to true to see!
-
 const orbitalDistance = 100; // Changes distance of projects from center
-
-// Enable when debugging :)
-const shouldDebug = ENABLE_COOL_FEATURES;
-const showExtraObjects = ENABLE_COOL_FEATURES;
 
 let debugCounter = 0;
 
-const numExtraProjects = 10; // Only applies when useDefaultProjects is false
+const numExtraProjects = 35
 
 let projects;
-if (useDefaultProjects) {
-  projects = [
-  	{
-		name: 'Lightbox',
-		coords: { x: -52, y: 72, z: 35 },
-		url: '/#',
-	},
-	{
-		name: 'T2D',
-		coords: { x: -36, y: 16, z: 99 },
-		url: '/#',
-	},
-	{
-		name: 'Port Kembla',
-		coords: { x: 67, y: 62, z: -2 },
-		url: '/#',
-	},
-	{
-		name: 'Inland Rail',
-		coords: { x: 0, y: 92, z: -8 },
-		url: '/#',
-	},
-	{
-		name: 'Harbour Park',
-		coords: { x: 47, y: -91, z: -17 },
-		url: '/#',
-	},
-  ];
-} else {
-  projects = []
-}
+  projects = [{
+    name: 'Center',
+    coords: { x: 0, y: 0, z: 0 },
+    url: '/#',
+  },];
 
 function randomNum(range = 1) {
   return (Math.random()-0.5)*range*2
@@ -68,20 +120,16 @@ function generateRandomOrbitalVector(distance) {
   return vec
 }
 
-if (!useDefaultProjects) {
-  for (let i = 0; i < numExtraProjects; i++) {
-    const orbit = generateRandomOrbitalVector(orbitalDistance)
-    //console.log(orbit)
-    projects.push({
-      name: 'Random: ' + i,
-      coords: { x: orbit.x, y: orbit.y, z: orbit.z },
-      url: '/#',
-    })
-    if (randomOrbitals) { projects[projects.length - 1].orbitalAxis = new THREE.Vector3(randomNum(1), randomNum(1), randomNum(1)) }
-  }
+for (let i = 0; i < numExtraProjects; i++) {
+  const orbit = generateRandomOrbitalVector(orbitalDistance)
+  //console.log(orbit)
+  projects.push({
+    name: 'Moon: ' + i,
+    coords: { x: orbit.x, y: orbit.y, z: orbit.z },
+    url: '/#',
+  })
+  //projects[projects.length - 1].orbitalAxis = new THREE.Vector3(randomNum(1), randomNum(1), randomNum(1))
 }
-
-//if (shouldDebug) projects = []
 
 let group = new THREE.Group(); // MUST Sync with projects (not bothered to refactor at the moment)
 let sunlight;
@@ -104,10 +152,8 @@ function init() {
   window.addEventListener('resize', handleWindowResize, false);
 
   // Helpers
-  if (shouldDebug){
     scene.add(new THREE.GridHelper(1500, 100));
     scene.add(new THREE.AxesHelper(500));
-  }
 
   // Camera
   camera.position.x = 0;
@@ -120,11 +166,11 @@ function init() {
   renderer.setSize(window.innerWidth, window.innerHeight);
   canvas.insertAdjacentElement('afterend', renderer.domElement);
 
-  // Planet object
+/*   // Planet object
   // Group globe and markers together
   const loader = new GLTFLoader();
   loader.load(
-    './assets/objects/low-poly-planet.gltf',
+    'https://communityportal.io/assets/objects/low-poly-planet.gltf',
     object => {
       planetGraphics = object.scene
       scene.add(planetGraphics)
@@ -132,26 +178,25 @@ function init() {
     },
     xhr => console.log("Poly (planet) " + (xhr.loaded / xhr.total * 100 ) + '% loaded'),
     error => console.log('An error happened:', error),
-  );
+  ); */
 
-  let planetGeometry = new THREE.SphereGeometry(100) // HARDCODED just note it techniquely should scale from above graphics import (not bothered right now)
-  let planetMaterial = new THREE.MeshPhysicalMaterial({color: 0x0fff0f})
+  let planetGeometry = new THREE.SphereGeometry(69) // HARDCODED just note it techniquely should scale from above graphics import (not bothered right now)
+  let planetMaterial = new THREE.MeshPhysicalMaterial({color: 0x0000ff})
   planet = new THREE.Mesh(planetGeometry, planetMaterial)
   scene.add(planet)
-  if (!showExtraObjects) planet.visible = false
-  else planet.visible = true
-
+  planet.visible = true
+ 
 
   // Lighting
-  sunlight = new THREE.DirectionalLight(0xf0fff0, 3.25);
-  sunlight.position.set(-800, 800, 1000);
+  sunlight = new THREE.DirectionalLight(0xf0fff0, 3.5);
+  sunlight.position.set(0, 0, 100);
 
   // Controls
   controls = new TrackballControls(camera, renderer.domElement);
-  controls.minDistance = 500;
-  controls.maxDistance = 500;
+  controls.minDistance = 250;
+  controls.maxDistance = 1499;
   controls.rotateSpeed = 1.0;
-  controls.zoomSpeed = 0.01;
+  controls.zoomSpeed = 1.2;
   controls.panSpeed = 0.8;
 
   // Project markers
@@ -173,7 +218,7 @@ function init() {
       project.coords.y,
       project.coords.z,
     );
-    mesh.visible = showExtraObjects;
+    mesh.visible = true;
     group.add(mesh);
 
     canvas.insertAdjacentHTML('afterend', html);
@@ -196,9 +241,9 @@ function animate() {
     zoomLevel = controls.target.distanceTo(controls.object.position);
     //console.log(controls.object.position) // 'Camera' position
     const axis = new THREE.Vector3(0, 1, 0) // Y axis to revolve around
-
+    
     /********************* NEW ****************** */
-    const increase = 0.005; // Rotates by this amount
+    const increase = 0.01; // Rotates by this amount
     group.children.forEach((projectRef, index) => {
       projectRef.position.applyAxisAngle(projects[index]?.orbitalAxis ?? axis, increase); // Apply rotation to each individual project point
     })
@@ -291,10 +336,106 @@ function updateMarkerPositions() {
         }
       })
 
-      project.element.classList.toggle(
+      project.mesh.visible = true;
+      if (should) {
+        project.mesh.material.color.set(0x00ff00);
+      } else {
+        project.mesh.material.color.set(0xff0000);
+      }
+
+      /* project.element.classList.toggle(
           'is-behind',
           should
-      );
+      ); */
       //console.log(project.point.position);
     });
 }
+    </script>
+    <style>
+      .content--fullscreen{
+	height:100%;
+	position:fixed;
+	right:0;
+	top:0;
+	width:100%
+}
+.content--fullscreen>canvas{
+	cursor:-webkit-grab;
+	cursor:grab;
+	position:fixed;
+	right:0;
+	top:0;
+	z-index:0
+}
+.content--fullscreen>canvas:active{
+	cursor:-webkit-grabbing;
+	cursor:grabbing
+}
+.marker{
+	left:0;
+	pointer-events:none;
+	position:absolute;
+	top:0
+}
+.marker__label{
+	-webkit-box-align:center;
+	-ms-flex-align:center;
+	align-items:center;
+	-webkit-backdrop-filter:blur(2px);
+	backdrop-filter:blur(2px);
+	background-color:rgba(51,51,51,.6);
+	border:2px solid #07131c;
+	border-radius:.5rem;
+	bottom:.875rem;
+	color:#ebebeb;
+	display:-webkit-box;
+	display:-ms-flexbox;
+	display:flex;
+	opacity:0;
+	padding:.5rem 1.25rem;
+	pointer-events:none;
+	position:absolute;
+	-webkit-transform:translateX(-50%);
+	transform:translateX(-50%);
+	-webkit-transition:opacity 225ms ease-in-out;
+	transition:opacity 225ms ease-in-out;
+	white-space:nowrap;
+	z-index:2
+}
+.marker:hover>.marker__label,.marker:focus-within>.marker__label{
+	opacity:1;
+	pointer-events:all
+}
+.marker__pointer{
+	--scale: 1;
+	cursor:pointer;
+	height:3.25rem;
+	pointer-events:all;
+	position:absolute;
+	-webkit-transform:translate(-50%, -50%);
+	transform:translate(-50%, -50%);
+	-webkit-transition:opacity 500ms ease-in-out;
+	transition:opacity 500ms ease-in-out;
+	width:3.25rem;
+	z-index:1
+}
+.marker__pointer::before{
+	border-radius:50%;
+	content:"";
+	display:block;
+	height:100%;
+	position:absolute;
+	width:100%
+}
+.marker__pointer::before{
+	-webkit-animation:pulse 4s ease-out infinite;
+	animation:pulse 4s ease-out infinite;
+	-webkit-animation-fill-mode:both;
+	animation-fill-mode:both;
+	border:2px solid #ebebeb;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box
+}
+    </style>
+  </body>
+</html>
