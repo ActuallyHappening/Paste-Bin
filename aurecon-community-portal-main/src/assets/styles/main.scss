@@ -1,0 +1,42 @@
+// ---------------------------------------------------------------------------------
+// main.scss
+// ---------------------------------------------------------------------------------
+
+// Includes
+//  ├─ Dependencies
+//  ├─ Components
+//  ├─ Layout
+//  └─ Other
+
+
+
+
+// ---------------------------------------------------------------------------------
+// Includes
+// ---------------------------------------------------------------------------------
+
+// Dependencies --------------------------------------------------------------------
+
+@use 'dependencies/function';
+@use 'dependencies/variable';
+@use 'dependencies/mixin';
+@use 'dependencies/utility';
+@use 'dependencies/reset';
+@use 'dependencies/typography';
+@use 'dependencies/animation';
+
+
+// Components ----------------------------------------------------------------------
+
+@use 'components/anchor';
+@use 'components/media';
+@use 'components/panel';
+
+
+// Layout --------------------------------------------------------------------------
+
+@use 'layout/general';
+@use 'layout/site-nav';
+@use 'layout/menu';
+@use 'layout/content';
+@use 'layout/tiny-globe';

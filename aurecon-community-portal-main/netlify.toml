@@ -1,0 +1,58 @@
+[build.environment]
+  NODE_VERSION = "16.14.0"
+  RUBY_VERSION = "2.7.0"
+
+
+
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Access-Control-Allow-Credentials = "true"
+    Cache-Control = "max-age=7786800"
+    Content-Security-Policy = '''
+      base-uri 'self';
+      connect-src 'self';
+      child-src 'none';
+      default-src 'self';
+      form-action 'self';
+      frame-ancestors 'none';
+      frame-src 'none';
+      img-src 'self';
+      object-src 'none';
+      script-src
+        'unsafe-inline'
+        https://FIXME.com
+        'sha256-EEybHJZUypDMBVev5n3BUh6duuW4ILpyFg5JAgNGg00='
+        'sha256-gHyVVUzFNcxjOj45EjZhOt9JDKkTbri0FGRgwNfdXi4='
+        'strict-dynamic';
+      style-src
+        'self'
+        'sha256-Qq7senOC9u8jv57/SvoWpxlNzyz6wgYYt1vreE3gW5w='
+        'strict-dynamic';
+      upgrade-insecure-requests;
+      worker-src 'self';'''
+    Referrer-Policy = "origin-when-cross-origin"
+    Strict-Transport-Security = '''
+      max-age=31536000;
+      includeSubDomains;
+      preload'''
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "DENY"
+    X-UA-Compatible = "ie=edge"
+    X-XSS-Protection = "1; mode=block"
+
+[[headers]]
+  for = "/assets/fonts/*"
+  [headers.values]
+    Cache-Control = '''
+      immutable,
+      max-age=31536000,
+      public'''
+
+[[headers]]
+  for = "/assets/images/*"
+  [headers.values]
+    Cache-Control = '''
+      max-age=31536000,
+      public'''
