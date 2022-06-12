@@ -8,14 +8,14 @@ document.addEventListener('click', handleClick);
 
 
 function toggleMenu(target) {
-	target.classList.toggle('is-active', isMenuActive)
+	target.classList.toggle('is-active', isMenuActive);
 	menu.classList.toggle('is-active', isMenuActive);
 }
 
 
 function handleClick(event) {
 	if (event.metaKey || event.ctrlKey) return;
-	let target = event.target.closest('.menu-toggle');
+	const target = event.target.closest('.menu-toggle');
 	if (!target) return;
 	isMenuActive = !isMenuActive;
 	toggleMenu(target);
