@@ -19,7 +19,7 @@
         "serve:webpack": "cross-env NODE_ENV=development webpack --config config/webpack-dev.config.js --watch",
         "clean:pre": "rimraf \"dist/\" && mkdirp \"dist/\"",
         "clean:post": "rimraf \"src/assets/javascript/es5/\" \"src/assets/javascript/esm/\" \"src/assets/javascript/*.{dev,min}.js\" \"src/service-worker.js\" \"src/assets/styles/*.*.css\" \"src/**/*.temp.*\"",
-        "test": "eslint -c config/.eslintrc src/assets/javascript"
+        "test": "eslint -c config/.eslintrc src/assets/javascript --fix"
     },
     "dependencies": {
         "bootstrap": "^5.1.3",
