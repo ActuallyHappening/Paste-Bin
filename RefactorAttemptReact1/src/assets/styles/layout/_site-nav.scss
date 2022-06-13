@@ -1,0 +1,27 @@
+@use '../dependencies/variable' as *;
+
+
+.site-nav {
+	align-items: center;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	padding: 1.25rem 1.75rem;
+	position: relative;
+	z-index: 3;
+
+	@media (min-width: 680px) {
+		padding: 1.25rem 2.25rem;
+	}
+}
+
+.site-logo > img {
+	display: block;
+	filter: drop-shadow(3px 3px 0px #{$color--tristsee});
+	height: 3.75rem;
+	width: auto;
+
+	@media (min-width: 680px) {
+		height: 2.25rem;
+	}
+}
