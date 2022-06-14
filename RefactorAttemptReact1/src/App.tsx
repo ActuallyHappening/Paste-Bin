@@ -7,8 +7,9 @@ function App() {
 
   return (
     <div className="App">
-      <QAD_Structure />
-      <QAD_Three/>
+      <h1>Why no render?</h1>
+      {/* <QAD_Structure />
+      <QAD_Three/> */}
     </div>
   )
 }
