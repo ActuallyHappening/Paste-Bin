@@ -1,8 +1,10 @@
 import React from 'react'
 
-const QAD_Three = () => {
+const QAD_Three = ({ children }) => {
+
+  
   return (
-    <div>QAD_Three</div>
+    <canvas className='tiny-globe'></canvas>
   )
 }
 
