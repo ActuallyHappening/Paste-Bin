@@ -4,7 +4,7 @@ import QAD_DO from './QAD_Three_Script'
 
 const QAD_Three = ({ children }) => {
   
-  useEffect(() => QAD_DO("./assets/objects/planet.gltf"), [children])
+  useEffect(() => QAD_DO("src/assets/objects/planet.gltf"), [children])
   
   return (
     <canvas className='tiny-globe'></canvas>

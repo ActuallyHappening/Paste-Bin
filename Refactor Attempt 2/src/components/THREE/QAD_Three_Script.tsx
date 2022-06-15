@@ -2,7 +2,7 @@ import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { TrackballControls } from 'three/examples/jsm/controls/TrackballControls.js';
 
-function QAD_DO(planetURL = "./assets/objects/low-poly-planet.gltf") {
+function QAD_DO(planetURL = "./assets/objects/planet.gltf") {
   console.log("QAD_Three.tsx: useEffect()");
   const canvas = document.querySelector('.tiny-globe');
   const overlay = canvas.getContext('2d');
