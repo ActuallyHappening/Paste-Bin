@@ -1,6 +1,9 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import QAD_DO from '../nav bar stuff/QAD_NavBar_Scripts'
 
-const QAD_Body = () => {
+const QAD_Body = ({children}) => {
+
+  useEffect(() => QAD_DO(), [children])
   return (
     <>
       <div className="site-nav">
