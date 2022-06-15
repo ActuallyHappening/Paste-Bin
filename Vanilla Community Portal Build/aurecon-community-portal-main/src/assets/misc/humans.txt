@@ -1,0 +1,11 @@
+---
+permalink: /humans.txt
+---
+
+
+
+
+# AUTHOR
+
+	Name: MFDC
+	Email: info@mfdc.io
