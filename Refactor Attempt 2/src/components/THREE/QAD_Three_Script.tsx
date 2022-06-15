@@ -1,5 +1,8 @@
+import * as THREE from 'three';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+import { TrackballControls } from 'three/examples/jsm/controls/TrackballControls.js';
 
-function QAD_DO() {
+function QAD_DO(planetURL = "./assets/objects/low-poly-planet.gltf") {
   console.log("QAD_Three.tsx: useEffect()");
   const canvas = document.querySelector('.tiny-globe');
   const overlay = canvas.getContext('2d');
@@ -123,7 +126,7 @@ function QAD_DO() {
     // Group globe and markers together
     const loader = new GLTFLoader();
     loader.load(
-      './assets/objects/low-poly-planet.gltf',
+      planetURL,
       object => {
         planetGraphics = object.scene
         scene.add(planetGraphics)
