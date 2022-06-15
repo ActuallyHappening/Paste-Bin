@@ -9,8 +9,8 @@ const QAD_Body = ({children}) => {
       <div className="site-nav">
 				<a href="/#" tabIndex={-1}>
 					<picture className="site-logo">
-						<source media="(min-width: 680px)" srcSet="/assets/images/logo-light.png" type="image/png"/>
-						<img alt="" src="/assets/images/logo-wrapped-light.png" type="image/png"/>
+						<source media="(min-width: 680px)" srcSet="src/assets/images/logo-light.png" type="image/png"/>
+						<img alt="" src="src/assets/images/logo-wrapped-light.png" /* type="image/png" *//>
 					</picture>
 				</a>
 				<button aria-label="Toggle site navigation menu" className="menu-toggle text--light" type="button">
