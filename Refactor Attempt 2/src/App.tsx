@@ -1,9 +1,7 @@
 import { useState } from 'react'
 import './styles/main.dev.css'
 
-function App() {
-  const [count, setCount] = useState(0)
-
+function AppFullscreen() {
   return (
     <>
     
@@ -11,4 +9,4 @@ function App() {
   )
 }
 
-export default App
+export default AppFullscreen
