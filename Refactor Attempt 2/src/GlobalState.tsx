@@ -1,4 +1,4 @@
-import * as _NavBar from "./components/body/navbar/_Navbar";
+import * as _NavBar from "./components/body/navbar/_NavBar";
 
 const _G = {
   "NavBar": {
