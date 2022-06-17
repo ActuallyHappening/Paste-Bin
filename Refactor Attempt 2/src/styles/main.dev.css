@@ -1,4 +1,10 @@
 @charset "UTF-8";
+.menu__link {
+  display: inline-block;
+  font-size: 1.25rem;
+  margin: 0.875rem 1.75rem;
+}
+
 .clearfix::after {
   content: "";
   display: table;

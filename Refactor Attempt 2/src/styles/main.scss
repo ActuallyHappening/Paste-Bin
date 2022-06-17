@@ -15,6 +15,9 @@
 // Includes
 // ---------------------------------------------------------------------------------
 
+// NEEDS second-main.dev.scss
+@use '../components/body/navbar/NavBar.scss';
+
 // Dependencies --------------------------------------------------------------------
 
 @use 'dependencies/function';
