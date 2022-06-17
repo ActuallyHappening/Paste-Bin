@@ -1,9 +1,7 @@
 import React, { useState } from "react"
 import _G from "../../../GlobalState"
-import GlobalState from "../../../GlobalState"
+import GlobalState, { T_Children } from "../../../GlobalState"
 import { Item } from './_NavBar'
-
-type T_Children = any // Replace with type of React children
 
 const NavBar = ({ children, items, }: {children: any, items: Array<Item>}) => {
   const [_items, setItems] = useState(items ?? _G.NavBar.__default__.items)

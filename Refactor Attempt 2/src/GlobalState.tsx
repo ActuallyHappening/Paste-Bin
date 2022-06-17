@@ -1,5 +1,7 @@
 import * as _NavBar from "./components/body/navbar/_NavBar";
 
+type T_Children = any // Replace with type of React children
+
 const _G = {
   "NavBar": {
     "__default__": {
@@ -11,4 +13,5 @@ const _G = {
   }
 }
 
-export default _G
+export { _G as default, _G }
+export type { T_Children }
