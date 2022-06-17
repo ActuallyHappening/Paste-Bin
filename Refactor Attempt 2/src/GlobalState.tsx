@@ -1,6 +1,6 @@
 import * as _NavBar from "./components/body/navbar/_NavBar";
 
-type T_Children = any // Replace with type of React children
+type T_Children = Array<JSX.Element> | JSX.Element;
 
 const _G = {
   "NavBar": {

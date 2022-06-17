@@ -1,9 +1,8 @@
 import React, { useState } from "react"
-import _G from "../../../GlobalState"
-import GlobalState, { T_Children } from "../../../GlobalState"
+import _G, { T_Children } from "../../../GlobalState"
 import { Item } from './_NavBar'
 
-const NavBar = ({ children, items, }: {children: any, items: Array<Item>}) => {
+const NavBar = ({ children, items, }: {children?: any, items: Array<Item>}) => {
   const [_items, setItems] = useState(items ?? _G.NavBar.__default__.items)
   return (
     <ul className="menu__items">
@@ -19,7 +18,7 @@ const NavBar = ({ children, items, }: {children: any, items: Array<Item>}) => {
   )
 }
 
-NavBar.Raw = ({ children }: {children: T_Children}) => {
+NavBar.Raw = ({ children }: {children?: T_Children}) => {
   return (
     <div className="menu__item">
       {children}
