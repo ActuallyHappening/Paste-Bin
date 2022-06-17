@@ -1,14 +1,14 @@
 import React, { useState } from "react"
+import GlobalState from "../../../GlobalState"
+import { Item } from './_NavBar'
 
-
-
-const NavBar = ({ children, _items, ...props }) => {
-  const items, setItems = useState(_items ?? props["items"] ?? [])
+const NavBar = ({ children, items, }: {children: any, items: Array<Item>}) => {
+  const [_items, setItems] = useState(items ?? [])
   return (
     <>
-      {items.map((item, index) => {
-        if (type == "Link") {
-          return <a href={item.href}>{item.text}</a>
+      {_items.map((item, index) => {
+        if (item.type == "Link") {
+          return <a href={item.url}>{item.text}</a>
         } else {
           console.warn(`NavBar item type not supported: ${item.type}`)
         }
