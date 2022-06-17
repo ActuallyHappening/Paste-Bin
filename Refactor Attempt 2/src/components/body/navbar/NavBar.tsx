@@ -1,24 +1,27 @@
 import React, { useState } from "react"
+import _G from "../../../GlobalState"
 import GlobalState from "../../../GlobalState"
 import { Item } from './_NavBar'
 
+type T_Children = any // Replace with type of React children
+
 const NavBar = ({ children, items, }: {children: any, items: Array<Item>}) => {
-  const [_items, setItems] = useState(items ?? [])
+  const [_items, setItems] = useState(items ?? _G.NavBar.__default__.items)
   return (
-    <>
+    <ul className="menu__items">
       {_items.map((item, index) => {
         if (item.type == "Link") {
-          return <a href={item.url}>{item.text}</a>
+          return <NavBar.Link key={index} text={item.text} href={item.url}/>  
         } else {
           console.warn(`NavBar item type not supported: ${item.type}`)
         }
       })}
       {children}
-    </>
+    </ul>
   )
 }
 
-NavBar.Raw = ({ children }) => {
+NavBar.Raw = ({ children }: {children: T_Children}) => {
   return (
     <div className="menu__item">
       {children}
@@ -26,7 +29,7 @@ NavBar.Raw = ({ children }) => {
   )
 }
 
-NavBar.RawLink = ({ children, text, ...props }) => {
+NavBar.RawLink = ({ children, text, ...props }: {children?: T_Children, text: string, [props: string]: any}) => {
   return (
     <NavBar.Raw>
         <a {...props}>{text}</a>
@@ -35,9 +38,9 @@ NavBar.RawLink = ({ children, text, ...props }) => {
   )
 }
 
-NavBar.Link = ({ text, href, }) => {
+NavBar.Link = ({ text, href, }: {text: string, href: string}) => {
   return (
-    <NavBar.RawLink href={href} text={text ?? href}></NavBar.RawLink>
+    <NavBar.RawLink text={text ?? href} href={href}></NavBar.RawLink>
   )
 }
 

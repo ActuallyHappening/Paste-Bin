@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import QAD_DO from '../nav bar stuff/QAD_NavBar_Scripts'
+import NavBar from './navbar/NavBar'
 
 const QAD_Body = ({children}) => {
 
@@ -19,12 +20,13 @@ const QAD_Body = ({children}) => {
 				</button>
 				<nav className="menu">
 					<ul className="menu__links">
-						<li>
+            <NavBar/>
+						{/* <li>
 							<a href="#about" className="menu__link">About</a>
 						</li>
 						<li>
 							<a href="#contact" className="menu__link">Contact us</a>
-						</li>
+						</li> */}
 					</ul>
 				</nav>
 			</div>
