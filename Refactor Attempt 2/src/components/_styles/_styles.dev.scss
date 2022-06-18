@@ -1,1 +1,13 @@
-@use 'layout/_styles.dev.scss';
+// Deps
+@forward './styles_deps.dev.scss';
+
+// NavBar
+@forward '../navbar/NavBar.scss';
+
+@forward '../navbar/icon/Icon.scss';
+
+@forward '../navbar/dropdown/Dropdown.scss';
+@forward '../navbar/dropdown/menu/DropdownMenu.scss';
+
+// Panel
+@forward '../panels/Panels.scss';

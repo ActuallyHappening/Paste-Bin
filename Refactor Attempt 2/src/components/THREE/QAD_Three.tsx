@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import QAD_DO from './QAD_Three_Script'
 
 
