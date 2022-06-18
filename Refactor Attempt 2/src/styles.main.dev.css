@@ -1,9 +1,9 @@
 /* Error: Can't find stylesheet to import.
- *    ,
- * 19 | @use '../components/body/navbar/NavBar.scss';
- *    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
- *    '
- *   styles.main.dev.scss 19:1  root stylesheet */
+ *   ,
+ * 2 | @use 'comopnents/_styles/_styles.dev.scss';
+ *   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ *   '
+ *   styles.main.dev.scss 2:1  root stylesheet */
 
 body::before {
   font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
@@ -13,5 +13,5 @@ body::before {
   padding: 1em;
   margin-bottom: 1em;
   border-bottom: 2px solid black;
-  content: "Error: Can't find stylesheet to import.\a    \2577 \a 19 \2502  @use '../components/body/navbar/NavBar.scss';\a    \2502  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\a    \2575 \a   styles.main.dev.scss 19:1  root stylesheet";
+  content: "Error: Can't find stylesheet to import.\a   \2577 \a 2 \2502  @use 'comopnents/_styles/_styles.dev.scss';\a   \2502  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\a   \2575 \a   styles.main.dev.scss 2:1  root stylesheet";
 }
