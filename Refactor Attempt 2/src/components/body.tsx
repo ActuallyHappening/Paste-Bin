@@ -8,10 +8,9 @@ const Body = () => {
   return (
     <>
     <NavBar />
-    <QAD_Three />
-    <Panels />
+    {/* <QAD_Three /> */}
+    {/* <Panels /> */}
     </>
-
   )
 }
 

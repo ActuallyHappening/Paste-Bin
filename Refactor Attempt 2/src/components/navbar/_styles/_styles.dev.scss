@@ -1,0 +1,9 @@
+// Includes all styles needed for src/components/navbar/**
+
+@forward './anchor';
+@forward './_anchor';
+
+@forward './icon/Icon.scss';
+
+@forward './dropdown/Dropdown.scss';
+@forward './dropdown/menu/DropdownMenu.scss';

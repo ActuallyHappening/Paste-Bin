@@ -1,1 +1,4 @@
+// Includes all styles needed for src/**
+
 @forward './dependencies/_styles.dev.scss';
+@forward '../components/_styles/_styles.dev.scss';

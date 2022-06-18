@@ -1,13 +1,11 @@
+// Includes all styles needed for src/components/**
+
 // Deps
 @forward './styles_deps.dev.scss';
 
-// NavBar
-@forward '../navbar/NavBar.scss';
+// NavBar src/components/navbar/** styles
+@forward '../navbar/_styles/_styles.dev.scss';
 
-@forward '../navbar/icon/Icon.scss';
 
-@forward '../navbar/dropdown/Dropdown.scss';
-@forward '../navbar/dropdown/menu/DropdownMenu.scss';
-
-// Panel
+// Panel src/components/panel/** styles
 @forward '../panels/Panels.scss';
