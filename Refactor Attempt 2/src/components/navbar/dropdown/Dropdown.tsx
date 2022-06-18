@@ -8,7 +8,9 @@ const Dropdown = () => {
 					<span className="material-icons md-xl">&#xe5d2;</span>
 					<span className="material-icons md-xl">&#xe5cd;</span>
 			</button>
+      <nav className='dropdown-menu'>
       <DropDownMenu />
+      </nav>
     </>
   )
 }

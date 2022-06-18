@@ -1,5 +1,3 @@
-import React from 'react'
-
 // Will be the only thing imported by App.tsx
 
 const Body = () => {
