@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
-import QAD_DO from './navbar/dropdown-menu/QAD_NavBar_Scripts'
-import DropDownMenu from './navbar/dropdown-menu/Dropdown'
+import QAD_DO from './navbar/QAD_NavBar_Scripts'
+import DropDownMenu from './navbar/dropdown-menu/DropDown'
 
 const QAD_Body = ({children}) => {
 
@@ -18,7 +18,7 @@ const QAD_Body = ({children}) => {
 					<span className="material-icons md-xl">&#xe5d2;</span>
 					<span className="material-icons md-xl">&#xe5cd;</span>
 				</button>
-				<nav className="menu">
+				<nav className="dropdown-menu">
 					<ul className="menu__links">
             <DropDownMenu/>
 						{/* <li>

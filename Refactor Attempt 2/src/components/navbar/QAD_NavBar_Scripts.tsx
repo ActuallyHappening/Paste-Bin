@@ -1,5 +1,5 @@
 function QAD_DO() {
-  const menu = document.querySelector('.menu');
+  const menu = document.querySelector('.dropdown-menu');
 
 
 let isMenuActive = menu.classList.contains('is-active');
