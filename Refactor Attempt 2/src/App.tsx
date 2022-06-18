@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import QAD_Body from './components/QAD_Body'
-import QAD_Body2 from './components/navbar/QAD_Body2'
+import QAD_Body2 from './components/QAD_Body2'
 import QAD_Three from './components/three/QAD_Three'
-import './styles/main.dev.css'
+import './styles.main.dev.css'
 
 function AppFullscreen() {
   return (
