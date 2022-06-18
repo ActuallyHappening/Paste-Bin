@@ -1,8 +1,17 @@
 // Will be the only thing imported by App.tsx
 
+import NavBar from "./navbar/NavBar"
+import Panels from "./panels/Panels"
+import QAD_Three from "./three/QAD_Three"
+
 const Body = () => {
   return (
-    <div>Body</div>
+    <>
+    <NavBar />
+    <QAD_Three />
+    <Panels />
+    </>
+
   )
 }
 

@@ -1,6 +1,6 @@
 import React from 'react'
 
-const QAD_Body2 = () => {
+const Panels = () => {
   return (
     <>
     <div className="panel" id="about">
@@ -31,4 +31,4 @@ const QAD_Body2 = () => {
   )
 }
 
-export default QAD_Body2
+export default Panels

@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import QAD_DO from './QAD_NavBar_Scripts'
 import Dropdown from './dropdown/Dropdown'
 import Icon from './icon/Icon'
 
-const NavBar = () => {
+const NavBar = ({ children }) => {
+
+  useEffect(() => QAD_DO, [children])
   return (
     <div className="site-nav">
       <h3>NavBar in site-nav class!</h3>
