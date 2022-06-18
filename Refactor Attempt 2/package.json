@@ -6,8 +6,8 @@
     "dev": "vite && concurrently 'npm run sass:watch'",
     "build": "sass:build && tsc && vite build",
     "preview": "vite preview",
-    "sass:build": "sass styles.main.dev.scss styles.main.dev.css",
-    "sass:watch": "sass styles.main.dev.scss styles.main.dev.css --watch"
+    "sass:build": "sass src/styles.main.dev.scss src/styles.main.dev.css",
+    "sass:watch": "sass src/styles.main.dev.scss src/styles.main.dev.css --watch"
   },
   "dependencies": {
     "react": "^18.0.0",
