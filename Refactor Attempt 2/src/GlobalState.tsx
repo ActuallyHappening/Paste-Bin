@@ -1,14 +1,14 @@
 import React from "react";
-import * as _NavBar from "./components/body/navbar/_NavBar";
+import * as DropDownMenu from "./components/body/dropdown-menu/_Dropdown";
 
 type T_Children = React.ReactNode;
 
 const _G = {
-  "NavBar": {
+  "DropDownMenu": {
     "__default__": {
       "items": [
-        new _NavBar.Item({type: "Link", url: "#about", text: "About"}),
-        new _NavBar.Item({type: "Link", url: "#contact", text: "Contact us"}),
+        new DropDownMenu.Item({type: "Link", url: "#about", text: "About"}),
+        new DropDownMenu.Item({type: "Link", url: "#contact", text: "Contact us"}),
       ]
     }
   }
