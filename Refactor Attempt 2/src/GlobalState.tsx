@@ -1,5 +1,5 @@
 import React from "react";
-import * as DropDownMenu from "./components/navbar/dropdown-menu/_Dropdown";
+import * as DropDownMenu from "./components/navbar/dropdown/menu/_Dropdown";
 
 type T_Children = React.ReactNode;
 

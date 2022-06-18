@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import QAD_DO from './navbar/QAD_NavBar_Scripts'
-import DropDownMenu from './navbar/dropdown-menu/DropDown'
+import DropDownMenu from './navbar/dropdown/DropDown'
 
 const QAD_Body = ({children}) => {
 
