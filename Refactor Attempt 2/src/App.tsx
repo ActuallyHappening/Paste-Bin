@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import QAD_Body from './components/body/QAD_Body'
-import QAD_Body2 from './components/body/QAD_Body2'
+import QAD_Body from './components/QAD_Body'
+import QAD_Body2 from './components/navbar/QAD_Body2'
 import QAD_Three from './components/THREE/QAD_Three'
 import './styles/main.dev.css'
 
