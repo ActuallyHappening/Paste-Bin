@@ -1,19 +1,15 @@
 import React, { useEffect } from 'react'
 import QAD_DO from './navbar/QAD_NavBar_Scripts'
-import DropDownMenu from './navbar/dropdown/DropDown'
+import DropDownMenu from './navbar/dropdown/menu/DropdownMenu'
+import NavBar from './navbar/NavBar'
 
 const QAD_Body = ({children}) => {
 
   useEffect(() => QAD_DO(), [children])
   return (
     <>
+      <NavBar />
       <div className="site-nav">
-				<a href="/#" tabIndex={-1}>
-					<picture className="site-logo">
-						<source media="(min-width: 680px)" srcSet="src/assets/images/logo-light.png" type="image/png"/>
-						<img alt="" src="src/assets/images/logo-wrapped-light.png" /* type="image/png" *//>
-					</picture>
-				</a>
 				<button aria-label="Toggle site navigation menu" className="menu-toggle text--light" type="button">
 					<span className="material-icons md-xl">&#xe5d2;</span>
 					<span className="material-icons md-xl">&#xe5cd;</span>

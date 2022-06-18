@@ -1,44 +1,16 @@
-import React, { useState } from "react"
-import _G, { T_Children } from "../../../GlobalState"
-import { Item } from './menu/_Dropdown'
+import React from 'react'
+import DropDownMenu from './menu/DropdownMenu'
 
-const DropDownMenu = ({ children, items, }: {children?: any, items: Array<Item>}) => {
-  const [_items, setItems] = useState(items ?? _G.DropDownMenu.__default__.items)
+const Dropdown = () => {
   return (
-    <ul className="menu__items">
-      {_items.map((item, index) => {
-        if (item.type == "Link") {
-          return <DropDownMenu.Link key={index} text={item.text} href={item.url}/>  
-        } else {
-          console.warn(`NavBar item type not supported: ${item.type}`)
-        }
-      })}
-      {children}
-    </ul>
+    <>
+      <button aria-label="Toggle site navigation menu" className="menu-toggle text--light" type="button">
+					<span className="material-icons md-xl">&#xe5d2;</span>
+					<span className="material-icons md-xl">&#xe5cd;</span>
+			</button>
+      <DropDownMenu />
+    </>
   )
 }
 
-DropDownMenu.Raw = ({ children }: {children?: T_Children}) => {
-  return (
-    <div className="menu__item">
-      {children}
-    </div>
-  )
-}
-
-DropDownMenu.RawLink = ({ children, text, ...props }: {children?: T_Children, text: string, [props: string]: any}) => {
-  return (
-    <DropDownMenu.Raw>
-        <a  className="menu__link" {...props}>{text}</a>
-        {children}
-    </DropDownMenu.Raw>
-  )
-}
-
-DropDownMenu.Link = ({ text, href, }: {text: string, href: string}) => {
-  return (
-    <DropDownMenu.RawLink text={text ?? href} href={href}></DropDownMenu.RawLink>
-  )
-}
-
-export default DropDownMenu
+export default Dropdown
