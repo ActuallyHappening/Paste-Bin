@@ -29,7 +29,7 @@ NavBar.Raw = ({ children }: {children?: T_Children}) => {
 NavBar.RawLink = ({ children, text, ...props }: {children?: T_Children, text: string, [props: string]: any}) => {
   return (
     <NavBar.Raw>
-        <a {...props}>{text}</a>
+        <a  className="menu__link" {...props}>{text}</a>
         {children}
     </NavBar.Raw>
   )
