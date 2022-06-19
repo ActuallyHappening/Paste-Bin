@@ -1,3 +1,5 @@
+// In non-static site, add async function to this global state file
+
 import React from "react";
 import * as DropDownMenu from "./components/navbar/dropdown/dropdownmenu/_DropdownMenu";
 

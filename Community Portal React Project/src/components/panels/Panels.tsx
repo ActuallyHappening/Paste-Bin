@@ -1,5 +1,4 @@
-import React from 'react'
-
+// TODO refactor this into a dynamic set
 const Panels = () => {
   return (
     <>
