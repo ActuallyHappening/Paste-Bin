@@ -9,4 +9,4 @@ function AppFullscreen() {
   )
 }
 
-export default AppFullscreen
+export { AppFullscreen as default, AppFullscreen }

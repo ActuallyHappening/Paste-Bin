@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import ThreeGlobe from './Globe'
 import QAD_DO from './QAD_Three_Script'
 
 
@@ -7,8 +8,13 @@ const QAD_Three = ({ children }) => {
   useEffect(() => QAD_DO("src/assets/objects/planet.gltf"), [children])
   
   return (
-    <canvas className='tiny-globe'></canvas>
+    <div id='globe-canvas-parent'></div>
   )
 }
 
-export default QAD_Three
+const testing_globe_three = ({children}) => {
+  return (
+    <ThreeGlobe />
+  )
+  }
+export default testing_globe_three

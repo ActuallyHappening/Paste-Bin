@@ -4,8 +4,15 @@ import { TrackballControls } from 'three/examples/jsm/controls/TrackballControls
 
 function QAD_DO(planetURL = "./assets/objects/planet.gltf") {
   console.log("QAD_Three.tsx: useEffect()");
-  const canvas = document.querySelector('.tiny-globe');
-  const overlay = canvas.getContext('2d');
+  let canavsParent = document.querySelector('#globe-canvas-parent');
+  if (canavsParent == undefined) {
+    console.error("QAD_Three.tsx: canvas not found");
+    return
+  } else {
+    console.warn("QAD_Three.tsx: canvas found");
+  }
+
+  //const overlay = canavsParent.getContext('2d');
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(
     55, window.innerWidth / window.innerHeight, 1, 1500
@@ -120,7 +127,13 @@ function QAD_DO(planetURL = "./assets/objects/planet.gltf") {
     renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setPixelRatio(window.devicePixelRatio);
     renderer.setSize(window.innerWidth, window.innerHeight);
-    canvas.insertAdjacentElement('afterend', renderer.domElement);
+
+    console.log(canavsParent, "canvas found", canavsParent === null);
+    canavsParent.appendChild(renderer.domElement); // TODO make less agressive!
+    //canvas.classList.add('globe-canvas');
+
+    console.log("renderer.domElement = ");
+    console.log(renderer.domElement);
 
     // Planet object
     // Group globe and markers together
@@ -177,7 +190,7 @@ function QAD_DO(planetURL = "./assets/objects/planet.gltf") {
       mesh.visible = showExtraObjects;
       group.add(mesh);
 
-      canvas.insertAdjacentHTML('afterend', html);
+      canavsParent.insertAdjacentHTML('afterend', html);
       project.element = document.querySelector(`#project-${index + 1}`);
       project.mesh = mesh;
     });
