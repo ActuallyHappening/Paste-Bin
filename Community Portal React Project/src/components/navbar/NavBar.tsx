@@ -9,7 +9,7 @@ const NavBar = ({ children }: {children?: T_Children}) => {
   useEffect(() => QAD_DO, [children])
   return (
     <div className="site-nav">
-      <h3>NavBar in site-nav class!</h3>
+      {/* <h3>NavBar in site-nav class!</h3> */}
 					<Icon />
           <Dropdown />
 			</div>

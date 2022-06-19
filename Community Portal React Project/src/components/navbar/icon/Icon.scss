@@ -1,3 +1,15 @@
 // Includes the styling for the Icon component
 
 @use '../_styles/styles_deps.dev' as deps;
+
+
+.site-logo > img {
+	display: block;
+	filter: drop-shadow(3px 3px 0px #{deps.$var-color--tristsee});
+	height: 3.75rem;
+	width: auto;
+
+	@media (min-width: 680px) {
+		height: 2.25rem;
+	}
+}
