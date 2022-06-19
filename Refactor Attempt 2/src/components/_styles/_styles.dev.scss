@@ -3,7 +3,7 @@
 // Deps
 @forward './styles_deps.dev.scss';
 
-// Global styles (NOT deps)
+// Global styles (NOT deps) for **src/components** only
 @forward './global/styles.dev.scss';
 
 // Components specific styling

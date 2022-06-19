@@ -8,7 +8,7 @@
 //  └─ Hovered/focused
 
 @use 'sass:math';
-@use '../_styles_deps.dev.scss' as deps;
+@use '../_styles_deps.dev.scss' as *;
 /* @use '../dependencies/mixin'; */
 
 
@@ -34,6 +34,6 @@ a {
 	&:focus,
 	&:hover,
 	&:active {
-		color: $deps.color--sparkling-apple;
+		color: deps-variable.$color--sparkling-apple;
 	}
 }

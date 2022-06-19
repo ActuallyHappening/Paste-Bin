@@ -1,9 +1,9 @@
-/* Error: Expected digit.
+/* Error: There is no module with the namespace "deps-variable".
  *    ,
- * 37 |         color: $deps.color--sparkling-apple;
- *    |                      ^
+ * 37 |         color: deps-variable.$color--sparkling-apple;
+ *    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
  *    '
- *   src/components/_styles/global/_anchor.scss 37:16    @forward
+ *   src/components/_styles/global/_anchor.scss 37:10    @forward
  *   src/components/_styles/global/_styles.dev.scss 1:1  @forward
  *   src/components/_styles/_styles.dev.scss 7:1         @forward
  *   src/_styles/_styles.dev.scss 4:1                    @use
@@ -17,5 +17,5 @@ body::before {
   padding: 1em;
   margin-bottom: 1em;
   border-bottom: 2px solid black;
-  content: "Error: Expected digit.\a    \2577 \a 37 \2502          color: $deps.color--sparkling-apple;\a    \2502                       ^\a    \2575 \a   src/components/_styles/global/_anchor.scss 37:16    @forward\a   src/components/_styles/global/_styles.dev.scss 1:1  @forward\a   src/components/_styles/_styles.dev.scss 7:1         @forward\a   src/_styles/_styles.dev.scss 4:1                    @use\a   src/styles.main.dev.scss 1:1                        root stylesheet";
+  content: 'Error: There is no module with the namespace "deps-variable".\a    \2577 \a 37 \2502          color: deps-variable.$color--sparkling-apple;\a    \2502                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\a    \2575 \a   src/components/_styles/global/_anchor.scss 37:10    @forward\a   src/components/_styles/global/_styles.dev.scss 1:1  @forward\a   src/components/_styles/_styles.dev.scss 7:1         @forward\a   src/_styles/_styles.dev.scss 4:1                    @use\a   src/styles.main.dev.scss 1:1                        root stylesheet';
 }

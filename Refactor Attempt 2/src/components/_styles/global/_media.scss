@@ -8,9 +8,10 @@
 //  └─ 404
 
 @use 'sass:math';
-@use '../dependencies/function';
+@use '../_styles_deps.dev.scss' as *; // deps-variable
+/* @use '../dependencies/function';
 @use '../dependencies/variable' as *;
-@use '../dependencies/mixin';
+@use '../dependencies/mixin'; */
 
 
 
@@ -20,7 +21,7 @@
 // ---------------------------------------------------------------------------------
 
 .media {
-	background-color: $color--wild-sand;
+	background-color: deps-variable.$color--wild-sand;
 	// Force whatever element this class may be
 	// applied to always display as a block.
 	display: block;
@@ -32,7 +33,7 @@
 	width: 100%;
 
 	+ .media {
-		margin-top: $baseline;
+		margin-top: deps-variable.$baseline;
 	}
 }
 
@@ -82,7 +83,7 @@ img[alt] {
 	&::before {
 		box-sizing: border-box;
 		color: rgba(0, 0, 0, 0.2);
-		padding: $baseline calc( #{math.div($baseline, 2)} + 1%);
+		padding: deps-variable.$baseline calc( #{math.div(deps-variable.$baseline, 2)} + 1%);
 	}
 
 	&::after {
@@ -95,11 +96,11 @@ img[alt] {
 	}
 
 	&::before {
-		@include mixin.absolute(top $baseline left);
+		@include mixin.absolute(top deps.$baseline left);
 		content: '“' attr(alt) '”';
 		font-size: 0.9em;
 		font-style: italic;
-		height: calc(100% - #{$baseline * 2});
+		height: calc(100% - #{deps.$baseline * 2});
 		width: 100%;
 		z-index: 1;
 	}
