@@ -8,7 +8,7 @@
 //  └─ 404
 
 @use 'sass:math';
-@use '../_styles_deps.dev.scss' as *; // deps-variable
+@use '../_styles_deps.dev.scss' as deps;
 /* @use '../dependencies/function';
 @use '../dependencies/variable' as *;
 @use '../dependencies/mixin'; */
