@@ -306,6 +306,7 @@ html {
   background-color: hsl(206deg, 60%, 6.875%);
   overflow-x: hidden;
   width: 100vw;
+  min-height: 100vh;
 }
 
 body {
@@ -316,6 +317,8 @@ body {
   max-width: 1376px;
   min-width: 352px;
   opacity: 1;
+  min-height: 100%;
+  display: block;
 }
 
 .content--fullscreen {

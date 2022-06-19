@@ -21,6 +21,7 @@ html {
 	// scrollbar when navigating between short/long pages.
 	overflow-x: hidden;
 	width: 100vw;
+  min-height: 100vh;
 }
 
 body {
@@ -36,4 +37,7 @@ body {
 	min-width: deps.$var-breakpoint--min;
 	// Fallback if CSS animation isn't supported
 	opacity: 1;
+
+  min-height: 100%;
+  display: block;
 }
