@@ -6,6 +6,9 @@
 // Global styles (NOT deps) for **src/components** only
 @forward './global/styles.dev.scss';
 
+// Layout
+@forward './layout/styles.dev.scss';
+
 // Components specific styling
 // NavBar src/components/navbar/** styles
 @forward '../navbar/_styles/_styles.dev.scss';

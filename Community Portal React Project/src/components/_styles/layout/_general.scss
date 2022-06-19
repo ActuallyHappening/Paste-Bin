@@ -4,7 +4,7 @@
 
 // General
 
-@use '../styles_deps.dev' as *;
+@use '../styles_deps.dev' as deps;
 
 
 
@@ -14,7 +14,7 @@
 // ---------------------------------------------------------------------------------
 
 html {
-	background-color: $color--tristsee;
+	background-color: deps.$var-color--tristsee;
 	// Set a 'fixed' width and hide overflow to <html>
 	// element which prevents any cases where content may
 	// reflow — due to an appearing/disappearing vertical
@@ -32,8 +32,8 @@ body {
 	animation-duration: 500ms;
 	animation-timing-function: ease-out;
 
-	max-width: $breakpoint--max;
-	min-width: $breakpoint--min;
+	max-width: deps.$var-breakpoint--max;
+	min-width: deps.$var-breakpoint--min;
 	// Fallback if CSS animation isn't supported
 	opacity: 1;
 }
