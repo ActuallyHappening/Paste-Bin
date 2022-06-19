@@ -1,11 +1,11 @@
-/* Error: There is no module with the namespace "deps-variable".
- *    ,
- * 24 |     background-color: deps-variable.$color--wild-sand;
- *    |                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
- *    '
- *   src/components/_styles/global/_media.scss 24:20     @forward
- *   src/components/_styles/global/_styles.dev.scss 2:1  @forward
- *   src/components/_styles/_styles.dev.scss 7:1         @forward
+/* Error: Can't find stylesheet to import.
+ *   ,
+ * 5 | @use './menu/DropdownMenu.scss';
+ *   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ *   '
+ *   src/components/navbar/dropdown/Dropdown.scss 5:1    @forward
+ *   src/components/navbar/_styles/_styles.dev.scss 5:1  @forward
+ *   src/components/_styles/_styles.dev.scss 11:1        @forward
  *   src/_styles/_styles.dev.scss 4:1                    @use
  *   src/styles.main.dev.scss 1:1                        root stylesheet */
 
@@ -17,5 +17,5 @@ body::before {
   padding: 1em;
   margin-bottom: 1em;
   border-bottom: 2px solid black;
-  content: 'Error: There is no module with the namespace "deps-variable".\a    \2577 \a 24 \2502      background-color: deps-variable.$color--wild-sand;\a    \2502                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\a    \2575 \a   src/components/_styles/global/_media.scss 24:20     @forward\a   src/components/_styles/global/_styles.dev.scss 2:1  @forward\a   src/components/_styles/_styles.dev.scss 7:1         @forward\a   src/_styles/_styles.dev.scss 4:1                    @use\a   src/styles.main.dev.scss 1:1                        root stylesheet';
+  content: "Error: Can't find stylesheet to import.\a   \2577 \a 5 \2502  @use './menu/DropdownMenu.scss';\a   \2502  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\a   \2575 \a   src/components/navbar/dropdown/Dropdown.scss 5:1    @forward\a   src/components/navbar/_styles/_styles.dev.scss 5:1  @forward\a   src/components/_styles/_styles.dev.scss 11:1        @forward\a   src/_styles/_styles.dev.scss 4:1                    @use\a   src/styles.main.dev.scss 1:1                        root stylesheet";
 }

@@ -21,7 +21,7 @@
 // ---------------------------------------------------------------------------------
 
 .media {
-	background-color: deps-variable.$color--wild-sand;
+	background-color: deps.$var-color--wild-sand;
 	// Force whatever element this class may be
 	// applied to always display as a block.
 	display: block;
@@ -33,7 +33,7 @@
 	width: 100%;
 
 	+ .media {
-		margin-top: deps-variable.$baseline;
+		margin-top: deps.$var-baseline;
 	}
 }
 
@@ -54,9 +54,9 @@
 // .media.media--border
 .media--border {
 	&::after {
-		@include mixin.absolute(top left);
-		@include mixin.size(100%);
-		border: 1px solid function.hsb(0, 0, 0, 0.05);
+		@include deps.mixin-absolute(top left);
+		@include deps.mixin-size(100%);
+		border: 1px solid deps.func-hsb(0, 0, 0, 0.05);
 		box-sizing: border-box;
 		content: '';
 	}
@@ -83,24 +83,24 @@ img[alt] {
 	&::before {
 		box-sizing: border-box;
 		color: rgba(0, 0, 0, 0.2);
-		padding: deps-variable.$baseline calc( #{math.div(deps-variable.$baseline, 2)} + 1%);
+		padding: deps.$var-baseline calc( #{math.div(deps.$var-baseline, 2)} + 1%);
 	}
 
 	&::after {
-		@include mixin.absolute(top left);
-		@include mixin.size(100%);
-		background-color: $color--wild-sand;
+		@include deps.mixin-absolute(top left);
+		@include deps.mixin-size(100%);
+		background-color: deps.$var-color--wild-sand;
 		content: '404';
 		font-family: monospace;
 		font-weight: bold;
 	}
 
 	&::before {
-		@include mixin.absolute(top deps.$baseline left);
+		@include deps.mixin-absolute(top deps.$var-baseline left);
 		content: '“' attr(alt) '”';
 		font-size: 0.9em;
 		font-style: italic;
-		height: calc(100% - #{deps.$baseline * 2});
+		height: calc(100% - #{deps.$var-baseline * 2});
 		width: 100%;
 		z-index: 1;
 	}
