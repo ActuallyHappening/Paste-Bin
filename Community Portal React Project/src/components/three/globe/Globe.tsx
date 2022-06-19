@@ -9,7 +9,7 @@ const ThreeGlobe = () => {
   
   return (
     <>
-    <Canvas camera={{position: [0, 10, 400], fov: 55, aspect: aspect}}>
+    <Canvas id="globe-canvas" camera={{position: [0, 10, 400], fov: 55, aspect: aspect}}>
       <directionalLight color={0xf0fff0} intensity={3.25} position={[-800, 600, 1000]}/>
       <mesh visible={true}>
         <sphereBufferGeometry args={[100]}/>

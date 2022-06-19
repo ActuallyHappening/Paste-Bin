@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import ThreeGlobe from './Globe'
+import ThreeGlobe from './globe/Globe'
 import QAD_DO from './QAD_Three_Script'
 
 
