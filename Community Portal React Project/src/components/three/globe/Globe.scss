@@ -5,8 +5,7 @@
 @use './globemarkers/GlobeMarkers.scss';
 
 // Handle globe-canvas id here!
-#globe-canvas {
-  position: absolute;// !important;
+#globe-canvas-parent {
   top: 0;
   left: 0;
   width: 100%;

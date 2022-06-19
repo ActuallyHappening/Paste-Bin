@@ -506,6 +506,13 @@ body {
   background-color: rgba(235, 235, 235, 0.25);
 }
 
+.three-canvas-parent {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
 .marker {
   left: 0;
   pointer-events: none;
@@ -578,8 +585,7 @@ body {
     transform: scale(var(--scale)) scale3d(1, 1, 1);
   }
 }
-#globe-canvas {
-  position: absolute;
+#globe-canvas-parent {
   top: 0;
   left: 0;
   width: 100%;
