@@ -1,4 +1,6 @@
 // Includes all styles needed for src/components/navbar/dropdown/**
 
+@use '../_styles/styles_deps.dev' as deps;
+
 @use './menu/DropdownMenu.scss';
 
