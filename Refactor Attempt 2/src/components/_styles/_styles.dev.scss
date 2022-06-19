@@ -3,9 +3,14 @@
 // Deps
 @forward './styles_deps.dev.scss';
 
+// Global styles (NOT deps)
+@forward './global/styles.dev.scss';
+
+// Components specific styling
 // NavBar src/components/navbar/** styles
 @forward '../navbar/_styles/_styles.dev.scss';
 
 
 // Panel src/components/panel/** styles
 @forward '../panels/Panels.scss';
+
