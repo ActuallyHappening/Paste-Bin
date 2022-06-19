@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
-import { TrackballControls } from 'three/examples/jsm/controls/TrackballControls.js';
+import { TrackballControls } from 'three/examples/jsm/controls/TrackballControls';
 
 function QAD_DO(planetURL = "./assets/objects/planet.gltf") {
   console.log("QAD_Three.tsx: useEffect()");
