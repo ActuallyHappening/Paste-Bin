@@ -377,7 +377,33 @@ img[alt]::before {
   margin: 0.875rem 1.75rem;
 }
 
-/* @forward '../dropdown/menu/DropdownMenu.scss'; */
+.site-nav {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 1.25rem 1.75rem;
+  position: relative;
+  z-index: 3;
+}
+@media (min-width: 680px) {
+  .site-nav {
+    padding: 1.25rem 2.25rem;
+  }
+}
+
+.site-logo > img {
+  display: block;
+  filter: drop-shadow(3px 3px 0px hsl(206deg, 60%, 6.875%));
+  height: 3.75rem;
+  width: auto;
+}
+@media (min-width: 680px) {
+  .site-logo > img {
+    height: 2.25rem;
+  }
+}
+
 .panel {
   align-items: center;
   display: flex;
