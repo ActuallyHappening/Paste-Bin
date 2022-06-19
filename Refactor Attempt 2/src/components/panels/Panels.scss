@@ -1,4 +1,4 @@
-@use '../_styles/styles_deps.dev' as *;
+@use '../_styles/styles_deps.dev' as deps;
 
 // Container
 .panel {
@@ -21,9 +21,9 @@
 .panel__content {
 	backdrop-filter: blur(2px);
 	background-color: rgba(51, 51, 51, 0.6);
-	border: 2px solid $color--sparkling-apple;
+	border: 2px solid deps.$var-color--sparkling-apple;
 	border-radius: 0.75rem;
-	color: $color--plaster;
+	color: deps.$var-color--plaster;
 	max-width: 60ch;
 	padding: 1.5rem;
 	transform: scale3d(0, 0, 1);

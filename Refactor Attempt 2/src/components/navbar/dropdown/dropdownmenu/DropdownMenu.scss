@@ -1,12 +1,13 @@
-@use '../../../_styles/styles_deps.dev' as *;
+// Contains the styling for JUST the dropdown menu itself
+@use '../../../_styles/styles_deps.dev' as deps;
 
 
-.menu {
+.dropdown-menu {
 	backdrop-filter: blur(2px);
 	background-color: rgba(51, 51, 51, 0.55);
-	border: 2px solid $color--tristsee;
+	border: 2px solid deps.$var-color--tristsee;
 	border-radius: 0.666rem;
-	color: $color--plaster;
+	color: deps.$var-color--plaster;
 	max-width: 40ch;
 	opacity: 0;
 	position: fixed;
@@ -29,15 +30,15 @@
 	}
 }
 
-.menu-toggle {
-	filter: drop-shadow(3px 3px 0px #{$color--tristsee});
+-toggle {
+	filter: drop-shadow(3px 3px 0px #{deps.$var-color--tristsee});
 	position: relative;
 	z-index: 2;
 
 	&:focus,
 	&:hover,
 	&:active {
-		color: $color--sparkling-apple;
+		color: deps.$var-color--sparkling-apple;
 	}
 
 	&::after {
