@@ -1,6 +1,6 @@
 // Contains the styles for the globe markers
 
-@use ''
+@use '../../_styles/styles_deps.dev' as deps;
 
 .marker {
 	left: 0;
