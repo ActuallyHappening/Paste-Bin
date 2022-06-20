@@ -17,7 +17,8 @@
   display: flex;
   flex-direction: column;
 
-  > three-canvas-child {
-    flex-grow: 10;
-  }
+}
+.three-canvas-child {
+  flex-grow: 10;
+  display: flex;
 }

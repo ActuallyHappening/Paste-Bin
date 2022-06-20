@@ -523,8 +523,10 @@ body {
   display: flex;
   flex-direction: column;
 }
-.three-canvas-parent > three-canvas-child {
+
+.three-canvas-child {
   flex-grow: 10;
+  display: flex;
 }
 
 .marker {

@@ -9,7 +9,7 @@ const ThreeGlobe = () => {
   const houses = useRef<Array<THREE.Group>>([])
   
   return (
-    <div id="globe-canvas-parent">
+    <div className="three-canvas-child" id="globe-canvas-parent">
     <Canvas
     id="globe-canvas"
     camera={{position: [0, 10, 400], fov: 55, far: 1000}}
