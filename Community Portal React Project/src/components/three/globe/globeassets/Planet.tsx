@@ -157,11 +157,24 @@ type GLTFResult = GLTF & {
 
 const defaultLocation = "/src/components/three/globe/globeassets/PlanetRaw.gltf"
 
-export default function Model({rotationSpeed, addHouse, ...props}: {rotationSpeed: number, addHouse: (house) => {}, props?: JSX.IntrinsicElements["group"]}) {
+export default function Planet({rotationSpeed, stateRef = undefined, ...props}: {rotationSpeed: number, stateRef?: any, props?: JSX.IntrinsicElements["group"]}) {
   const wholePlanet = useRef<THREE.Group>(null);
-  const allHouses = useRef<THREE.Group>(null);
+  const allHouses = useRef(null);
 
-  addHouse = addHouse ?? ((house) => console.log("addHouse Called: ", house))
+  const state = stateRef ?? useRef({houses: [undefined]});
+
+  const addHouse = (r: THREE.Group, id: number) => {
+    if (!r) return;
+    if (!state.current) {console.log("No state for Planet.tsx"); return;}
+    //else console.log("State for Planet.tsx! yay")
+    state.current.houses[id] = {
+      ref: r,
+      onClick: () => console.log("default click on ", r, "id", id),
+      onPointerEnter: () => console.log("default pointer enter on ", r, "id", id),
+      onPointerLeave: () => console.log("default pointer leave on ", r, "id", id),
+    }
+    //console.log(state.current)
+  }
   
   const { nodes, materials } = useGLTF(defaultLocation) as GLTFResult;
 
@@ -746,7 +759,10 @@ export default function Model({rotationSpeed, addHouse, ...props}: {rotationSpee
               position={[43.7886505, 46.6600456, 88.897934]}
               rotation={[-1.7954383, -0.5447743, -2.5780792]}
               userData={{ name: "house" }}
-              ref={(r) => {addHouse(r)}}
+              ref={(r) => {addHouse(r, 1)}}
+              onPointerEnter={(e) => state.current?.houses[1].onPointerEnter(e)}
+              onPointerLeave={(e) => state.current?.houses[1].onPointerLeave(e)}
+              onClick={(e) => state.current?.houses[1].onClick(e)}
             >
               <mesh
                 name="house-walls_house"
