@@ -1,12 +1,19 @@
-import { Canvas, useLoader } from "@react-three/fiber"
-import { useState } from "react"
+import { Canvas } from "@react-three/fiber"
+import { useEffect, useRef, useState } from "react"
 import { TrackballControls } from '@react-three/drei'
 import Planet from './globeassets/Planet'
 import GlobeMarkers from './globemarkers/GlobeMarkers'
 
 // Is essentially just the globe normally, expressed using react-three-fibre
 const ThreeGlobe = () => {
-  let [aspect, setAspect] = useState(window.innerWidth / window.innerHeight)
+  const [aspect, setAspect] = useState(window.innerWidth / window.innerHeight)
+  const planet = useRef<THREE.Group>()
+
+  useEffect(() => {
+    if (planet.current) {
+      planet.current.rotation.y += 0.1
+    } else {console.log("No planet")}
+  })
   
   return (
     <div id="globe-canvas-parent" className="three-canvas-parent">
@@ -19,8 +26,7 @@ const ThreeGlobe = () => {
       <gridHelper args={[1500, 100]}/>
       <axesHelper args={[500]}/>
       <TrackballControls />
-
-      <Planet/>
+      <Planet />
       <GlobeMarkers />
     </Canvas>
     </div>
