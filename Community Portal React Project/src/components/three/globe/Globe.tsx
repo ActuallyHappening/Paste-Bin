@@ -1,11 +1,11 @@
-import { Canvas } from "@react-three/fiber"
+import { Canvas, useLoader } from "@react-three/fiber"
 import { useState } from "react"
 import { TrackballControls } from '@react-three/drei'
+import Planet from './globeassets/Planet'
 
 // Is essentially just the globe normally, expressed using react-three-fibre
 const ThreeGlobe = () => {
   let [aspect, setAspect] = useState(window.innerWidth / window.innerHeight)
-  let [planet, setPlanet] = useState(null)
   
   return (
     <div className="#globe-canvas-parent">
@@ -15,6 +15,7 @@ const ThreeGlobe = () => {
         <sphereBufferGeometry args={[100]}/>
         <meshPhysicalMaterial color={0x0fff0f} />
       </mesh>
+      <Planet position={[0, 0, 0]}/>
       <gridHelper args={[1500, 100]}/>
       <axesHelper args={[500]}/>
       <TrackballControls />
