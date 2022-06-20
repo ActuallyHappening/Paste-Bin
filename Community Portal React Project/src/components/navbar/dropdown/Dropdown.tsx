@@ -10,12 +10,13 @@ const Dropdown = () => {
     menu.classList.toggle('is-active', isMenuActive);
     console.log("toggling menu ...")
   } */
+  const button = useRef(null);
   return (
     <>
       <button aria-label="Toggle site navigation menu" className="menu-toggle text--light" type="button" onClick={(e) => {
         console.log("YAY button clicked!");
-        e.target.classList.toggle('is-active', true)
-      }}>
+        button.current?.classList.toggle('is-active')
+      }} ref={button}>
 					<span className="material-icons md-xl">&#xe5d2;</span>
 					<span className="material-icons md-xl">&#xe5cd;</span>
 			</button>
