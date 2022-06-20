@@ -157,20 +157,24 @@ type GLTFResult = GLTF & {
 
 const defaultLocation = "/src/components/three/globe/globeassets/PlanetRaw.gltf"
 
-export default function Model({...props}: {props: JSX.IntrinsicElements["group"]}) {
-  const group = useRef<THREE.Group>();
+export default function Model({rotationSpeed, addHouse, ...props}: {rotationSpeed: number, addHouse: (house) => {}, props?: JSX.IntrinsicElements["group"]}) {
+  const wholePlanet = useRef<THREE.Group>(null);
+  const allHouses = useRef<THREE.Group>(null);
+
+  addHouse = addHouse ?? ((house) => console.log("addHouse Called: ", house))
+  
   const { nodes, materials } = useGLTF(defaultLocation) as GLTFResult;
 
-  useFrame(() => {
-    if (group.current) {
-      group.current.rotation.y += 0.002
+  useFrame((state, delta, xrFrame) => {
+    if (wholePlanet.current) {
+      wholePlanet.current.rotation.y += delta * rotationSpeed // spin the globe
     }
   })
   return (
-    <group ref={group} {...props} dispose={null}>
+    <group ref={wholePlanet} {...props} dispose={null}>
       <group>
         <group name="Low_Poly_Planet" userData={{ name: "Low Poly Planet" }}>
-          <group
+          <group /* Trees */
             name="trees"
             position={[5.7822356, -6.0569577, 3.5139358]}
             rotation={[0, -1e-7, -1e-7]}
@@ -729,17 +733,20 @@ export default function Model({...props}: {props: JSX.IntrinsicElements["group"]
               />
             </group>
           </group>
-          <group
+          <group /* Houses */
             name="houses"
             position={[0, -19.7400742, 13.3222532]}
             rotation={[0, -1e-7, -1e-7]}
             userData={{ name: "houses" }}
+            /* scale={2} */
+            ref={allHouses}
           >
             <group
               name="house"
               position={[43.7886505, 46.6600456, 88.897934]}
               rotation={[-1.7954383, -0.5447743, -2.5780792]}
               userData={{ name: "house" }}
+              ref={(r) => {addHouse(r)}}
             >
               <mesh
                 name="house-walls_house"
@@ -788,6 +795,7 @@ export default function Model({...props}: {props: JSX.IntrinsicElements["group"]
               position={[73.8882446, 83.0963058, -22.3211422]}
               rotation={[-1.9420455, -0.9191507, -1.4810436]}
               userData={{ name: "house.2" }}
+              ref={(r) => {addHouse(r)}}
             >
               <group
                 name="door"
@@ -856,37 +864,38 @@ export default function Model({...props}: {props: JSX.IntrinsicElements["group"]
                   userData={{ name: "roof-door house" }}
                 />
               </group>
-              <mesh
-                name="house2-walls_house2"
-                castShadow
-                receiveShadow
-                geometry={nodes["house2-walls_house2"].geometry}
-                material={nodes["house2-walls_house2"].material}
-                userData={{ name: "house.2-walls house2" }}
-              />
-              <mesh
-                name="house2-roof_house2"
-                castShadow
-                receiveShadow
-                geometry={nodes["house2-roof_house2"].geometry}
-                material={nodes["house2-roof_house2"].material}
-                userData={{ name: "house.2-roof house2" }}
-              />
-              <mesh
-                name="chimney"
-                castShadow
-                receiveShadow
-                geometry={nodes.chimney.geometry}
-                material={nodes.chimney.material}
-                position={[-3.7937169, 11.2482481, 5.4292717]}
-                userData={{ name: "chimney" }}
-              />
+                <mesh
+                  name="house2-walls_house2"
+                  castShadow
+                  receiveShadow
+                  geometry={nodes["house2-walls_house2"].geometry}
+                  material={nodes["house2-walls_house2"].material}
+                  userData={{ name: "house.2-walls house2" }}
+                />
+                <mesh
+                  name="house2-roof_house2"
+                  castShadow
+                  receiveShadow
+                  geometry={nodes["house2-roof_house2"].geometry}
+                  material={nodes["house2-roof_house2"].material}
+                  userData={{ name: "house.2-roof house2" }}
+                />
+                <mesh
+                  name="chimney"
+                  castShadow
+                  receiveShadow
+                  geometry={nodes.chimney.geometry}
+                  material={nodes.chimney.material}
+                  position={[-3.7937169, 11.2482481, 5.4292717]}
+                  userData={{ name: "chimney" }}
+                />
             </group>
             <group
               name="house5"
               position={[-36.6506004, 68.4233704, -82.1457443]}
               rotation={[-1.0775299, 0.3014015, 0.4602512]}
               userData={{ name: "house.5" }}
+              /* ref={(r) => {addHouse(r)}} */
             >
               <group
                 name="tree_19"
@@ -1291,7 +1300,7 @@ export default function Model({...props}: {props: JSX.IntrinsicElements["group"]
               />
             </group>
           </group>
-          <group
+          <group /* Buildings */
             name="buildings"
             position={[12.3439198, 26.1792793, -13.3383694]}
             userData={{ name: "buildings" }}
@@ -1435,7 +1444,7 @@ export default function Model({...props}: {props: JSX.IntrinsicElements["group"]
               />
             </group>
           </group>
-          <group
+          <group /* Stones */
             name="stones"
             position={[22.7955627, -27.0286446, 43.4143639]}
             rotation={[0, -1e-7, -1e-7]}
@@ -1482,7 +1491,7 @@ export default function Model({...props}: {props: JSX.IntrinsicElements["group"]
               userData={{ name: "stones.2" }}
             />
           </group>
-          <group
+          <group /* Road */
             name="road"
             position={[-3.2462826, -4.4782968, 12.9718542]}
             userData={{ name: "road" }}
@@ -1512,7 +1521,7 @@ export default function Model({...props}: {props: JSX.IntrinsicElements["group"]
               userData={{ name: "road-background,floor" }}
             />
           </group>
-          <group
+          <group /* Planet! */
             name="planet"
             position={[-0.4207434, -10.9949427, 10.288579]}
             rotation={[1.0053096, -1e-7, 1e-7]}
