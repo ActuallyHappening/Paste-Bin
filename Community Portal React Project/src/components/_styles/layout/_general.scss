@@ -37,7 +37,4 @@ body {
 	min-width: deps.$var-breakpoint--min;
 	// Fallback if CSS animation isn't supported
 	opacity: 1;
-
-  min-height: 100%;
-  display: block;
 }

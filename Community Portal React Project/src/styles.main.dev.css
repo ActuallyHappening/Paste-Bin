@@ -302,6 +302,11 @@ img[alt]::before {
   z-index: 1;
 }
 
+html, body, #root {
+  display: flex;
+  width: 100vw;
+}
+
 html {
   background-color: hsl(206deg, 60%, 6.875%);
   overflow-x: hidden;
@@ -317,15 +322,18 @@ body {
   max-width: 1376px;
   min-width: 352px;
   opacity: 1;
-  min-height: 100%;
-  display: block;
 }
 
 .content--fullscreen {
   height: 100%;
+  position: fixed;
   right: 0;
   top: 0;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  justify-content: flex-start;
 }
 .content--fullscreen > canvas {
   cursor: grab;
@@ -509,8 +517,13 @@ body {
 .three-canvas-parent {
   position: relative;
   width: 100%;
-  height: 100%;
   overflow: hidden;
+  flex-grow: 5;
+  display: flex;
+  flex-direction: column;
+}
+.three-canvas-parent > three-canvas-child {
+  flex-grow: 10;
 }
 
 .marker {
@@ -586,10 +599,10 @@ body {
   }
 }
 #globe-canvas-parent {
-  top: 0;
+  /* top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 100%; */
   z-index: 1;
 }
 

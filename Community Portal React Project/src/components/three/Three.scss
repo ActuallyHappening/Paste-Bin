@@ -10,6 +10,14 @@
   // Ensure expansion
   position: relative;
   width: 100%;
-  height: 100%;
+  //height: 100%;
   overflow: hidden;
+  flex-grow: 5;
+  
+  display: flex;
+  flex-direction: column;
+
+  > three-canvas-child {
+    flex-grow: 10;
+  }
 }

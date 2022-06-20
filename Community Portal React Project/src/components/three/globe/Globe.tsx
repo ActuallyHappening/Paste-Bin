@@ -8,7 +8,7 @@ const ThreeGlobe = () => {
   let [aspect, setAspect] = useState(window.innerWidth / window.innerHeight)
   
   return (
-    <div className="#globe-canvas-parent">
+    <div id="globe-canvas-parent" className="three-canvas-parent">
     <Canvas id="globe-canvas" camera={{position: [0, 10, 400], fov: 55, aspect: aspect}}>
       <directionalLight color={0xf0fff0} intensity={3.25} position={[-800, 600, 1000]}/>
       <mesh visible={true}>
