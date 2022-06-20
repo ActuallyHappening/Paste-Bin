@@ -1,5 +1,5 @@
 function QAD_DO() {
-  const menu = document.querySelector('.dropdown-menu');
+  const menu = document.querySelector('.navbar-dropdown-menu');
   console.log(`menu =`);
   console.log(menu)
 
