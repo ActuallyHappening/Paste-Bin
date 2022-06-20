@@ -5,7 +5,7 @@ import Planet from './globeassets/Planet'
 import GlobeMarkers from './globemarkers/GlobeMarkers'
 
 // Is essentially just the globe normally, expressed using react-three-fibre
-const ThreeGlobe = () => {
+const ThreeGlobe = ({houses}: {houses: Array<DropDownMenu.Item>}) => {
   const [projects, setProjects] = useState([])
   const houseStates = useRef({trigger: undefined, houses: [], markers: []})
   const planetRef = useRef(null)
