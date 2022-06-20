@@ -2,7 +2,7 @@ import { useState } from "react"
 import _G, { T_Children } from "../../../../GlobalState"
 import { Item } from './_DropdownMenu'
 
-const DropDownMenu = ({ children, items, }: {children?: any, items: Array<Item>}) => {
+const DropDownMenu = ({ children, items,}: {children?: any, items?: Array<Item>}) => {
   const [_items, setItems] = useState(items ?? _G.DropDownMenu.__default__.items)
   return (
     <ul className="menu__items">
