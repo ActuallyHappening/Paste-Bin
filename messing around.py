@@ -1,3 +1,6 @@
+# Returns TWO = 627
+#         FOUR = 627 * 2 = 1254
+
 import random
 
 def validateTWO(d1, d2, d3):
@@ -37,4 +40,5 @@ if __name__ == "__main__":
     if validateSolution((t1, t2, t3)):
       print("Solution: TWO=", t1, t2, t3)
       input("DONE!")
+
     
