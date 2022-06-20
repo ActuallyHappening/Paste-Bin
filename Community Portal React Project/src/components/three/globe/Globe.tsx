@@ -6,8 +6,11 @@ import GlobeMarkers from './globemarkers/GlobeMarkers'
 
 // Is essentially just the globe normally, expressed using react-three-fibre
 const ThreeGlobe = () => {
-  const houseStates = useRef({houses: [], markers: []})
+  const [projects, setProjects] = useState([])
+  const houseStates = useRef({trigger: undefined, houses: [], markers: []})
   const planetRef = useRef(null)
+
+  
   
   return (
     <div className="three-canvas-child" id="globe-canvas-parent">

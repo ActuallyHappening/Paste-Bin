@@ -5,10 +5,10 @@ import Panels from "./panels/Panels"
 import Three from './three/Three'
 import Globe from './three/globe/Globe'
 
-const Body = () => {
+const Body = ({_G}: {_G: Object}) => {
   return (
     <>
-    <NavBar />
+    <NavBar projects={_G.DropDownMenu.items} />
     <Three>
       <Globe />
     </Three>
