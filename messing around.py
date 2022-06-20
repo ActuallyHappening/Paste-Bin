@@ -1,5 +1,5 @@
-# Returns TWO = 627
-#         FOUR = 627 * 2 = 1254
+# Returns TWO = 734
+#         FOUR = 734 * 2 = 1468
 
 import random
 
@@ -28,7 +28,7 @@ def validateSolution(TWO):
     d1, d2, d3, d4 = int(FOUR[0]), int(FOUR[1]), int(FOUR[2]), int(FOUR[3])
     print("Testing FOUR with FOUR:", FOUR, d1, d2, d3, d4)
     if not validateFOUR(d1, d2, d3, d4): return False
-    if d2 != TWO[1]: return False
+    if d2 != TWO[2]: return False
     testSet = {TWO[0], TWO[1], TWO[2], d1, d2, d3, d4}
     #input(len(testSet))
     if len(testSet) != 6: return False
