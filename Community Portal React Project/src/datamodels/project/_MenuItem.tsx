@@ -41,7 +41,7 @@ export default class MenuItem {
     let _info: T_MenuItemInfo;
     switch (this.purposeType) {
       case "meta":
-        _info = {...info, type: {...info}.type ?? "Link"} as T_MenuItemInfo;
+        _info = {...info, type: {...info}.type ?? "Link", url: {...info}.url ?? `/${{...info}.name}`} as T_MenuItemInfo;
         break;
       case "project":
         this._project = project
@@ -61,6 +61,6 @@ export default class MenuItem {
       video: _info.video ?? "GET VIDEO WORKING TODO", // TODO get video working!
       url: _info.url ?? `/projects/${this?._project?.id ?? -1}`
     }} as T_MenuItemInfo_All;
-    if (!this?._project?.id) throw new Error("MenuItem constructor: _project.id is required if no url is given");
+    if (!this.info.url && !this?._project?.id) throw new Error("MenuItem constructor: _project.id is required if no url is given");
   }
 }
