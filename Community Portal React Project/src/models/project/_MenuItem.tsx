@@ -1,0 +1,1 @@
+// Represents a selectable option in the dropdown menu in the navbar
