@@ -1,14 +1,14 @@
 import { useState } from "react"
-import _G, { T_Children } from "../../../../GlobalState"
-import { Item } from './_DropdownMenu'
+import { MenuItem } from "../../../../datamodels/Models"
+import { T_Children } from "../../../../GlobalState"
 
-const DropDownMenu = ({ children, items,}: {children?: any, items?: Array<Item>}) => {
-  const [_items, setItems] = useState(items ?? _G.DropDownMenu.items)
+const DropDownMenu = ({ children, items, }: {children?: any, items: Array<MenuItem>}) => {
+  const [_items, setItems] = useState(items)
   return (
     <ul className="menu__items">
       {_items.map((item, index) => {
         if (item.type == "Link") {
-          return <DropDownMenu.Link key={index} text={item.text} href={item.url}/>  
+          return <DropDownMenu.Link key={index} text={item._project.name} href={item._project.url}/>  
         } else {
           console.warn(`NavBar item type not supported: ${item.type}`)
         }

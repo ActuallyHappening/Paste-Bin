@@ -1,7 +1,8 @@
-import React, { useRef } from 'react'
+import { useRef } from 'react'
+import { MenuItem } from '../../../datamodels/Models';
 import DropDownMenu from './dropdownmenu/DropdownMenu'
 
-const Dropdown = () => {
+const Dropdown = ({items }: {items: Array<MenuItem>}) => {
   const menu = useRef(undefined);
   const button = useRef(null);
   return (
@@ -15,7 +16,7 @@ const Dropdown = () => {
 					<span className="material-icons md-xl">&#xe5cd;</span>
 			</button>
       <nav className='navbar-dropdown-menu' ref={button}>
-          <DropDownMenu />
+          <DropDownMenu items={items}/>
       </nav>
     </>
   )

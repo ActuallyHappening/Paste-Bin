@@ -4,11 +4,12 @@ import NavBar from "./navbar/NavBar"
 import Panels from "./panels/Panels"
 import Three from './three/Three'
 import Globe from './three/globe/Globe'
+import { T_GlobalState } from "../GlobalState"
 
-const Body = ({_G}: {_G: Object}) => {
+const Body = ({_G}: {_G: T_GlobalState}) => {
   return (
     <>
-    <NavBar projects={_G.DropDownMenu.items} />
+    <NavBar items={_G.items} />
     <Three>
       <Globe />
     </Three>
