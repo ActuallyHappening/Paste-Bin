@@ -11,6 +11,9 @@ const _G: T_GlobalState = {
     new MenuItem({purposeType: "meta", name: "About", shortDescription: "About", url: "/#about"}),
     new MenuItem({purposeType: "meta", name: "Contact", shortDescription: "Contact", url: "/#contact"})
   ],
+  "panels": {
+    "about": 0
+  }
 }
 
 _G.projects.forEach((project, index) => {
