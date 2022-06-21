@@ -1,8 +1,7 @@
-import { MenuItem } from "./_MenuItem"
-import { DITUMesh } from "./_DITUMesh"
-import { Model } from '/_Model'
+import { DITUMesh, MenuItem, Model } from '../Models'
 
 type T_ModelStateHandles = "persistent" | "hovered";
+type T_ModelStateHandlesObject = { [key in T_ModelStateHandles]: Model };
 
 class _Project {
   id: number;
@@ -14,8 +13,8 @@ class _Project {
   video: string;
   url: string;
   _item: MenuItem;
-  _models: T_ModelStateHandles;
-  constructor({id, name, shortDescription, longDescription, icon, image, video, url, item, models}: {id: number, name: string, shortDescription: string, longDescription: string, icon: string, image: string, video: string, url: string, item: MenuItem, models: T_ModelStateHandles}) {
+  _models: T_ModelStateHandlesObject;
+  constructor({id, name, shortDescription, longDescription, icon, image, video, url, item, models}: {id: number, name: string, shortDescription: string, longDescription: string, icon: string, image: string, video: string, url: string, item: MenuItem, models: T_ModelStateHandlesObject}) {
     this.id = id ?? 0;
     this.name = name ?? "Default Project Name";
     this.shortDescription = shortDescription ?? "Default Project Short Description";
@@ -24,8 +23,11 @@ class _Project {
     this.image = image ?? "src/models/defaultassets/mediumImage.png";
     this.video = video ?? "GET VIDEO WORKING TODO"; // TODO get video working!
     this.url = url ?? `/projects/${this.id}`;
-    this._item = item ?? new MenuItem({project: this});
-    this._models = models ?? {"persistent": Model({type: "basic", project: this}), "hovered": Model({type: "descriptive", project: this})};
+    this._item = item ?? new MenuItem({type: "project", project: this});
+    this._models = models ?? {
+      "persistent": new Model({type: "basic", project: this}),
+      "hovered": new Model({type: "descriptive", project: this})
+    };
     
   }
 }
