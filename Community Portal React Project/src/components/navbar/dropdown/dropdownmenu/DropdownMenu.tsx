@@ -8,7 +8,7 @@ const DropDownMenu = ({ children, items: _items, }: {children?: any, items: Arra
     <ul className="menu__items">
       {_items.map((item, index) => {
         if (item.info.type == "Link") {
-          return <DropDownMenu.Link key={index} text={item.info.name} href={item.info.url ?? ""}/>  
+          return <DropDownMenu.Link key={index} text={item.info.name} href={item.info.url ?? "/"}/>  
         } else {
           console.warn(`NavBar item type not supported: ${item.info.type}`)
         }

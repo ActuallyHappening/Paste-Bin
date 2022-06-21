@@ -9,6 +9,15 @@ export type T_ProjectInfo = {
   video?: string,
   url?: string,
 }
+export type T_ProjectInfo_All = {
+  name: string,
+  shortDescription: string,
+  longDescription: string,
+  icon: string,
+  image: string,
+  video: string,
+  url: string,
+}
 
 export type T_ModelStateHandles = "persistent" | "hovered";
 export type T_ModelStateHandlesObject = { [key in T_ModelStateHandles]: Model };
