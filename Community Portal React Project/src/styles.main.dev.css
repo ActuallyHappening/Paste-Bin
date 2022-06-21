@@ -448,6 +448,10 @@ body {
   }
 }
 
+.panels {
+  pointer-events: all;
+}
+
 .panel {
   align-items: center;
   display: flex;

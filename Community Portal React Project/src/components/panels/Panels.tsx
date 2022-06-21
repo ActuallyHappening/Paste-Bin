@@ -1,19 +1,18 @@
+import Panel from "./panel"
+
 // TODO refactor this into a dynamic set
 const Panels = () => {
   return (
-    <>
-    <div className="panel" id="about">
-				<div className="panel__content">
+    <div className="panels">
+      <Panel name="about">
 					<a href="/#" className="panel__close">
 						<span className="material-icons">&#xe5cd;</span>
 					</a>
 					<p>Welcome to communityportal. This is the gateway to all your community engagement needs. Here. Yes, here.</p>
 					<p>If you can't find it, tell us. We'll build it for you.</p>
 					<p>Batteries included.</p>
-				</div>
-			</div>
-			<div className="panel" id="contact">
-				<div className="panel__content">
+			</Panel>
+			<Panel name="contact">
 					<a href="/#" className="panel__close">
 						<span className="material-icons">&#xe5cd;</span>
 					</a>
@@ -24,9 +23,8 @@ const Panels = () => {
 						<a href="mailto:David.Sweeney@aurecongroup.com>David.Sweeney@aurecongroup.com"></a>
 						<br/>Director, Communication and Stakeholder Engagement, <br/>Aurecon
 					</p>
-				</div>
-			</div>
-    </>
+			</Panel>
+    </div>
   )
 }
 
