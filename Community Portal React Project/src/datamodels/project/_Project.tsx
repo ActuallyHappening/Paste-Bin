@@ -1,9 +1,19 @@
 import { DITUMesh, MenuItem, Model } from '../Models'
 
-type T_ModelStateHandles = "persistent" | "hovered";
-type T_ModelStateHandlesObject = { [key in T_ModelStateHandles]: Model };
+export type T_ProjectInfo = {
+  name: string,
+  shortDescription: string,
+  longDescription?: string,
+  icon?: string,
+  image?: string,
+  video?: string,
+  url?: string,
+}
 
-class _Project {
+export type T_ModelStateHandles = "persistent" | "hovered";
+export type T_ModelStateHandlesObject = { [key in T_ModelStateHandles]: Model };
+
+export default class _Project {
   id: number;
   name: string;
   shortDescription: string;
@@ -14,15 +24,15 @@ class _Project {
   url: string;
   _item: MenuItem;
   _models: T_ModelStateHandlesObject;
-  constructor({id, name, shortDescription, longDescription, icon, image, video, url, item, models}: {id: number, name: string, shortDescription: string, longDescription?: string, icon?: string, image?: string, video?: string, url?: string, item?: MenuItem, models?: T_ModelStateHandlesObject}) {
-    this.id = id ?? 0;
-    this.name = name ?? "Default Project Name";
-    this.shortDescription = shortDescription ?? "Default Project Short Description";
-    this.longDescription = longDescription ?? "Default Project Long Description";
-    this.icon = icon ?? "src/models/defaultassets/smallIcon.png";
-    this.image = image ?? "src/models/defaultassets/mediumImage.png";
-    this.video = video ?? "GET VIDEO WORKING TODO"; // TODO get video working!
-    this.url = url ?? `/projects/${this.id}`;
+  constructor({id, item, models, ...ProjectInfo}: T_ProjectInfo & {id: number, item?: MenuItem, models?: T_ModelStateHandlesObject,}) {
+    this.id = id; if (!id) {throw new Error("Project id is required")}
+    this.name = ProjectInfo.name ?? "Default Project Name";
+    this.shortDescription = ProjectInfo.shortDescription ?? "Default Project Short Description";
+    this.longDescription = ProjectInfo.longDescription ?? "Default Project Long Description";
+    this.icon = ProjectInfo.icon ?? "src/models/defaultassets/smallIcon.png";
+    this.image = ProjectInfo.image ?? "src/models/defaultassets/mediumImage.png";
+    this.video = ProjectInfo.video ?? "GET VIDEO WORKING TODO"; // TODO get video working!
+    this.url = ProjectInfo.url ?? `/projects/${this.id}`;
     this._item = item ?? new MenuItem({purposeType: "project", project: this});
     this._models = models ?? {
       "persistent": new Model({type: "basic", project: this}),
@@ -31,5 +41,3 @@ class _Project {
     
   }
 }
-
-export default _Project
