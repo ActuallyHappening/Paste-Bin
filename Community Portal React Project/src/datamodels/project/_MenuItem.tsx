@@ -5,28 +5,39 @@ import { T_ProjectInfo } from "./_Project";
 
 export type T_MenuItemPurposeTypes = "meta" | "project";
 export type T_MenuItemTypes = "Link"; // Add more types later maybe
-export type T_MenuItemInfo = T_ProjectInfo | {};
+export type T_MenuItemInfo = T_ProjectInfo & {type: T_MenuItemTypes};
+
+type T_MenuItemConstructor_ConstructedFromProject = {
+  purposeType: "project";
+  project: Project;
+};
+type T_MenuItemConstructor_ConstructedFromParameters = {
+  purposeType: "meta";
+  project?: Project;
+} & T_MenuItemInfo;
 
 export default class MenuItem {
   purposeType: T_MenuItemPurposeTypes;
-  type: T_MenuItemTypes;
   info: T_MenuItemInfo;
   _project: Project | undefined;
-  constructor({ purposeType = "project", type = "Link", project, ...info }: T_MenuItemInfo & { purposeType?: T_MenuItemPurposeTypes, type?: T_MenuItemTypes, project?: Project }) {
-    this._project = project;
-    if (this._project) this.info = this._project // info comes form project
-    else this.info = info // info is given by constructor like new MenuItem({purposeType: "meta", name: "About", url: "/about"})
+  // Two constructors:
+  // First one from project
+  // Second one for meta
+  // Basically looping through T_MenuItemPurposeTypes
+  // Multiple constructors are not allowed, so is split into large switch statement
+  constructor({ purposeType = "project", project, ...info }: T_MenuItemConstructor_ConstructedFromProject | T_MenuItemConstructor_ConstructedFromParameters) {
     this.purposeType = purposeType;
-    switch (purposeType) { // Assume proper type from purpose (useless now but maybe useful later)
+    switch (this.purposeType) {
       case "meta":
-        this.type = type ?? "Link"
+        this.info = info as T_MenuItemInfo;
         break;
       case "project":
-        this.type = type ?? "Link"
+        this._project = project
+        this.info = {...this._project, type: "Link"} as T_MenuItemInfo;
         break;
       default:
-        this.type = type ?? "Link"
-        break;
+        throw new Error("MenuItem constructor: Invalid purposeType");
+
     }
   }
 }
