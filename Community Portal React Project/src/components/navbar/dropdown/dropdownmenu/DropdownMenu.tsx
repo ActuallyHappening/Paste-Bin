@@ -38,7 +38,8 @@ DropDownMenu.RawLink = ({ children, text, ...props }: {children?: T_Children, te
 DropDownMenu.Link = ({ text, href, _item}: {text: string, href: string, _item?: MenuItem}) => {
   return (
     <DropDownMenu.RawLink text={text ?? href} href={href}>
-      {_item?.info.url ? <img src={`${_item.info.url}`}/> : null }
+      {/* {_item?.info.url ? <img src={`${_item.info.url}`}/> : null } */}
+      {/* No images being added to menu yet :) */}
     </DropDownMenu.RawLink>
   )
 }

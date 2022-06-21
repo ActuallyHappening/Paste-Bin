@@ -3,10 +3,11 @@
   "private": true,
   "version": "0.0.0",
   "scripts": {
-    "dev": "vite && concurrently 'npm run sass:watch'",
+    "dev": "concurrently 'vite' 'npm run sass:watch'",
     "build": "sass:build && tsc && vite build",
     "preview": "vite preview",
     "host": "vite --host",
+    "vite": "vite",
     "sass:build": "sass src/styles.main.dev.scss src/styles.main.dev.css",
     "sass:watch": "sass src/styles.main.dev.scss src/styles.main.dev.css --watch"
   },
