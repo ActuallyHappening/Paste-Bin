@@ -6,6 +6,7 @@ import { T_ProjectInfo } from "./_Project";
 export type T_MenuItemPurposeTypes = "meta" | "project";
 export type T_MenuItemTypes = "Link"; // Add more types later maybe
 export type T_MenuItemInfo = T_ProjectInfo & {type: T_MenuItemTypes};
+export type T_MenuItemInfo_InferredType = T_ProjectInfo & {type?: T_MenuItemTypes};
 
 type T_MenuItemConstructor_ConstructedFromProject = {
   purposeType: "project";
@@ -14,7 +15,7 @@ type T_MenuItemConstructor_ConstructedFromProject = {
 type T_MenuItemConstructor_ConstructedFromParameters = {
   purposeType: "meta";
   project?: Project;
-} & T_MenuItemInfo;
+} & T_MenuItemInfo_InferredType;
 
 export default class MenuItem {
   purposeType: T_MenuItemPurposeTypes;
@@ -29,11 +30,11 @@ export default class MenuItem {
     this.purposeType = purposeType;
     switch (this.purposeType) {
       case "meta":
-        this.info = info as T_MenuItemInfo;
+        this.info = {...info, type: {...info}.type ?? "Link"} as T_MenuItemInfo;
         break;
       case "project":
         this._project = project
-        this.info = {...this._project, type: "Link"} as T_MenuItemInfo;
+        this.info = {...this._project, type: {...info}.type ?? "Link"} as T_MenuItemInfo;
         break;
       default:
         throw new Error("MenuItem constructor: Invalid purposeType");
