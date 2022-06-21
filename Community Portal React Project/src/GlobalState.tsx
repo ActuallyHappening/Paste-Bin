@@ -7,7 +7,9 @@ export type T_GlobalState = {projects: Array<Project>, items: Array<MenuItem>}
 
 const _G: T_GlobalState = {
   "projects": [new Project({id: 1, shortDescription: "Testing Project (SD)", longDescription: "Testing Project (LD)", name: "Testing Project (N)"})],
-  "items": [new MenuItem({purposeType: "meta", name: "About", shortDescription: "About"})],
+  "items": [
+    new MenuItem({purposeType: "meta", name: "About", shortDescription: "About", url: "/#about"}),
+    new MenuItem({purposeType: "meta", name: "Contact", shortDescription: "Contact", url: "/#contact"})],
 }
 
 _G.projects.forEach((project, index) => {
