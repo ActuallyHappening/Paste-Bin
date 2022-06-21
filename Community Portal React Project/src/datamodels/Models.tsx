@@ -6,3 +6,4 @@ import MenuItem from './project/_MenuItem';
 import DITUMesh from './project/_DITUMesh';
 
 export { Project, Model, MenuItem, DITUMesh };
+

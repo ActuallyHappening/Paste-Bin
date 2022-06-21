@@ -12,6 +12,16 @@ export default class MenuItem {
   constructor({ purposeType = "project", type = "Link", project }: { purposeType?: T_MenuItemPurposeTypes, type?: T_MenuItemTypes, project: Project }) {
     this._project = project;
     this.purposeType = purposeType;
-    this.type = type;
+    switch (purposeType) {
+      case "meta":
+        this.type = "Link"
+        break;
+      case "project":
+        this.type = "Link"
+        break;
+      default:
+        this.type = "Link"
+        break;
+    }
   }
 }
