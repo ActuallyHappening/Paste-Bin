@@ -34,7 +34,7 @@ export default class _Project {
   _item: MenuItem;
   _models: T_ModelStateHandlesObject;
   _DITUMesh: DITUMesh;
-  constructor({id, item, models, DITUMesh: _DITUMesh, ...ProjectInfo}: T_ProjectInfo & {id: number, item?: MenuItem, models?: T_ModelStateHandlesObject, DITUMesh: DITUMesh}) {
+  constructor({id, item, models, DITUMesh: _DITUMesh, ...ProjectInfo}: T_ProjectInfo & {id: number, item?: MenuItem, models?: T_ModelStateHandlesObject, DITUMesh?: DITUMesh}) {
     this.id = id; if (!id) {throw new Error("Project id is required")}
     this.name = ProjectInfo.name ?? "Default Project Name";
     this.shortDescription = ProjectInfo.shortDescription ?? "Default Project Short Description";

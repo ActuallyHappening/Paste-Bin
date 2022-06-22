@@ -4,7 +4,8 @@ import App from './App'
 import _G from './GlobalState'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
-    <App _G={_G}/>
-  </React.StrictMode>
+  <App _G={_G}/>
 )
+  {/* <React.StrictMode>
+
+  </React.StrictMode> */}

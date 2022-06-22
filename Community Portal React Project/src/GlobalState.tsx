@@ -3,7 +3,12 @@
 import { DITUMesh, MenuItem, Project } from "./datamodels/Models";
 
 export type T_Children = React.ReactNode;
-export type T_GlobalState = {projects: Array<Project>, menu_items: Array<MenuItem>, panels: Object, houses: Array<DITUMesh>};
+export type T_GlobalState = {
+  projects: Array<Project>,
+  menu_items: Array<MenuItem>,
+  panels: Object,
+  houses: Array<DITUMesh>
+};
 
 const _G: T_GlobalState = {
   "projects": [new Project({id: 1, shortDescription: "Testing Project (SD)", longDescription: "Testing Project (LD)", name: "Testing Project (N)"})],
