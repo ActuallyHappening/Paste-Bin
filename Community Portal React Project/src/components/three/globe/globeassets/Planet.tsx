@@ -8,6 +8,7 @@ import { useGLTF } from "@react-three/drei";
 import { GLTF } from "three/examples/jsm/loaders/GLTFLoader";
 import { useFrame } from "@react-three/fiber";
 import { DITUMesh } from "../../../../datamodels/Models";
+import { GlobeMarker } from "../globemarkers/GlobeMarkers";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -780,6 +781,7 @@ export default function Planet({rotationSpeed, state, ...props}: {rotationSpeed:
               onPointerOut={(e) => state.current[1]?.triggers.onPointerOut(e, 1)}
               onClick={(e) => state.current[1]?.triggers.onClick(e, 1)}
             >
+              <GlobeMarker from={[300]} too={[500]}/>
               <mesh
                 name="house-walls_house"
                 castShadow
