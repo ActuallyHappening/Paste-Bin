@@ -159,8 +159,8 @@ type GLTFResult = GLTF & {
 const defaultLocation = "/src/components/three/globe/globeassets/PlanetRaw.gltf"
 
 export default function Planet({rotationSpeed, state, ...props}: {rotationSpeed: number, state: React.MutableRefObject<DITUMesh[]>, props?: JSX.IntrinsicElements["group"]}) {
-  const wholePlanet = useRef<THREE.Group>();
-  const allHouses = useRef<THREE.Group>();
+  const wholePlanet = useRef();
+  const allHouses = useRef();
   
   const { nodes, materials } = useGLTF(defaultLocation) as GLTFResult; // Don't know why types don't like each other :)
 
@@ -746,10 +746,10 @@ export default function Planet({rotationSpeed, state, ...props}: {rotationSpeed:
               position={[43.7886505, 46.6600456, 88.897934]}
               rotation={[-1.7954383, -0.5447743, -2.5780792]}
               userData={{ name: "house" }}
-              ref={(r) => state.current[1].ref = r}
-              onPointerEnter={(e) => state.current?.[1].onPointerEnter(e)}
-              onPointerLeave={(e) => state.current?.[1].onPointerLeave(e)}
-              onClick={(e) => state.current?.[1].onClick(e)}
+              ref={(r) => state.current[1].ref = r ?? undefined}
+              onPointerOver={(e) => state.current[1].triggers.onPointerOver(e, 1)}
+              onPointerOut={(e) => state.current[1].triggers.onPointerOut(e, 1)}
+              onClick={(e) => state.current[1].triggers.onClick(e, 1)}
             >
               <mesh
                 name="house-walls_house"
@@ -798,7 +798,7 @@ export default function Planet({rotationSpeed, state, ...props}: {rotationSpeed:
               position={[73.8882446, 83.0963058, -22.3211422]}
               rotation={[-1.9420455, -0.9191507, -1.4810436]}
               userData={{ name: "house.2" }}
-              ref={(r) => {addHouse(r)}}
+              ref={(r) => state.current[2].ref = r ?? undefined}
             >
               <group
                 name="door"
