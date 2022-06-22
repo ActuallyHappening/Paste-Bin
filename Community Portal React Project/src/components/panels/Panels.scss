@@ -6,6 +6,11 @@
 .panels {
   pointer-events: all;
 }
+
+#__panel-link-active {
+	color: deps.$var-color--sparkling-apple;
+}
+
 // Specific panels
 .panel {
 	align-items: center;

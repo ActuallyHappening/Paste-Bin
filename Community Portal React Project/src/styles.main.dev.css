@@ -452,6 +452,10 @@ body {
   pointer-events: all;
 }
 
+#__panel-link-active {
+  color: hsl(92deg, 47.0588235294%, 48.96%);
+}
+
 .panel {
   align-items: center;
   display: flex;
