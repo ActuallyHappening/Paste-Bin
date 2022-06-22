@@ -13,7 +13,7 @@ const Body = ({_G}: {_G: T_GlobalState}) => {
     <Three>
       <Globe />
     </Three>
-    <Panels />
+    <Panels projects={_G.projects}/>
     </>
   )
 }

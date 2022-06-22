@@ -4,16 +4,18 @@ import Panel from "../Panel"
 
 
 const ProjectPanels = ({ children, projects }: { projects: Array<Project>, children?: T_Children }) => {
+  //console.log("ProjectPanels projects:", projects)
   return (
     <>
-    {projects.map((project, index) => {
+    {projects?.map((project, index) => {
       return (
-        <Panel name={project.name}>
+        <Panel key={index} name={project.name}>
           <h1>{project.name}</h1>
           <p>{project.shortDescription}</p>
         </Panel>
       )
     })}
+    {children}
     </>
   )
 }

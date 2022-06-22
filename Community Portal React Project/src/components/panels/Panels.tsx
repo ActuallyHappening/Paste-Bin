@@ -1,8 +1,8 @@
-import Panel, { CloseButton } from "./Panel"
+import { Project } from "../../datamodels/Models"
+import Panel from "./Panel"
 import ProjectPanels from "./projectpanels/ProjectPanels"
 
-// TODO refactor this into a dynamic set
-const Panels = () => {
+const Panels = ({ projects }: { projects: Array<Project> }) => {
   return (
     <div className="panels">
       <Panel name="about">
@@ -24,7 +24,9 @@ const Panels = () => {
             Aurecon
 					</p>
 			</Panel>
-      <ProjectPanels />
+      <ProjectPanels projects={projects}>
+        
+      </ProjectPanels>
     </div>
   )
 }
