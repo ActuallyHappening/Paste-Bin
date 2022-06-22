@@ -33,7 +33,8 @@ export default class _Project {
   url: string;
   _item: MenuItem;
   _models: T_ModelStateHandlesObject;
-  constructor({id, item, models, ...ProjectInfo}: T_ProjectInfo & {id: number, item?: MenuItem, models?: T_ModelStateHandlesObject,}) {
+  _DITUMesh: DITUMesh;
+  constructor({id, item, models, DITUMesh: _DITUMesh, ...ProjectInfo}: T_ProjectInfo & {id: number, item?: MenuItem, models?: T_ModelStateHandlesObject, DITUMesh: DITUMesh}) {
     this.id = id; if (!id) {throw new Error("Project id is required")}
     this.name = ProjectInfo.name ?? "Default Project Name";
     this.shortDescription = ProjectInfo.shortDescription ?? "Default Project Short Description";
@@ -47,6 +48,7 @@ export default class _Project {
       "persistent": new Model({type: "basic", project: this}),
       "hovered": new Model({type: "descriptive", project: this})
     };
+    this._DITUMesh = _DITUMesh ?? new DITUMesh({nativeID: this.id, project: this});
     
   }
 }

@@ -7,8 +7,7 @@ import { DITUMesh } from "../../../datamodels/Models"
 
 // Is essentially just the globe normally, expressed using react-three-fibre
 const ThreeGlobe = ({ houses }: {houses: Array<DITUMesh>}) => {
-  const [projects, setProjects] = useState([])
-  const houseStates = useRef({trigger: undefined, houses: [], markers: []})
+  const housesRef = useRef(houses)
   const planetRef = useRef(null)
 
   return (
@@ -37,7 +36,7 @@ const ThreeGlobe = ({ houses }: {houses: Array<DITUMesh>}) => {
       <gridHelper args={[1500, 100]}/>
       <axesHelper args={[500]}/>
       <TrackballControls makeDefault noZoom noPan/>
-      <Planet rotationSpeed={1 / 4} stateRef={houseStates}/>
+      <Planet rotationSpeed={1 / 4} state={housesRef}/>
       <GlobeMarkers />
     </Canvas>
     </div>

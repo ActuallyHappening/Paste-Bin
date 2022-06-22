@@ -7,6 +7,7 @@ import React, { useEffect, useRef } from "react";
 import { useGLTF } from "@react-three/drei";
 import { GLTF } from "three/examples/jsm/loaders/GLTFLoader";
 import { useFrame } from "@react-three/fiber";
+import { DITUMesh } from "../../../../datamodels/Models";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -157,32 +158,18 @@ type GLTFResult = GLTF & {
 
 const defaultLocation = "/src/components/three/globe/globeassets/PlanetRaw.gltf"
 
-export default function Planet({rotationSpeed, stateRef = undefined, ...props}: {rotationSpeed: number, stateRef?: any, props?: JSX.IntrinsicElements["group"]}) {
-  const wholePlanet = useRef<THREE.Group>(null);
-  const allHouses = useRef(null);
-
-  const state = stateRef ?? useRef({houses: [undefined]});
-
-  const addHouse = (r: THREE.Group, id: number) => {
-    if (!r) return;
-    if (!state.current) {console.log("No state for Planet.tsx"); return;}
-    //else console.log("State for Planet.tsx! yay")
-    state.current.houses[id] = {
-      ref: r,
-      onClick: () => console.log("default click on ", r, "id", id),
-      onPointerEnter: () => console.log("default pointer enter on ", r, "id", id),
-      onPointerLeave: () => console.log("default pointer leave on ", r, "id", id),
-    }
-    //console.log(state.current)
-  }
+export default function Planet({rotationSpeed, state, ...props}: {rotationSpeed: number, state: React.MutableRefObject<DITUMesh[]>, props?: JSX.IntrinsicElements["group"]}) {
+  const wholePlanet = useRef<THREE.Group>();
+  const allHouses = useRef<THREE.Group>();
   
-  const { nodes, materials } = useGLTF(defaultLocation) as GLTFResult;
+  const { nodes, materials } = useGLTF(defaultLocation) as GLTFResult; // Don't know why types don't like each other :)
 
   useFrame((state, delta, xrFrame) => {
     if (wholePlanet.current) {
       wholePlanet.current.rotation.y += delta * rotationSpeed // spin the globe
     }
-  })
+  });
+
   return (
     <group ref={wholePlanet} {...props} dispose={null}>
       <group>
@@ -759,10 +746,10 @@ export default function Planet({rotationSpeed, stateRef = undefined, ...props}: 
               position={[43.7886505, 46.6600456, 88.897934]}
               rotation={[-1.7954383, -0.5447743, -2.5780792]}
               userData={{ name: "house" }}
-              ref={(r) => {addHouse(r, 1)}}
-              onPointerEnter={(e) => state.current?.houses[1].onPointerEnter(e)}
-              onPointerLeave={(e) => state.current?.houses[1].onPointerLeave(e)}
-              onClick={(e) => state.current?.houses[1].onClick(e)}
+              ref={(r) => state.current[1].ref = r}
+              onPointerEnter={(e) => state.current?.[1].onPointerEnter(e)}
+              onPointerLeave={(e) => state.current?.[1].onPointerLeave(e)}
+              onClick={(e) => state.current?.[1].onClick(e)}
             >
               <mesh
                 name="house-walls_house"

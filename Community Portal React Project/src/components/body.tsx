@@ -9,9 +9,9 @@ import { T_GlobalState } from "../GlobalState"
 const Body = ({_G}: {_G: T_GlobalState}) => {
   return (
     <>
-    <NavBar items={_G.items} />
+    <NavBar items={_G.menu_items} />
     <Three>
-      <Globe />
+      <Globe houses={_G.houses}/>
     </Three>
     <Panels projects={_G.projects}/>
     </>
