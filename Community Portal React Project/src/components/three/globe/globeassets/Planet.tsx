@@ -159,11 +159,21 @@ type GLTFResult = GLTF & {
 const defaultLocation = "/src/components/three/globe/globeassets/PlanetRaw.gltf"
 const numImplemented = 2; // How many houses have the appropriate props
 
+
 export default function Planet({rotationSpeed, state, ...props}: {rotationSpeed: number, state: React.MutableRefObject<DITUMesh[]>, props?: JSX.IntrinsicElements["group"]}) {
   const wholePlanet = useRef(null);
   const allHouses = useRef(null);
+
+  const __registerRef = function (id: number ) {
+    return (r: THREE.Group | null) => {
+      if (!r || !state.current[id]) {return}
+      state.current[id].ref = r ?? undefined
+    }
+  }
   
-  const { nodes, materials } = useGLTF(defaultLocation) as GLTFResult; // Don't know why types don't like each other :)
+   // Don't know why types don't like each other :)
+   // @ts-ignore
+  const { nodes, materials } = useGLTF(defaultLocation) as GLTFResult;
 
   useFrame((state, delta, xrFrame) => {
     if (wholePlanet.current) {

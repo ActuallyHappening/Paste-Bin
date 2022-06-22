@@ -6,8 +6,10 @@
     "dev": "concurrently 'vite' 'npm run sass:watch'",
     "build": "sass:build && tsc && vite build",
     "preview": "vite preview",
-    "host": "vite --host",
+    "host": "concurrently 'vite --host' 'npm run sass:watch'",
     "vite": "vite",
+    "vite:host": "vite --host",
+    "vite:https": "vite --host --https",
     "sass:build": "sass src/styles.main.dev.scss src/styles.main.dev.css",
     "sass:watch": "sass src/styles.main.dev.scss src/styles.main.dev.css --watch"
   },
