@@ -38,6 +38,6 @@ export default class DITUMesh {
     this.nativeID = nativeID ?? project.id;
     if (!this.nativeID) throw new Error("No nativeID provided");
     this._project = project;
-    this.triggers = defaultConsoleTriggers
+    this.triggers = defaultConsoleTriggers;
   }
 }

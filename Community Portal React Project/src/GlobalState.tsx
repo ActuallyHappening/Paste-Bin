@@ -11,6 +11,9 @@ export type T_GlobalState = {
 };
 
 const _G: T_GlobalState = {
+  // Project IDs CAN'T start at 0
+  // Else !id is true, should be false with id = 0
+  // So id cannot ever be 0 else !id is true, implying id is null | undefined
   "projects": [new Project({id: 1, shortDescription: "Testing Project (SD)", longDescription: "Testing Project (LD)", name: "Testing Project (N)"})],
   "menu_items": [
     new MenuItem({purposeType: "meta", name: "About", shortDescription: "About", url: "/#about"}),
@@ -28,7 +31,7 @@ const _G: T_GlobalState = {
 
 _G.projects.forEach((project, index) => {
   _G.menu_items.push(project._item);
-  _G.houses.push(project._DITUMesh);
+  _G.houses[project.id] = project._DITUMesh;
 });
 
 export { _G as default, _G };

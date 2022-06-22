@@ -1,5 +1,5 @@
 import { Canvas } from "@react-three/fiber"
-import { useEffect, useRef, useState } from "react"
+import { useRef, useState } from "react"
 import { TrackballControls } from '@react-three/drei'
 import Planet from './globeassets/Planet'
 import GlobeMarkers from './globemarkers/GlobeMarkers'

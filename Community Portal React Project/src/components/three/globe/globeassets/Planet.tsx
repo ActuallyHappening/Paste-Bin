@@ -757,11 +757,11 @@ export default function Planet({rotationSpeed, state, ...props}: {rotationSpeed:
               position={[43.7886505, 46.6600456, 88.897934]}
               rotation={[-1.7954383, -0.5447743, -2.5780792]}
               userData={{ name: "house" }}
-              ref={(r) => {
-                if (!r || !state.current[1]) {return}
-                state.current[1].ref = r ?? undefined
-              }}
-              onPointerOver={(e) => state.current[1]?.triggers.onPointerOver(e, 1)}
+              ref={__registerRef(1)}
+              onPointerOver={(e) => {
+                console.log("OVER", state);
+                state.current[1]?.triggers.onPointerOver(e, 1);}
+              }
               onPointerOut={(e) => state.current[1]?.triggers.onPointerOut(e, 1)}
               onClick={(e) => state.current[1]?.triggers.onClick(e, 1)}
             >
@@ -812,10 +812,7 @@ export default function Planet({rotationSpeed, state, ...props}: {rotationSpeed:
               position={[73.8882446, 83.0963058, -22.3211422]}
               rotation={[-1.9420455, -0.9191507, -1.4810436]}
               userData={{ name: "house.2" }}
-              ref={(r) => {
-                if (!r || !state.current[2]) return
-                state.current[2].ref = r ?? undefined
-              }}
+              ref={__registerRef(2)}
             >
               <group
                 name="door"
