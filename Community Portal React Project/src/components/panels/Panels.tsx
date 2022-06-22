@@ -13,10 +13,11 @@ const Panels = () => {
 					<p>For all enquiries, please reach out to David.</p>
 					<p>
 						<a href="mailto:David.Sweeney@aurecongroup.com>David.Sweeney@aurecongroup.com">
-						<strong>David Sweeney</strong>
+						  <strong>David.Sweeney@aurecongroup.com</strong>
             </a>
 						<br/>
-						<br/>Director, Communication and Stakeholder Engagement, <br/>Aurecon
+						<br/>Director, Communication and Stakeholder Engagement, <br/>
+            Aurecon
 					</p>
 			</Panel>
     </div>
