@@ -759,7 +759,6 @@ export default function Planet({rotationSpeed, state, ...props}: {rotationSpeed:
               userData={{ name: "house" }}
               ref={__registerRef(1)}
               onPointerOver={(e) => {
-                console.log("OVER", state);
                 state.current[1]?.triggers.onPointerOver(e, 1);}
               }
               onPointerOut={(e) => state.current[1]?.triggers.onPointerOut(e, 1)}
