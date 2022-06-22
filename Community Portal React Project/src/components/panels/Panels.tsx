@@ -1,4 +1,5 @@
 import Panel, { CloseButton } from "./Panel"
+import ProjectPanels from "./projectpanels/ProjectPanels"
 
 // TODO refactor this into a dynamic set
 const Panels = () => {
@@ -23,6 +24,7 @@ const Panels = () => {
             Aurecon
 					</p>
 			</Panel>
+      <ProjectPanels />
     </div>
   )
 }

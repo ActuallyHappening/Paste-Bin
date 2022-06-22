@@ -37,7 +37,7 @@ export default class _Project {
     this.id = id; if (!id) {throw new Error("Project id is required")}
     this.name = ProjectInfo.name ?? "Default Project Name";
     this.shortDescription = ProjectInfo.shortDescription ?? "Default Project Short Description";
-    this.longDescription = ProjectInfo.longDescription ?? "Default Project Long Description";
+    this.longDescription = ProjectInfo.longDescription ?? ProjectInfo.shortDescription ?? "Default Project Long Description <ERROR!>";
     this.icon = ProjectInfo.icon ?? "src/models/defaultassets/smallIcon.png";
     this.image = ProjectInfo.image ?? "src/models/defaultassets/mediumImage.png";
     this.video = ProjectInfo.video ?? "GET VIDEO WORKING TODO"; // TODO get video working!
