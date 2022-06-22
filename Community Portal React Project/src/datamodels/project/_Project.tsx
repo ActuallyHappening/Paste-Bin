@@ -36,9 +36,7 @@ export default class _Project {
   _DITUMesh: DITUMesh;
 
   // Useful functions
-  url_open = function() {
-    open(this.url, "_self");
-  }
+  url_open: () => void;
   constructor({id, item, models, DITUMesh: _DITUMesh, ...ProjectInfo}: T_ProjectInfo & {id: number, item?: MenuItem, models?: T_ModelStateHandlesObject, DITUMesh?: DITUMesh}) {
     this.id = id; if (!id) {throw new Error("Project id is required")}
     this.name = ProjectInfo.name ?? "Default Project Name";
@@ -54,6 +52,6 @@ export default class _Project {
       "hovered": new Model({type: "descriptive", project: this})
     };
     this._DITUMesh = _DITUMesh ?? new DITUMesh({nativeID: this.id, project: this});
-    
+    this.url_open = () => window.open(this.url, "_self");
   }
 }

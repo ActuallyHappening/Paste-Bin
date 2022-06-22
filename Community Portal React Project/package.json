@@ -4,7 +4,9 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "concurrently 'vite' 'npm run sass:watch'",
-    "build": "sass:build && tsc && vite build",
+    "dev-host": "concurrently 'npm run vite:host' 'npm run sass:watch'",
+    "dev-https": "concurrently 'npm run vite:https' 'npm run sass:watch'",
+    "build": "npm run sass:build && tsc && vite build",
     "preview": "vite preview",
     "host": "concurrently 'vite --host' 'npm run sass:watch'",
     "vite": "vite",
