@@ -1,7 +1,10 @@
-const Panel = ({children, name}: {children: T_Children, name: string}) => {
+import { T_Children } from "../../GlobalState"
+
+const Panel = ({children, name, closeButton = true}: {children: T_Children, name: string, closeButton?: boolean}) => {
   return (
     <div className="panel" id={name}>
       <div className="panel__content">
+        {closeButton && <CloseButton />}
         {children}
       </div>
     </div>
