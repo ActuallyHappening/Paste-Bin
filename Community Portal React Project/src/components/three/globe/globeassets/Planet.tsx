@@ -157,14 +157,30 @@ type GLTFResult = GLTF & {
 };
 
 const defaultLocation = "/src/components/three/globe/globeassets/PlanetRaw.gltf"
-const numImplemented = 2; // How many houses have the appropriate props
-
 
 export default function Planet({rotationSpeed, state, ...props}: {rotationSpeed: number, state: React.MutableRefObject<DITUMesh[]>, props?: JSX.IntrinsicElements["group"]}) {
   const wholePlanet = useRef(null);
   const allHouses = useRef(null);
 
-  const __registerRef = function (id: number ) {
+  const __registerRef = function (id: number) {
+    if (state.current[id] === undefined) {
+      console.warn(`A house is waiting for its project!`);
+      return;
+    } else {
+      console.log("A house has found its project! :)")
+    }
+    state.current[id].triggers = {
+      ...state.current[id].triggers,
+      onClick: (e, id) => {
+        state.current[id]._project.url_open();
+      },
+      onPointerOut(e, id) {
+        console.log(`YESSSSSS SIR ! Pointer out on ${id}`)
+      },
+      onPointerOver(e, id) {
+        console.log(`YESSSSSS SIR ! Pointer over on ${id}`)
+      },
+    }
     return (r: THREE.Group | null) => {
       if (!r || !state.current[id]) {return}
       state.current[id].ref = r ?? undefined

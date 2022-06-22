@@ -36,4 +36,6 @@ _G.projects.forEach((project, index) => {
   _G.houses[project.id] = project._DITUMesh;
 });
 
+console.log("Global State:", _G);
+
 export { _G as default, _G };

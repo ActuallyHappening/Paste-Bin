@@ -34,6 +34,11 @@ export default class _Project {
   _item: MenuItem;
   _models: T_ModelStateHandlesObject;
   _DITUMesh: DITUMesh;
+
+  // Useful functions
+  url_open = function() {
+    open(this.url, "_self");
+  }
   constructor({id, item, models, DITUMesh: _DITUMesh, ...ProjectInfo}: T_ProjectInfo & {id: number, item?: MenuItem, models?: T_ModelStateHandlesObject, DITUMesh?: DITUMesh}) {
     this.id = id; if (!id) {throw new Error("Project id is required")}
     this.name = ProjectInfo.name ?? "Default Project Name";
@@ -42,7 +47,7 @@ export default class _Project {
     this.icon = ProjectInfo.icon ?? "src/models/defaultassets/smallIcon.png";
     this.image = ProjectInfo.image ?? "src/models/defaultassets/mediumImage.png";
     this.video = ProjectInfo.video ?? "GET VIDEO WORKING TODO"; // TODO get video working!
-    this.url = ProjectInfo.url ?? `/projects/${this.id}`;
+    this.url = ProjectInfo.url ?? `/#${this.name}`;
     this._item = item ?? new MenuItem({purposeType: "project", project: this});
     this._models = models ?? {
       "persistent": new Model({type: "basic", project: this}),

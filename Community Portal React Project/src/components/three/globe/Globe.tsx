@@ -36,7 +36,9 @@ const ThreeGlobe = ({ houses }: {houses: Array<DITUMesh>}) => {
       <gridHelper args={[1500, 100]}/>
       <axesHelper args={[500]}/>
       <TrackballControls makeDefault noZoom noPan/>
+
       <Planet rotationSpeed={1 / 4} state={housesRef}/>
+      
       <GlobeMarkers />
     </Canvas>
     </div>
