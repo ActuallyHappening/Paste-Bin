@@ -39,8 +39,8 @@ const ThreeGlobe = ({ houses }: {houses: Array<DITUMesh>}) => {
 
       <Planet rotationSpeed={1 / 4} state={housesRef}/>
       
-      <GlobeMarkers dituMeshs={houses}/>
     </Canvas>
+    <GlobeMarkers dituMeshs={houses}/>
     </div>
   )
 }
