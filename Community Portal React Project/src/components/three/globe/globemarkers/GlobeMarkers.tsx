@@ -16,18 +16,7 @@ const GlobeMarkers = ({ dituMeshs }: { dituMeshs: Array<DITUMesh> }) => {
     {dituMeshs?.map((dituMesh, index) => {
       console.log("dituMesh", dituMesh)
       return (
-        <>
-        <Line
-          key={index}
-          ref={(r) => {
-            if (!r) return
-            dituMesh.markerRef = r
-          }}
-          lineWidth={7}
-          color="red"
-          points={[[0, 0, 0], [100, 100, 100], [400, 400, 400]]}
-        />
-        </>
+        
       )})
     }
     </>

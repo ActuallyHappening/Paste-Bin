@@ -1,6 +1,6 @@
 import {Project} from '../Models'
 
-export type T_ModelTypes = 'basic' | 'descriptive';
+export type T_ModelTypes = 'identifier' | 'basic' | 'descriptive';
 
 export default class Model {
   type: T_ModelTypes
