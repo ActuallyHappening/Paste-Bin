@@ -9,6 +9,7 @@ import { GLTF } from "three/examples/jsm/loaders/GLTFLoader";
 import { useFrame } from "@react-three/fiber";
 import { DITUMesh } from "../../../../datamodels/Models";
 import { Vector3 } from "three";
+import House from "./House";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -161,7 +162,7 @@ type tt = React.SVGProps<SVGLineElement>
 
 const defaultLocation = "/src/components/three/globe/globeassets/PlanetRaw.gltf"
 
-export default function Planet({rotationSpeed, state, ...props}: {rotationSpeed: number, state: React.MutableRefObject<DITUMesh[]>, props?: JSX.IntrinsicElements["group"]}) {
+export default function Planet({rotationSpeed, state, camera, ...props}: {rotationSpeed: number, state: React.MutableRefObject<DITUMesh[]>, props?: JSX.IntrinsicElements["group"]}) {
   const wholePlanet = useRef(null);
   const allHouses = useRef(null);
 
@@ -771,17 +772,19 @@ export default function Planet({rotationSpeed, state, ...props}: {rotationSpeed:
             /* scale={2} */
             ref={allHouses}
           >
-            <group
+            <House
               name="house"
               position={[43.7886505, 46.6600456, 88.897934]}
               rotation={[-1.7954383, -0.5447743, -2.5780792]}
               userData={{ name: "house" }}
+              refId={1}
               ref={__registerRef(1)}
               onPointerOver={(e) => {
                 state.current[1]?.triggers.onPointerOver(e, 1);}
               }
               onPointerOut={(e) => state.current[1]?.triggers.onPointerOut(e, 1)}
               onClick={(e) => state.current[1]?.triggers.onClick(e, 1)}
+              camera={camera}
             >
               <mesh
                 name="house-walls_house"
@@ -824,7 +827,7 @@ export default function Planet({rotationSpeed, state, ...props}: {rotationSpeed:
                 position={[0, 10.7414083, 5.4267135]}
                 userData={{ name: "Cube.1" }}
               />
-            </group>
+            </House>
             <group
               name="house2"
               position={[73.8882446, 83.0963058, -22.3211422]}

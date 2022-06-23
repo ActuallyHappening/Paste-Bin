@@ -2,26 +2,35 @@ import { useFrame } from '@react-three/fiber'
 import { useEffect, useRef } from 'react'
 import { DITUMesh } from '../../../../datamodels/Models'
 
-const GlobeMarkers = ({ dituMeshs }: { dituMeshs: Array<DITUMesh> }) => {
+const GlobeMarkers = ({ dituMeshs, camera }: { dituMeshs: Array<DITUMesh>, camera: THREE.PerspectiveCamera }) => {
   return (
     <>
     {dituMeshs?.map((dituMesh, index) => {
-        console.log("dituMesh loading ...", dituMesh, dituMesh?.ref?.position)
-        console.log("dituMesh attempting coords ...", dituMesh?.ref?.localToWorld(dituMesh.ref?.position))
-        return <GlobeMarker top={100} left={100} dituMesh={dituMesh} />  
+        //console.log("dituMesh loading ...", dituMesh, dituMesh?.ref?.position)
+        //console.log("dituMesh attempting coords ...", dituMesh?.ref?.localToWorld(dituMesh.ref?.position))
+        return <GlobeMarker key={index} top={100} left={100} dituMesh={dituMesh} camera={camera.current}/>  
     })}
     </>
   )
 }
 
-const GlobeMarker = ({ top, left, dituMesh }: { top: number, left: number, dituMesh: DITUMesh }) => {
+const GlobeMarker = ({ top, left, dituMesh, camera}: { top: number, left: number, dituMesh: DITUMesh, camera }) => {
   const markerRef = useRef(null!)
   useEffect(() => {
-    console.log('dituMesh useEffect', dituMesh)
-    if (dituMesh?.markerRef?.current?.style && dituMesh?.ref?.position) {
-      dituMesh.markerRef.current.style.top = `${dituMesh?.ref.localToWorld(dituMesh?.ref.position).y}px`
-      dituMesh.markerRef.current.style.left = `${dituMesh?.ref.localToWorld(dituMesh?.ref.position).x}px`
-      console.log(dituMesh?.ref.localToWorld(dituMesh?.ref.position))
+    //console.log('dituMesh useEffect', dituMesh)
+    //console.log(dituMesh?.ref?.localToWorld(dituMesh?.ref.position))
+    dituMesh.markerRef = markerRef.current
+    if (dituMesh?.markerRef?.style && dituMesh?.ref?.position && camera) {
+      /* let vector = dituMesh?.ref?.position.clone()
+      console.log('camera', camera)
+      vector.project(camera)
+      vector.x = Math.round((0.5 + vector.x / 2) * (1027 / window.devicePixelRatio));
+      vector.y = Math.round((0.5 - vector.y / 2) * (887.141 / window.devicePixelRatio));
+      console.log("POSITION", vector)
+      dituMesh.markerRef.style.top = `${vector.y}px`
+      dituMesh.markerRef.style.left = `${vector.x}px` */
+    } else {
+      console.log("dituMesh useEffect", dituMesh, dituMesh?.ref?.position)
     }
   })
   return (
@@ -30,8 +39,8 @@ const GlobeMarker = ({ top, left, dituMesh }: { top: number, left: number, dituM
       ref={markerRef}
       id={`project-nativeid-${dituMesh.nativeID}`}
       style={{
-        top: `${top}px`,
-        left: `${left}px`,
+        top: `${Math.round(top * (1027 / window.devicePixelRatio))}px`,
+        left: `${Math.round(left * (887.141 / window.devicePixelRatio))}px`,
       }}
     >
       <a className="marker__label" href={dituMesh._project.url}>
