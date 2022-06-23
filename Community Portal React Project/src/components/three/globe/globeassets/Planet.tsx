@@ -9,6 +9,7 @@ import { GLTF } from "three/examples/jsm/loaders/GLTFLoader";
 import { useFrame } from "@react-three/fiber";
 import { DITUMesh } from "../../../../datamodels/Models";
 import { Vector3 } from "three";
+import group from "./House";
 import House from "./House";
 
 type GLTFResult = GLTF & {
@@ -162,21 +163,22 @@ type tt = React.SVGProps<SVGLineElement>
 
 const defaultLocation = "/src/components/three/globe/globeassets/PlanetRaw.gltf"
 
-export default function Planet({rotationSpeed, state, camera, ...props}: {rotationSpeed: number, state: React.MutableRefObject<DITUMesh[]>, props?: JSX.IntrinsicElements["group"]}) {
-  const wholePlanet = useRef(null);
+export default function Planet({rotationSpeed, dituMeshs, ...props}: {rotationSpeed: number, dituMeshs: DITUMesh[], props?: JSX.IntrinsicElements["group"]}) {
+  const wholePlanet = useRef<THREE.Group>(null!);
   const allHouses = useRef(null);
 
   const __registerRef = function (id: number) {
-    if (state.current[id] === undefined) {
+    if (!dituMeshs) return;
+    if (dituMeshs[id] === undefined) {
       console.warn(`A house is waiting for its project!`);
       return;
     } else {
       console.log("A house has found its project! :)")
     }
-    state.current[id].triggers = {
-      ...state.current[id].triggers,
+    dituMeshs[id].triggers = {
+      ...dituMeshs[id].triggers,
       onClick: (e, id) => {
-        state.current[id]._project.url_open();
+        dituMeshs[id]._project.url_open();
       },
       onPointerOut(e, id) {
         console.log(`YESSSSSS SIR ! Pointer out on ${id}`)
@@ -185,18 +187,17 @@ export default function Planet({rotationSpeed, state, camera, ...props}: {rotati
         console.log(`YESSSSSS SIR ! Pointer over on ${id}`)
       },
     }
-    return (r: THREE.Group | null) => {
-      if (!r || !state.current[id]) {return}
-      state.current[id].ref = r ?? undefined
-    }
+    return [(r: THREE.Group | null) => {
+      if (!r || !dituMeshs[id]) {return}
+      dituMeshs[id].ref = r ?? undefined
+    }, dituMeshs]
   }
   
-   // Don't know why types don't like each other :)
-   // @ts-ignore
+   // @ts-ignore Don't know why types don't like each other :) 
   const { nodes, materials } = useGLTF(defaultLocation) as GLTFResult;
 
   useFrame((state, delta, xrFrame) => {
-    if (wholePlanet.current) {
+    if (wholePlanet.current?.rotation) {
       wholePlanet.current.rotation.y += delta * rotationSpeed // spin the globe
     }
   });
@@ -777,14 +778,14 @@ export default function Planet({rotationSpeed, state, camera, ...props}: {rotati
               position={[43.7886505, 46.6600456, 88.897934]}
               rotation={[-1.7954383, -0.5447743, -2.5780792]}
               userData={{ name: "house" }}
-              refId={1}
-              ref={__registerRef(1)}
-              onPointerOver={(e) => {
+              nativeID={1}
+              nativeReg={__registerRef}
+              /* onPointerOver={(e) => {
                 state.current[1]?.triggers.onPointerOver(e, 1);}
               }
               onPointerOut={(e) => state.current[1]?.triggers.onPointerOut(e, 1)}
-              onClick={(e) => state.current[1]?.triggers.onClick(e, 1)}
-              camera={camera}
+              onClick={(e) => state.current[1]?.triggers.onClick(e, 1)} */
+              /* camera={camera} */
             >
               <mesh
                 name="house-walls_house"
@@ -833,7 +834,7 @@ export default function Planet({rotationSpeed, state, camera, ...props}: {rotati
               position={[73.8882446, 83.0963058, -22.3211422]}
               rotation={[-1.9420455, -0.9191507, -1.4810436]}
               userData={{ name: "house.2" }}
-              ref={__registerRef(2)}
+              /* ref={__registerRef(2)} */
             >
               <group
                 name="door"

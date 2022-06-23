@@ -35,6 +35,7 @@ export default class DITUMesh {
   ref?: THREE.Group;
   triggers: T_DituMeshTriggers;
   markerRef?: React.RefObject<HTMLDivElement>;
+  pos?: {x: number, y: number};
   constructor({project, nativeID}: {project: Project, nativeID?: number}) {
     this.nativeID = nativeID ?? project.id;
     if (!this.nativeID) throw new Error("No nativeID provided");
