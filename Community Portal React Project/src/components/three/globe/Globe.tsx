@@ -29,7 +29,7 @@ const ThreeGlobe = ({ houses }: {houses: Array<DITUMesh>}) => {
     onPointerMissed={() => console.log('missed')} */
     >
       <directionalLight color={0xf0fff0} intensity={3.25} position={[-800, 600, 1000]}/>
-      <mesh visible={false} ref={planetRef}>
+      <mesh visible={true} ref={planetRef}>
         <sphereBufferGeometry args={[100]}/>
         <meshPhysicalMaterial color={0x0fff0f} />
       </mesh>
@@ -37,9 +37,9 @@ const ThreeGlobe = ({ houses }: {houses: Array<DITUMesh>}) => {
       <axesHelper args={[500]}/>
       <TrackballControls makeDefault noZoom noPan/>
 
-      <Planet rotationSpeed={1 / 4} state={housesRef}/>
+      {/* <Planet rotationSpeed={1 / 4} state={housesRef}/> */}
       
-      <GlobeMarkers />
+      <GlobeMarkers dituMeshs={houses}/>
     </Canvas>
     </div>
   )
