@@ -9,6 +9,7 @@ import { GLTF } from "three/examples/jsm/loaders/GLTFLoader";
 import { useFrame } from "@react-three/fiber";
 import { DITUMesh } from "../../../../datamodels/Models";
 import { GlobeMarker } from "../globemarkers/GlobeMarkers";
+import { Vector3 } from "three";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -156,6 +157,8 @@ type GLTFResult = GLTF & {
     planet: THREE.MeshStandardMaterial;
   };
 };
+
+type tt = React.SVGProps<SVGLineElement>
 
 const defaultLocation = "/src/components/three/globe/globeassets/PlanetRaw.gltf"
 
@@ -781,7 +784,7 @@ export default function Planet({rotationSpeed, state, ...props}: {rotationSpeed:
               onPointerOut={(e) => state.current[1]?.triggers.onPointerOut(e, 1)}
               onClick={(e) => state.current[1]?.triggers.onClick(e, 1)}
             >
-              <GlobeMarker from={[300]} too={[500]}/>
+              <GlobeMarker attach={30}/>
               <mesh
                 name="house-walls_house"
                 castShadow
