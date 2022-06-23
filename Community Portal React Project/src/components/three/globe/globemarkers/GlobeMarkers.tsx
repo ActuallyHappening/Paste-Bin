@@ -6,8 +6,9 @@ const GlobeMarkers = ({ dituMeshs }: { dituMeshs: Array<DITUMesh> }) => {
   return (
     <>
     {dituMeshs?.map((dituMesh, index) => {
-        console.log("dituMesh loading ...", dituMesh)
-        <GlobeMarker top={0} left={0} dituMesh={dituMesh} />  
+        console.log("dituMesh loading ...", dituMesh, dituMesh?.ref?.position)
+        console.log("dituMesh attempting coords ...", dituMesh?.ref?.localToWorld(dituMesh.ref?.position))
+        return <GlobeMarker top={100} left={100} dituMesh={dituMesh} />  
     })}
     </>
   )
@@ -36,7 +37,10 @@ const GlobeMarker = ({ top, left, dituMesh }: { top: number, left: number, dituM
       <a className="marker__label" href={dituMesh._project.url}>
         <strong className="marker__label" >{dituMesh._project.name}</strong>
       </a>
-      <div className='marker__pointer'></div>
+      <div className='marker__pointer'>
+        <strong className="marker__label" >BRO ! {dituMesh._project.name}</strong>
+
+      </div>
     </div>
   )
 }
