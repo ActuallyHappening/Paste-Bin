@@ -42,7 +42,7 @@ const ThreeGlobe = ({ dituMeshs }: {dituMeshs: Array<DITUMesh>}) => {
 
       <Planet rotationSpeed={1 / 4} state={dituMeshs}/>
     </Canvas>
-    <GlobeMarkers dituMeshs={dituMeshs}/>
+    {/* <GlobeMarkers dituMeshs={dituMeshs}/> */}
     </div>
   )
 }
