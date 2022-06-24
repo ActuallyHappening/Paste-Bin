@@ -1,5 +1,3 @@
-import React, { useEffect } from 'react'
-import QAD_DO from './QAD_NavBar_Scripts'
 import Dropdown from './dropdown/Dropdown'
 import Icon from './icon/Icon'
 import { T_Children } from '../../GlobalState'

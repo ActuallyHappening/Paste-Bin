@@ -11,6 +11,7 @@
     "host": "concurrently 'vite --host' 'npm run sass:watch'",
     "vite": "vite",
     "vite:host": "vite --host",
+    "preview-host": "vite preview --host",
     "vite:https": "vite --host --https",
     "sass:build": "sass src/styles.main.dev.scss src/styles.main.dev.css",
     "sass:watch": "sass src/styles.main.dev.scss src/styles.main.dev.css --watch"

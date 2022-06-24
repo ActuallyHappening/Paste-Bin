@@ -6,7 +6,7 @@ import Three from './three/Three'
 import Globe from './three/globe/Globe'
 import { T_GlobalState } from "../GlobalState"
 
-const Body = ({_G}: {_G: T_GlobalState}) => {
+const Body = ({ _G }: {_G: T_GlobalState}) => {
   return (
     <>
     <NavBar items={_G.menu_items} />

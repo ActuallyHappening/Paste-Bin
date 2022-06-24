@@ -149,7 +149,6 @@ type GLTFResult = GLTF & {
     ["walls house2"]: THREE.MeshStandardMaterial;
     water: THREE.MeshStandardMaterial;
     stones: THREE.MeshStandardMaterial;
-    water: THREE.MeshStandardMaterial;
     ["walls house2"]: THREE.MeshStandardMaterial;
     ["roof house"]: THREE.MeshStandardMaterial;
     ["background,floor"]: THREE.MeshStandardMaterial;

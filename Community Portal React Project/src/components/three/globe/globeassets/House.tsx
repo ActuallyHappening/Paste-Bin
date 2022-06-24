@@ -1,5 +1,6 @@
 import { useFrame } from '@react-three/fiber';
 import { useEffect, useRef, useState } from 'react';
+import { MeshBasicMaterial } from 'three';
 import { DITUMesh } from '../../../../datamodels/Models';
 import { T_Children } from '../../../../GlobalState'
 
@@ -7,7 +8,7 @@ const House = ({children, nativeID = 1, dituMeshs: _dituMeshs, ...props}: {
   children: T_Children,
   nativeID: number,
   dituMeshs: DITUMesh[],
-}) => {
+} & any) => {
   const [dituMeshs, setDituMeshs] = useState<DITUMesh[]>(_dituMeshs);
   if (!dituMeshs) {
     console.warn(`No dituMeshs passed to House`);
@@ -43,9 +44,9 @@ const House = ({children, nativeID = 1, dituMeshs: _dituMeshs, ...props}: {
 
 
 export const HouseMeshMarker = () => {
-  const markerRef = useRef(null!);
+  const markerRef = useRef<MeshBasicMaterial>(null!);
   useFrame((state, delta, xrFrame) => {
-    if (markerRef.current) {
+    if (markerRef.current.opacity) {
       markerRef.current.opacity = Math.sin(Date.now() / 1000) / 3 + 0.5;
       //console.log("markerRef.current.opacity", markerRef.current.opacity);
     }
