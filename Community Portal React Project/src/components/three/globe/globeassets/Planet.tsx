@@ -177,13 +177,13 @@ export default function Planet({rotationSpeed, dituMeshs, ...props}: {rotationSp
     }
     dituMeshs[id].triggers = {
       ...dituMeshs[id].triggers,
-      onClick: (e, id) => {
+      onClick: (e) => {
         dituMeshs[id]._project.url_open();
       },
-      onPointerOut(e, id) {
+      onPointerOut(e) {
         console.log(`YESSSSSS SIR ! Pointer out on ${id}`)
       },
-      onPointerOver(e, id) {
+      onPointerOver(e) {
         console.log(`YESSSSSS SIR ! Pointer over on ${id}`)
       },
     }
@@ -779,7 +779,7 @@ export default function Planet({rotationSpeed, dituMeshs, ...props}: {rotationSp
               rotation={[-1.7954383, -0.5447743, -2.5780792]}
               userData={{ name: "house" }}
               nativeID={1}
-              nativeReg={__registerRef}
+              dituMeshs={dituMeshs}
               /* onPointerOver={(e) => {
                 state.current[1]?.triggers.onPointerOver(e, 1);}
               }
