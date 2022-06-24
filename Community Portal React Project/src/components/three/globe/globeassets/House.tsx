@@ -36,16 +36,21 @@ const House = ({children, nativeID = 1, dituMeshs: _dituMeshs, ...props}: {
       onClick={(e) => dituMeshs[nativeID]?.triggers?.onClick(e, nativeID)}
       {...props}
     >
-      <HouseMeshMarker />
+      <HouseMeshMarker flash={Boolean((dituMeshs ?? [])[nativeID])}/>
       {children}
     </group>
   )
 }
 
 
-export const HouseMeshMarker = () => {
+export const HouseMeshMarker = ({ flash: _flash = true }: {flash?: boolean}) => {
   const markerRef = useRef<MeshBasicMaterial>(null!);
+  const [flash, setFlash] = useState(_flash);
   useFrame((state, delta, xrFrame) => {
+    if (!flash) {
+      markerRef.current.opacity = 0;
+      return
+    }
     if (markerRef.current.opacity) {
       markerRef.current.opacity = Math.sin(Date.now() / 1000) / 3 + 0.5;
       //console.log("markerRef.current.opacity", markerRef.current.opacity);

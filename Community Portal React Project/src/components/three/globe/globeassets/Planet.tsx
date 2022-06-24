@@ -9,8 +9,10 @@ import { GLTF } from "three/examples/jsm/loaders/GLTFLoader";
 import { useFrame } from "@react-three/fiber";
 import { DITUMesh } from "../../../../datamodels/Models";
 import House from "./House";
-// @tsignore maybe ignore this line?
-import defaultLocation from "/src/assets/objects/planetNamedAsPNG.png";
+// TODO Maybe ignore this line for type checking? .gltf can't be imported
+// Check if this is the correct way to import a gltf file
+// @ts-ignore This import is handled by Vite and TS doesn't know what to do!
+import defaultLocation from "/src/assets/objects/planet.gltf";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -157,8 +159,6 @@ type GLTFResult = GLTF & {
     planet: THREE.MeshStandardMaterial;
   };
 };
-
-
 
 export default function Planet({rotationSpeed, dituMeshs: _dituMeshs, ...props}: {rotationSpeed: number, dituMeshs: DITUMesh[], props?: JSX.IntrinsicElements["group"]}) {
   const wholePlanet = useRef<THREE.Group>(null!);
