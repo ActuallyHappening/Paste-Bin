@@ -3,18 +3,24 @@
 
 export const Bottom = () => {
   return (
-    <div>Bottom</div>
+    <div className="GUI-wrapper GUI-breakpoint-height">
+      Bottom
+    </div>
   )
 }
 
 export const Right = () => {
   return (
-    <div>Bottom</div>
+    <div className="GUI-wrapper GUI-breakpoint-width">
+      Bottom
+    </div>
   )
 }
 
 export const Left = () => {
   return (
-    <div>Left</div>
+    <div className="GUI-wrapper GUI-breakpoint-width">
+      Left
+    </div>
   )
 }
