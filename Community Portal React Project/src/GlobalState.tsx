@@ -7,8 +7,11 @@ export type T_GlobalState = {
   projects: Array<Project>,
   menu_items: Array<MenuItem>,
   panels: Object,
-  houses: Array<DITUMesh>
+  houses: Array<DITUMesh>,
+  hideDev: boolean,
 };
+
+const IS_PRODUCTION_BUILD = true; // HARD coded, set to false to see dev specific stuff :)
 
 const _G: T_GlobalState = {
   // Project IDs CAN'T start at 0
@@ -28,7 +31,8 @@ const _G: T_GlobalState = {
   },
   "houses": [
     // Fill with DITU Mesh coming from projects
-  ]
+  ],
+  hideDev: IS_PRODUCTION_BUILD,
 }
 
 _G.projects.forEach((project, index) => {

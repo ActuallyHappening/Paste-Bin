@@ -5,7 +5,7 @@ import Planet from './globeassets/Planet'
 import { DITUMesh } from "../../../datamodels/Models"
 
 // Is essentially just the globe normally, expressed using react-three-fibre
-const ThreeGlobe = ({ dituMeshs: _dituMeshs }: {dituMeshs: Array<DITUMesh>}) => {
+const ThreeGlobe = ({ dituMeshs: _dituMeshs, hideDev }: {dituMeshs: Array<DITUMesh>, hideDev: boolean}) => {
   const planetRef = useRef(null!)
   const cameraRef = useRef(null!)
 
@@ -41,8 +41,12 @@ const ThreeGlobe = ({ dituMeshs: _dituMeshs }: {dituMeshs: Array<DITUMesh>}) => 
         <sphereBufferGeometry args={[100]}/>
         <meshPhysicalMaterial color={0x0fff0f} />
       </mesh>
-      <gridHelper args={[1500, 100]}/>
-      <axesHelper args={[500]}/>
+      {hideDev ? <></> :
+      <>
+        <gridHelper args={[1500, 100]}/>
+        <axesHelper args={[500]}/>
+      </>
+      }
       <TrackballControls makeDefault noZoom noPan/>
       {/* <perspectiveCamera ref={cameraRef} attach="camera" position={[0, 10, 400]} fov={55} far={1000} /> */}
 
