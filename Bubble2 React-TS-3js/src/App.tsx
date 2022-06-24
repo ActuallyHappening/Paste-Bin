@@ -1,11 +1,12 @@
+import Body from './components/body'
 import './styles.main.dev.css'
 
 function App() {
-
   return (
-    <>
-      <h1>YAY!</h1>
-    </>
+    <div>
+      <Body/>
+      {/* This is where the loading screen could be implemented */}
+    </div>
   )
 }
 
