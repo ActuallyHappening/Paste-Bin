@@ -2,7 +2,6 @@ import { Canvas } from "@react-three/fiber"
 import { useRef, useState } from "react"
 import { TrackballControls } from '@react-three/drei'
 import Planet from './globeassets/Planet'
-import GlobeMarkers from './globemarkers/GlobeMarkers'
 import { DITUMesh } from "../../../datamodels/Models"
 
 // Is essentially just the globe normally, expressed using react-three-fibre

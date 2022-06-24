@@ -9,6 +9,8 @@ import { GLTF } from "three/examples/jsm/loaders/GLTFLoader";
 import { useFrame } from "@react-three/fiber";
 import { DITUMesh } from "../../../../datamodels/Models";
 import House from "./House";
+// @tsignore maybe ignore this line?
+import defaultLocation from "/src/assets/objects/planetNamedAsPNG.png";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -156,7 +158,7 @@ type GLTFResult = GLTF & {
   };
 };
 
-const defaultLocation = "/src/components/three/globe/globeassets/PlanetRaw.gltf"
+
 
 export default function Planet({rotationSpeed, dituMeshs: _dituMeshs, ...props}: {rotationSpeed: number, dituMeshs: DITUMesh[], props?: JSX.IntrinsicElements["group"]}) {
   const wholePlanet = useRef<THREE.Group>(null!);
