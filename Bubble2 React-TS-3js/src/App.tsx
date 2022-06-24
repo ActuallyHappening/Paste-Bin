@@ -1,5 +1,4 @@
 import Body from './components/body'
-import './styles.main.dev.css'
 
 function App() {
   return (
