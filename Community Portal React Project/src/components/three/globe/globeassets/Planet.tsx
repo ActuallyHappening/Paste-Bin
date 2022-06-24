@@ -164,6 +164,10 @@ export default function Planet({rotationSpeed, dituMeshs: _dituMeshs, ...props}:
   const allHouses = useRef(null);
 
   const [dituMeshs, setDituMeshs] = useState<DITUMesh[]>(_dituMeshs);
+  if (!dituMeshs) {
+    console.warn("dituMeshs is null");
+    setDituMeshs(_dituMeshs ?? []);
+  }
   
   // @ts-ignore Don't know why types don't like each other :) 
   const { nodes, materials } = useGLTF(defaultLocation) as GLTFResult;
@@ -801,11 +805,13 @@ export default function Planet({rotationSpeed, dituMeshs: _dituMeshs, ...props}:
                 userData={{ name: "Cube.1" }}
               />
             </House>
-            <group
+            <House
               name="house2"
               position={[73.8882446, 83.0963058, -22.3211422]}
               rotation={[-1.9420455, -0.9191507, -1.4810436]}
               userData={{ name: "house.2" }}
+              nativeID={2}
+              dituMeshs={dituMeshs}
               /* ref={__registerRef(2)} */
             >
               <group
@@ -900,7 +906,7 @@ export default function Planet({rotationSpeed, dituMeshs: _dituMeshs, ...props}:
                   position={[-3.7937169, 11.2482481, 5.4292717]}
                   userData={{ name: "chimney" }}
                 />
-            </group>
+            </House>
             <group
               name="house5"
               position={[-36.6506004, 68.4233704, -82.1457443]}

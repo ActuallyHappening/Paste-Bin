@@ -6,9 +6,16 @@ import GlobeMarkers from './globemarkers/GlobeMarkers'
 import { DITUMesh } from "../../../datamodels/Models"
 
 // Is essentially just the globe normally, expressed using react-three-fibre
-const ThreeGlobe = ({ dituMeshs }: {dituMeshs: Array<DITUMesh>}) => {
+const ThreeGlobe = ({ dituMeshs: _dituMeshs }: {dituMeshs: Array<DITUMesh>}) => {
   const planetRef = useRef(null!)
   const cameraRef = useRef(null!)
+
+  const [dituMeshs, setDituMeshs] = useState<Array<DITUMesh>>(_dituMeshs)
+
+  if (!dituMeshs) {
+    console.warn(`No dituMeshs passed to ThreeGlobe`);
+    setDituMeshs(_dituMeshs ?? []);
+  }
 
   // Is responsible for updating the globe markers
 
@@ -40,7 +47,7 @@ const ThreeGlobe = ({ dituMeshs }: {dituMeshs: Array<DITUMesh>}) => {
       <TrackballControls makeDefault noZoom noPan/>
       {/* <perspectiveCamera ref={cameraRef} attach="camera" position={[0, 10, 400]} fov={55} far={1000} /> */}
 
-      <Planet rotationSpeed={1 / 4} state={dituMeshs}/>
+      <Planet rotationSpeed={1 / 4} dituMeshs={dituMeshs}/>
     </Canvas>
     {/* <GlobeMarkers dituMeshs={dituMeshs}/> */}
     </div>
