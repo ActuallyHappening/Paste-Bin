@@ -1,8 +1,17 @@
 import React from 'react'
+import { HorizontalDivider, VerticalDivider } from './styles/Global'
+
 
 const Body = () => {
   return (
-    <div>Body</div>
+    <div className='Body'>
+      <HorizontalDivider>
+        <NavBar />
+        <VerticalDivider>
+
+        </VerticalDivider>
+      </HorizontalDivider>
+    </div>
   )
 }
 

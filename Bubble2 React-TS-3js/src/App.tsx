@@ -3,7 +3,7 @@ import './styles.main.dev.css'
 
 function App() {
   return (
-    <div>
+    <div className='App'>
       <Body/>
       {/* This is where the loading screen could be implemented */}
     </div>
