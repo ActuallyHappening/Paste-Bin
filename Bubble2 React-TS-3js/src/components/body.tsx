@@ -1,16 +1,20 @@
-import React from 'react'
-import { HorizontalDivider, VerticalDivider } from './styles/Global'
+import { LeftNavbar, RightNavbar, TopNavbar } from './guis/GUIs'
+import { HorizontalDivider, VerticalDivider } from './styles/LayoutHelper'
+import CenterCanvas from './threecanvas/CenterCanvas'
 
 
 const Body = () => {
   return (
     <div className='Body'>
-      <HorizontalDivider>
-        <NavBar />
-        <VerticalDivider>
-
-        </VerticalDivider>
-      </HorizontalDivider>
+      hello!
+      <VerticalDivider>
+        <TopNavbar />
+        <HorizontalDivider>
+          <LeftNavbar />
+          <CenterCanvas />
+          <RightNavbar />
+        </HorizontalDivider>
+      </VerticalDivider>
     </div>
   )
 }
