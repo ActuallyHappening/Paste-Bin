@@ -4,6 +4,7 @@
 @use './styles/HelperStyles.scss' as deps2;
 
 html, body, #root {
+  margin: 0px;
   @include deps1.max-content;
   @include deps2.no-overflow; // TODO remove for production
 }

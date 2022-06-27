@@ -2,7 +2,9 @@ import React from 'react'
 
 const Canvas = () => {
   return (
-    <div>Canvas</div>
+    <div id='THREE-CC-wrapper'>
+      Canvas
+    </div>
   )
 }
 
