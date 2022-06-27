@@ -1,19 +1,21 @@
+@forward './leftgui/LeftGUI.scss';
+@forward './rightgui/RightGUI.scss';
+@forward './topnavbar/TopNavbar.scss';
+
 .GUI-wrapper {
 
 }
 
 .GUI-breakpoint-width {
+  @media screen and (min-width: 768px) {
+    //display: none;
+    color: brown;
+  }
   &#GUI-right {
     display: flex;
-    @media screen and (min-width: 768px) {
-      display: none;
-    }
-    }
+  }
   &#GUI-left {
     display: flex;
-    @media screen and (min-width: 768px) {
-      width: 50%;
-    }
   }
 }
 

@@ -6,7 +6,7 @@ import CenterCanvas from './threecanvas/CenterCanvas'
 const Body = () => {
   return (
     <div className='Body'>
-      hello!
+      very top
       <VerticalDivider>
         <TopNavbar />
         <HorizontalDivider>
@@ -15,6 +15,7 @@ const Body = () => {
           <RightNavbar />
         </HorizontalDivider>
       </VerticalDivider>
+        very bottom!
     </div>
   )
 }
