@@ -5,19 +5,6 @@ import LeftGUI from "./leftgui/LeftGUI"
 import RightGUI from "./rightgui/RightGUI"
 import TopNavbarImported from "./topnavbar/TopNavbar"
 
-export const RandomGuiStuff = () => {
-  return (
-    <div>RandomGuiStuff
-      <input type='button'></input>
-      <input type='button'></input>
-      <input type='button'></input>
-      <input type='text'></input>
-      <input type='number'></input>
-      <input type='date'></input>
-    </div>
-  )
-}
-
 export const RightNavbar = () => {
   return (
     <div className="GUI-wrapper GUI-breakpoint-width" id='GUI-right'>

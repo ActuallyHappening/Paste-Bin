@@ -2,7 +2,7 @@ import Body from './components/body'
 
 function App() {
   return (
-    <div className='App'>
+    <div id='App'>
       <Body/>
       {/* This is where the loading screen could be implemented */}
     </div>

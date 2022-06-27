@@ -7,9 +7,9 @@ const Body = () => {
   return (
     <div id='Body'>
       very top
-      <VerticalDivider expand>
+      <VerticalDivider expand max_content>
         <TopNavbar />
-        <HorizontalDivide expand>
+        <HorizontalDivider expand>
           <LeftNavbar />
           <CenterCanvas />
           <RightNavbar />

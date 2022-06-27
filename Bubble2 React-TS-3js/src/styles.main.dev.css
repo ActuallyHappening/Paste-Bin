@@ -10,6 +10,19 @@
   background-color: red;
 }
 
+.Mixin-expand {
+  display: flex;
+  flex-grow: 1;
+  width: auto;
+  height: auto;
+}
+
+.Mixin-max-content {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+}
+
 #GUI-specific-left {
   background-color: green;
 }
