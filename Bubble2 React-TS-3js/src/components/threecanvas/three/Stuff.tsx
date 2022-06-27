@@ -11,8 +11,8 @@ export default function RandomUnit({...rawProps}) {
   return (
     <group name="Random Unit">
       <PlatformSquare {...rawProps}/>
-      {qad_sphere ? <HoveringSphere position={posAdd(rawProps.position, [0, 15, 0])} /> : <></>}
-      {qad_square ? <HoveringSquare position={posAdd(rawProps.position, [25, 15, 25])} /> : <></>}
+      {qad_sphere ? <HoveringSphere key={1} position={posAdd(rawProps.position, [0, 15, 0])} /> : <></>}
+      {qad_square ? <HoveringSquare key={2} position={posAdd(rawProps.position, [25, 15, 25])} /> : <></>}
     </group>
   )
 }
@@ -20,7 +20,7 @@ export default function RandomUnit({...rawProps}) {
 export const HoveringSphere = ({...rawProps}) => {
   // console.log('HoveringSphere', rawProps)
   return (
-    <mesh {...rawProps}>
+    <mesh castShadow {...rawProps}>
       <sphereGeometry args={[10, 32, 32]} />
       <meshBasicMaterial color="red" />
     </mesh>
@@ -28,7 +28,7 @@ export const HoveringSphere = ({...rawProps}) => {
 }
 export const HoveringSquare = ({...rawProps}) => {
   return (
-    <mesh {...rawProps}>
+    <mesh castShadow {...rawProps}>
       <boxGeometry args={[10, 10, 10]} />
       <meshBasicMaterial color="yellow" />
     </mesh>
@@ -37,7 +37,7 @@ export const HoveringSquare = ({...rawProps}) => {
 
 export const PlatformSquare = ({...rawProps}) => {
   return (
-    <mesh {...rawProps}>
+    <mesh receiveShadow {...rawProps}>
       <boxGeometry args={[100, 5, 100]} />
       <meshBasicMaterial color="green" />
     </mesh>
