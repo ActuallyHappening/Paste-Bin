@@ -1,2 +1,8 @@
 // ALL the styles for the whole project in src/**
 @use './styles/styles.all.scss';
+@use './components/styles/LayoutHelper.scss' as deps1;
+
+html, body, #root {
+  @include deps1.expand;
+  @include deps1.max-content;
+}

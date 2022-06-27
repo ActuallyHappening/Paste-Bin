@@ -16,3 +16,16 @@ $tertiary: '#f5f5f5';
   flex-direction: column;
   background-color: red;
 }
+
+@mixin expand {
+  display: flex;
+  flex-grow: 1;
+  width: auto;
+  height: auto;
+}
+
+@mixin max-content {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+}

@@ -34,4 +34,24 @@
   display: flex;
 }
 
+#App, #Body {
+  display: flex;
+  flex-grow: 1;
+  width: auto;
+  height: auto;
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+}
+
+html, body, #root {
+  display: flex;
+  flex-grow: 1;
+  width: auto;
+  height: auto;
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+}
+
 /*# sourceMappingURL=styles.main.dev.css.map */

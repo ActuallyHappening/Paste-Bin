@@ -5,17 +5,17 @@ import CenterCanvas from './threecanvas/CenterCanvas'
 
 const Body = () => {
   return (
-    <div className='Body'>
+    <div id='Body'>
       very top
-      <VerticalDivider>
+      <VerticalDivider expand>
         <TopNavbar />
-        <HorizontalDivider>
+        <HorizontalDivide expand>
           <LeftNavbar />
           <CenterCanvas />
           <RightNavbar />
         </HorizontalDivider>
       </VerticalDivider>
-        very bottom!
+      very bottom!
     </div>
   )
 }

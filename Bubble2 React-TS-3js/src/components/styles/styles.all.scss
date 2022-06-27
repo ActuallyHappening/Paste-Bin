@@ -1,7 +1,14 @@
 @forward './LayoutHelper.scss';
+@use './LayoutHelper.scss' as deps1;
 
 // guis.scss
 @forward '../guis/GUIs.scss';
 
 // threecanvas styles
 @forward '../threecanvas/Canvas.scss';
+
+// Style the whole project in src/**
+#App, #Body {
+  @include deps1.expand;
+  @include deps1.max-content;
+}
