@@ -5,7 +5,7 @@ const BodyOnlyCanvas = () => {
   return (
     <div id='Body'>
       <Helper>
-        <CenterCanvas />
+        <CenterCanvas max_content/>
       </Helper>
     </div>
   )

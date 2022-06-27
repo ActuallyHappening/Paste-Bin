@@ -1,10 +1,12 @@
+import { Helper, T_HelperOptions } from '../styles/LayoutHelper'
 import Canvas from './three/Canvas'
 
-const CanvasWrapper = () => {
+const CanvasWrapper = ({children, ...helperOptions}: T_HelperOptions) => {
   return (
-    <div id='THREE-CC-wrapper'>
+    <Helper id='THREE-CC-wrapper'>
       <Canvas />
-    </div>
+      {children}
+    </Helper>
   )
 }
 

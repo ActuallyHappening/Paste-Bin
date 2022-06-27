@@ -1,7 +1,8 @@
 import { OrbitControls } from '@react-three/drei'
 import { Canvas } from '@react-three/fiber'
+import { T_HelperOptions } from '../../styles/LayoutHelper'
 
-const canvas = () => {
+const canvas = ({children}: {children?: React.ReactNode}) => {
   return (
     <Canvas>
       <ambientLight intensity={0.1} />
@@ -11,6 +12,7 @@ const canvas = () => {
         <boxGeometry />
         <meshStandardMaterial />
       </mesh>
+      {children}
     </Canvas>
   )
 }
