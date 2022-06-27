@@ -34,6 +34,12 @@ $tertiary: '#f5f5f5';
   @include expand;
 }
 
+// Contract, opposite of expand
+@mixin contract {
+  @include expand;
+  flex-grow: 0;
+}
+
 @mixin max-content {
   @include expand;
   width: 100vw;

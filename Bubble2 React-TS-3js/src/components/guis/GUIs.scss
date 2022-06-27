@@ -2,23 +2,21 @@
 @forward './rightgui/RightGUI.scss';
 @forward './topnavbar/TopNavbar.scss';
 
-.GUI-wrapper {
+@use '../styles/LayoutHelper.scss' as deps1;
+@use '../threecanvas/Canvas.scss' as threecanvas;
 
+.GUI-wrapper {
+  @include deps1.contract
 }
 
 .GUI-breakpoint-width {
-  @media screen and (min-width: 768px) {
-    //display: none;
+  @media screen and (max-width: threecanvas.$min-width-breakpoint) {
+    display: none;
     color: brown;
-  }
-  &#GUI-right {
-    display: flex;
-  }
-  &#GUI-left {
-    display: flex;
   }
 }
 
 .GUI-breakpoint-height {
-  
+  // Implement for bottom nav bar :)
+  display: flex;
 }

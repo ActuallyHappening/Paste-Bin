@@ -56,20 +56,28 @@
   background-color: yellow;
 }
 
-@media screen and (min-width: 768px) {
+#THREE-CC-wrapper {
+  flex-grow: 5;
+  min-width: 765px;
+}
+
+.GUI-wrapper {
+  display: flex;
+  flex-grow: 1;
+  width: auto;
+  height: auto;
+  flex-grow: 0;
+}
+
+@media screen and (max-width: 900px) {
   .GUI-breakpoint-width {
+    display: none;
     color: brown;
   }
 }
-.GUI-breakpoint-width#GUI-right {
-  display: flex;
-}
-.GUI-breakpoint-width#GUI-left {
-  display: flex;
-}
 
-#THREE-CC-wrapper {
-  flex-grow: 5;
+.GUI-breakpoint-height {
+  display: flex;
 }
 
 #App {

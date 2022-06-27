@@ -1,5 +1,7 @@
-$min-width: 320px;
+$min-width: 765px;
+$min-width-breakpoint: 900px;
 
 #THREE-CC-wrapper { // Three Center Canvas wrapper
   flex-grow: 5;
+  min-width: $min-width;
 }
