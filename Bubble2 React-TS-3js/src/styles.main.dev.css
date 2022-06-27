@@ -19,8 +19,11 @@
 
 .Mixin-max-content {
   display: flex;
+  flex-direction: column;
   width: 100vw;
   height: 100vh;
+  max-width: 100%;
+  max-height: 100%;
 }
 
 #GUI-specific-left {
@@ -53,8 +56,15 @@
   width: auto;
   height: auto;
   display: flex;
+  flex-direction: column;
   width: 100vw;
   height: 100vh;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.Mixin-no-overflow {
+  overflow: hidden;
 }
 
 html, body, #root {
@@ -63,8 +73,11 @@ html, body, #root {
   width: auto;
   height: auto;
   display: flex;
+  flex-direction: column;
   width: 100vw;
   height: 100vh;
+  max-width: 100%;
+  max-height: 100%;
 }
 
 /*# sourceMappingURL=styles.main.dev.css.map */

@@ -17,9 +17,16 @@ $tertiary: '#f5f5f5';
   background-color: red;
 }
 
-@mixin expand {
+@mixin flex($direction: column) {
   display: flex;
-  flex-grow: 1;
+  @if $direction == column {
+    flex-direction: $direction;
+  }
+}
+
+@mixin expand {
+  @include flex($direction: none); // Only display flex 
+  flex-grow: 1; // Expanding to fill space leads to scroll bars :(
   width: auto;
   height: auto;
 }
@@ -28,9 +35,11 @@ $tertiary: '#f5f5f5';
 }
 
 @mixin max-content {
-  display: flex;
+  @include flex;
   width: 100vw;
   height: 100vh;
+  max-width: 100%;
+  max-height: 100%;
 }
 .Mixin-max-content {
   @include max-content;

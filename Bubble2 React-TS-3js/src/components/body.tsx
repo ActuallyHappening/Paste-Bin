@@ -7,7 +7,7 @@ const Body = () => {
   return (
     <div id='Body'>
       very top
-      <VerticalDivider expand max_content>
+      <VerticalDivider expand>
         <TopNavbar />
         <HorizontalDivider expand>
           <LeftNavbar />

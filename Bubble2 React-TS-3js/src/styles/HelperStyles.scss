@@ -1,3 +1,6 @@
 @mixin no-overflow {
   overflow: hidden;
 }
+.Mixin-no-overflow {
+  @include no-overflow;
+}
