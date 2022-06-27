@@ -1,9 +1,9 @@
-import canvas from './three/Canvas'
+import Canvas from './three/Canvas'
 
 const CanvasWrapper = () => {
   return (
     <div id='THREE-CC-wrapper'>
-      <canvas />
+      <Canvas />
     </div>
   )
 }
