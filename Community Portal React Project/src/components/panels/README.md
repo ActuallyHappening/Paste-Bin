@@ -1,0 +1,1 @@
+This folder contains the code for the panelts shown from the about and contact links (DropdownMenu.tsx)

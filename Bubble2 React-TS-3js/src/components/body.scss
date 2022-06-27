@@ -1,0 +1,7 @@
+@use './styles/LayoutHelper.scss' as deps1;
+@use '../styles/HelperStyles' as deps2;
+
+#Body {
+  @include deps1.max-content;
+  @include deps2.no-overflow;
+}

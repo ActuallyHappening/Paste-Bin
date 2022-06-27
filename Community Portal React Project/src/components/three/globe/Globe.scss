@@ -1,0 +1,14 @@
+// Contains all styles for ...three/globe/**
+
+@use '../../_styles/styles_deps.dev' as deps;
+
+@use './globemarkers/GlobeMarkers.scss';
+
+// Handle globe-canvas id here!
+#globe-canvas-parent {
+  /* top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%; */
+  z-index: 1;
+}
