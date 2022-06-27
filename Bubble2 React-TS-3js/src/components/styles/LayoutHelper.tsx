@@ -2,19 +2,16 @@ type T_HelperOptions = {
   children: React.ReactNode
   expand?: boolean
   max_content?: boolean
+  no_overflow?: boolean
 }
 
-export const HorizontalDivider = ({children, expand, max_content}: T_HelperOptions) => {
+const HelperGen = (className: string) => ({children, expand, max_content, no_overflow}: T_HelperOptions) => {
   return (
-    <div className={`HorizontalDivider${expand ? " Mixin-expand" : ""}${max_content ? " Mixin-max-content" : ""}`}>
+    <div className={`HorizontalDivider${expand ? " Mixin-expand" : ""}${max_content ? " Mixin-max-content" : ""}${no_overflow ? " Mixin-no-overflow" : ""}`}>
       {children}
     </div>
   )
 }
-export const VerticalDivider = ({children, expand, max_content}: T_HelperOptions) => {
-  return (
-    <div className={`VerticalDivider${expand ? " Mixin-expand" : ""}${max_content ? " Mixin-max-content" : ""}`}>
-      {children}
-    </div>
-  )
-}
+
+export const HorizontalDivider = HelperGen("HorizontalDivider")
+export const VerticalDivider = HelperGen("VerticalDivider")
