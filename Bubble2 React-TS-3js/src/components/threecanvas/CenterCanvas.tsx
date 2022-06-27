@@ -3,7 +3,7 @@ import Canvas from './three/Canvas'
 
 const CanvasWrapper = ({children, ...helperOptions}: T_HelperOptions) => {
   return (
-    <Helper id='THREE-CC-wrapper'>
+    <Helper id='THREE-CC-wrapper' max_content>
       <Canvas />
       {children}
     </Helper>

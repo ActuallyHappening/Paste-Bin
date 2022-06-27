@@ -1,6 +1,7 @@
 import { OrbitControls } from '@react-three/drei'
 import { Canvas } from '@react-three/fiber'
 import { T_HelperOptions } from '../../styles/LayoutHelper'
+import Engine from '../../../assets/GLTF_Prebuilt_Modules/Engine'
 
 const canvas = ({children}: {children?: React.ReactNode}) => {
   return (
@@ -12,6 +13,7 @@ const canvas = ({children}: {children?: React.ReactNode}) => {
         <boxGeometry />
         <meshStandardMaterial />
       </mesh>
+      <Engine />
       {children}
     </Canvas>
   )
