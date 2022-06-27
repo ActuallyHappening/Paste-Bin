@@ -19,11 +19,29 @@
 
 .Mixin-max-content {
   display: flex;
-  flex-direction: column;
+  flex-grow: 1;
+  width: auto;
+  height: auto;
   width: 100vw;
   height: 100vh;
   max-width: 100%;
   max-height: 100%;
+}
+
+.Mixin-no-overflow {
+  overflow: hidden;
+}
+
+#Body {
+  display: flex;
+  flex-grow: 1;
+  width: auto;
+  height: auto;
+  width: 100vw;
+  height: 100vh;
+  max-width: 100%;
+  max-height: 100%;
+  overflow: hidden;
 }
 
 #GUI-specific-left {
@@ -50,21 +68,19 @@
   display: flex;
 }
 
-#App, #Body {
+#App {
   display: flex;
   flex-grow: 1;
   width: auto;
   height: auto;
   display: flex;
-  flex-direction: column;
+  flex-grow: 1;
+  width: auto;
+  height: auto;
   width: 100vw;
   height: 100vh;
   max-width: 100%;
   max-height: 100%;
-}
-
-.Mixin-no-overflow {
-  overflow: hidden;
 }
 
 html, body, #root {
@@ -72,12 +88,11 @@ html, body, #root {
   flex-grow: 1;
   width: auto;
   height: auto;
-  display: flex;
-  flex-direction: column;
   width: 100vw;
   height: 100vh;
   max-width: 100%;
   max-height: 100%;
+  overflow: hidden;
 }
 
 /*# sourceMappingURL=styles.main.dev.css.map */

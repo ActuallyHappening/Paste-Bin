@@ -35,7 +35,7 @@ $tertiary: '#f5f5f5';
 }
 
 @mixin max-content {
-  @include flex;
+  @include expand;
   width: 100vw;
   height: 100vh;
   max-width: 100%;

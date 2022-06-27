@@ -6,7 +6,6 @@ import CenterCanvas from './threecanvas/CenterCanvas'
 const Body = () => {
   return (
     <div id='Body'>
-      very top
       <VerticalDivider expand max_content no_overflow>
         <TopNavbar />
         <HorizontalDivider expand>
@@ -15,7 +14,6 @@ const Body = () => {
           <RightNavbar />
         </HorizontalDivider>
       </VerticalDivider>
-      very bottom!
     </div>
   )
 }

@@ -4,7 +4,6 @@
 @use './styles/HelperStyles.scss' as deps2;
 
 html, body, #root {
-  @include deps1.expand;
   @include deps1.max-content;
-  //@include deps2.no-overflow; // TODO remove for production
+  @include deps2.no-overflow; // TODO remove for production
 }
