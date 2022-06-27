@@ -7,14 +7,13 @@ const halfRandom = () => Math.random() > .5
 export default function RandomUnit({...rawProps}) {
   const [qad_sphere, setQadSphere] = useState<Boolean>(halfRandom())
   const [qad_square, setQadSquare] = useState<Boolean>(halfRandom())
-  console.log('RandomUnit', rawProps, qad_sphere, qad_square, rawProps.position[0])
+  // console.log('RandomUnit', rawProps, qad_sphere, qad_square, rawProps.position[0])
   return (
     <group name="Random Unit">
       <PlatformSquare {...rawProps}/>
       {qad_sphere ? <HoveringSphere position={posAdd(rawProps.position, [0, 15, 0])} /> : <></>}
       {qad_square ? <HoveringSquare position={posAdd(rawProps.position, [25, 15, 25])} /> : <></>}
     </group>
-
   )
 }
 
