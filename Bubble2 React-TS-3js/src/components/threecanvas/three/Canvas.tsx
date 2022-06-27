@@ -1,15 +1,22 @@
+import { Physics } from '@react-three/cannon'
 import { FirstPersonControls, OrbitControls, TrackballControls } from '@react-three/drei'
 import { Canvas, Color, useFrame, useThree } from '@react-three/fiber'
 import { useRef, useState } from 'react'
 import * as THREE from 'three'
 import { ColorRepresentation } from 'three'
-import RandomUnit, { HoveringSphere } from './Stuff'
+import RandomUnit from './Stuff'
 
-const unitDistance = 100;
-const unitsWidth = 10;
 
 const THREECanvas = ({children}: {children?: React.ReactNode}) => {
-  const [numRandom, setNumRandom] = useState(100)
+  const [unitDistance, setUnitDistance] = useState(100)
+  const [planeWidth, setPlaneWidth] = useState(10)
+
+  const units = useRef([]!)
+  for (let x = -(.5 * planeWidth); x <= .5 * planeWidth; x++) {
+    for (let z = -(.5 * planeWidth); z<=.5 * planeWidth; z++) {
+      units.current.push(<RandomUnit position={[x * unitDistance, 0, z * unitDistance]}/>);
+    }
+  }
   return (
     <Canvas
       camera={{position: [0, 100, 0], fov:55, far:1000}}
@@ -18,30 +25,30 @@ const THREECanvas = ({children}: {children?: React.ReactNode}) => {
       <OrbitControls
         minDistance={50}
         maxDistance={150}
+        enableDamping={true}
+        maxPolarAngle={Math.PI / 2 - 0.05}
       />
       {/* <FirstPersonControls movementSpeed={100} lookSpeed={0.01}/> */}
-      <mesh>
-        <boxGeometry args={[100, 5, 100]}/>
-        <meshBasicMaterial color="green"/>
-      </mesh>
       <gridHelper args={[1500, 100]}/>
       <axesHelper args={[500]}/>
-      <group name="units">
-        {(() => {
-          const r = []
-          for (let i = 0; i < numRandom; i++) {
-            r.push(<RandomUnit position={[Math.floor(i/unitsWidth)*unitDistance, 0, ((i)%unitsWidth)*unitDistance]} key={i}/>)
-          }
-          return r
-        })()}
+      <group>
+        <Physics>
+          <group name="units">
+            {(() => {
+              let r=[];
+              units.current.forEach(unit => r.push(unit));
+              return r;
+            })()}
+          </group>
+          <mesh name='player' onClick={() => {
+            // setUnits(units);
+            console.log('clicked');
+          }}>
+            <boxGeometry args={[10, 10, 10]}/>
+            <meshBasicMaterial color="black"/>
+          </mesh>
+        </Physics>
       </group>
-      <mesh name='player' onClick={() => {
-        setNumRandom(numRandom + 1)
-        console.log('clicked')
-      }}>
-        <boxGeometry args={[10, 10, 10]}/>
-        <meshBasicMaterial color="black"/>
-      </mesh>
       {children}
       <CameraHelper />
       <Background background={[0, 15, 255]}/>
