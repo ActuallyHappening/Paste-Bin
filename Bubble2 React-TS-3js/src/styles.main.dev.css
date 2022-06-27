@@ -1,3 +1,30 @@
+.HorizontalDivider {
+  display: flex;
+  flex-direction: row;
+  background-color: blue;
+}
 
+.VerticalDivider {
+  display: flex;
+  flex-direction: column;
+  background-color: red;
+}
+
+.GUI-breakpoint-width#GUI-right {
+  display: flex;
+}
+@media screen and (min-width: 768px) {
+  .GUI-breakpoint-width#GUI-right {
+    display: none;
+  }
+}
+.GUI-breakpoint-width#GUI-left {
+  display: flex;
+}
+@media screen and (min-width: 768px) {
+  .GUI-breakpoint-width#GUI-left {
+    width: 50%;
+  }
+}
 
 /*# sourceMappingURL=styles.main.dev.css.map */

@@ -3,7 +3,18 @@
 }
 
 .GUI-breakpoint-width {
-
+  &#GUI-right {
+    display: flex;
+    @media screen and (min-width: 768px) {
+      display: none;
+    }
+    }
+  &#GUI-left {
+    display: flex;
+    @media screen and (min-width: 768px) {
+      width: 50%;
+    }
+  }
 }
 
 .GUI-breakpoint-height {
