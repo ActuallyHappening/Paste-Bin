@@ -1,46 +1,39 @@
 import { FirstPersonControls, OrbitControls, TrackballControls } from '@react-three/drei'
 import { Canvas, useFrame, useThree } from '@react-three/fiber'
 import { useRef, useState } from 'react'
-import * as THREE from 'three'
+import RandomUnit, { HoveringSphere } from './Stuff'
 
-const extras = {
-  "basicSphere": [{
-    "position": [0, 15, 0],
-    "geometry": new THREE.SphereBufferGeometry(10, 32, 32),
-    "material": new THREE.MeshBasicMaterial({ color: 0xffffff, wireframe: true })
-  }],
-}
-
-const Land = () => {
-  const [additions, setAdditions] = useState(extras)
-  return (
-    <>
-    <mesh>
-      <boxGeometry args={[100, 5, 100]} />
-      <meshStandardMaterial color="green" />
-    </mesh>
-    {Object.values(additions).forEach((addition, index) => {
-      return <mesh key={index} {...addition[0]} />
-    })}
-    </>
-  )
-}
+const unitDistance = 100;
+const unitsWidth = 10;
 
 const THREECanvas = ({children}: {children?: React.ReactNode}) => {
+  const [numRandom, setNumRandom] = useState(100)
   return (
     <Canvas
       camera={{position: [0, 100, 0], fov:55, far:1000}}
     >
       <directionalLight color="red" position={[0, 0, 100]} intensity={4}/>
       <OrbitControls />
-      {/* <FirstPersonControls movementSpeed={-100} lookSpeed={0.1}/> */}
+      {/* <FirstPersonControls movementSpeed={100} lookSpeed={0.01}/> */}
       <mesh>
         <boxGeometry args={[100, 5, 100]}/>
         <meshBasicMaterial color="green"/>
       </mesh>
       <gridHelper args={[1500, 100]}/>
       <axesHelper args={[500]}/>
-      <Land />
+      <group name="units">
+        {(() => {
+          const r = []
+          for (let i = 0; i < numRandom; i++) {
+            r.push(<RandomUnit position={[Math.floor(i/unitsWidth)*unitDistance, 0, ((i)%unitsWidth)*unitDistance]} key={i}/>)
+          }
+          return r
+        })()}
+      </group>
+      <mesh name='player'>
+        <boxGeometry args={[10, 10, 10]}/>
+        <meshBasicMaterial color="black"/>
+      </mesh>
       {children}
       <CameraHelper />
     </Canvas>
