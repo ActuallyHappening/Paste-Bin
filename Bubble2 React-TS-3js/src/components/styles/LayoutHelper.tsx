@@ -15,3 +15,4 @@ const HelperGen = (className: string) => ({children, expand, max_content, no_ove
 
 export const HorizontalDivider = HelperGen("HorizontalDivider")
 export const VerticalDivider = HelperGen("VerticalDivider")
+export const Helper = HelperGen("Helper")

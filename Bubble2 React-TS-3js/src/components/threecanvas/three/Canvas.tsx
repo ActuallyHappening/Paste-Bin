@@ -1,6 +1,6 @@
-import React from 'react'
+import { Canvas } from '@react-three/fiber'
 
-const Canvas = () => {
+const canvas = () => {
   return (
     <Canvas>
       <ambientLight intensity={0.1} />
@@ -13,4 +13,4 @@ const Canvas = () => {
   )
 }
 
-export default Canvas
+export default canvas
