@@ -1,11 +1,11 @@
-import React from 'react'
+import Canvas from './three/Canvas'
 
-const Canvas = () => {
+const CanvasWrapper = () => {
   return (
     <div id='THREE-CC-wrapper'>
-      Canvas
+      <Canvas />
     </div>
   )
 }
 
-export default Canvas
+export default CanvasWrapper
