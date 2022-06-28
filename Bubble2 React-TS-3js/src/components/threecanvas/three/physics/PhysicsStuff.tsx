@@ -6,9 +6,9 @@ import Player from './Player'
 
 const π = Math.PI
 
-function MyPlane({...props}) {
+function Ground({_ref, ...props}) {
   const pointRef = useRef()
-  const [debugPos, setDebugPos] = useState([0, 0, 0])
+  const [debugPos, setDebugPos] = useState<number[]>([0, 0, 0])
   const [ref, api] = usePlane(() => ({ rotation: [-π / 2, 0, 0], ...props }))
   return (
     <>
@@ -21,9 +21,10 @@ function MyPlane({...props}) {
       onPointerMove={e => {
         Math.random() < 0.1 ? console.log(e) : null
         const intersectOnPlanePoint = e.intersections[0].point
-        console.log(intersectOnPlanePoint)
-        setDebugPos(intersectOnPlanePoint)
-        //api.applyLocalForce(intersectOnPlanePoint.toArray(), [0, 0, 0])
+        //console.log(intersectOnPlanePoint)
+        _ref.current = intersectOnPlanePoint
+        // api.position.set(...debugPos)
+        setDebugPos(intersectOnPlanePoint.toArray())
       }}
       >
       <planeGeometry args={[100, 100]} />
@@ -33,11 +34,12 @@ function MyPlane({...props}) {
 }
 
 const PhysicsStuff = () => {
+  const debugPosRef = useRef<THREE.Vector3>()
   return (
     <Physics>
       <Debug color="black" scale={1.1}>
-        <MyPlane />
-        <Player />
+        <Ground _ref={debugPosRef}/>
+        <Player _ref={debugPosRef}/>
       </Debug>
     </Physics>
   )
