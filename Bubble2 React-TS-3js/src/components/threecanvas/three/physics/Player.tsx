@@ -2,6 +2,8 @@ import { usePlane } from '@react-three/cannon'
 import { useCursor } from '@react-three/drei'
 import { useState } from 'react'
 
+
+
 const Player = () => {
   const [hovered, setHovered] = useState(false)
   const [boxRef] = usePlane(() => ({mass: 1, position: [0, 5, 0]}))
