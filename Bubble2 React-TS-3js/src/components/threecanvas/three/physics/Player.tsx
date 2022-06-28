@@ -1,6 +1,6 @@
 import { usePlane } from '@react-three/cannon'
 import { useCursor } from '@react-three/drei'
-import React, { useState } from 'react'
+import { useState } from 'react'
 
 const Player = () => {
   const [hovered, setHovered] = useState(false)
