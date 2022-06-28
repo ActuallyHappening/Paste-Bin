@@ -1,14 +1,12 @@
-import React from 'react'
+import Camera from './Camera'
+import { Canvas } from '@react-three/fiber'
+import DEBUG from './DEBUG'
 
 const Canvas = () => {
   return (
     <Canvas>
-      <ambientLight intensity={0.1} />
-      <directionalLight color="red" position={[0, 0, 5]} />
-      <mesh>
-        <boxGeometry />
-        <meshStandardMaterial />
-      </mesh>
+      <DEBUG />
+      <Camera />
     </Canvas>
   )
 }
