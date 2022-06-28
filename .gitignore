@@ -1,1 +1,2 @@
-/Users/smartguy88-home/.gitignore
+.env *
+.gitignore *
