@@ -26,6 +26,7 @@
     "three": "^0.141.0"
   },
   "devDependencies": {
+    "@types/cannon": "^0.1.8",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
     "@types/three": "^0.141.0",
