@@ -1,4 +1,4 @@
-import { usePlane } from '@react-three/cannon'
+import { useBox, usePlane } from '@react-three/cannon'
 import { useCursor } from '@react-three/drei'
 import { useState } from 'react'
 
@@ -6,7 +6,7 @@ import { useState } from 'react'
 
 const Player = () => {
   const [hovered, setHovered] = useState(false)
-  const [boxRef] = usePlane(() => ({mass: 1, position: [0, 5, 0]}))
+  const [boxRef] = useBox(() => ({mass: 1, position: [0, 5, 0]}))
   useCursor(hovered) /* Sets cursor to grabbing */
   return (
     <>
@@ -15,8 +15,8 @@ const Player = () => {
       onPointerOut={() => setHovered(false)}
       ref={boxRef}
     >
-      <boxBufferGeometry attach="geometry" args={[1, 1, 1]} />
-      <meshStandardMaterial attach="material" color="black" />
+      <boxBufferGeometry args={[1, 1, 1]} />
+      <meshStandardMaterial color="black" />
     </mesh>
     </>
   )

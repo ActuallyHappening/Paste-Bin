@@ -1,4 +1,4 @@
-import Camera from './Camera'
+import Camera, { topLevelPropsForCamera } from './Camera'
 import { Canvas } from '@react-three/fiber'
 import DEBUG from './DEBUG'
 import Player from './physics/Player'
@@ -7,8 +7,9 @@ import PhysicsStuff from './physics/PhysicsStuff'
 
 const MyCanvas = () => {
   return (
-    <Canvas>
-      <Player />
+    <Canvas
+      camera={topLevelPropsForCamera}
+    >
       <DEBUG />
       <Camera />
       <PhysicsStuff />
