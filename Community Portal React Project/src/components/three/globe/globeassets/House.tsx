@@ -1,3 +1,4 @@
+import { Float, Sparkles } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
 import { useEffect, useRef, useState } from 'react';
 import { MeshBasicMaterial } from 'three';
@@ -57,10 +58,15 @@ export const HouseMeshMarker = ({ flash: _flash = true }: {flash?: boolean}) => 
     }
   })
   return (
-    <mesh>
-      <sphereBufferGeometry args={[30, 300, 300]} />
-      <meshBasicMaterial ref={markerRef} color="red" transparent={true} opacity={1}/>
-    </mesh>
+    <group name="HouseMeshMarker">
+    {/* <Sparkles count={100} speed={2} opacity={1} color={[0, 0, 255]} scale={2} noise={[1, 1, 1]}/> */}
+    <Float speed={1} rotationIntensity={1} floatIntensity={1} floatingRange={[-10, 10]}>
+      <mesh>
+        <sphereBufferGeometry args={[30, 300, 300]} />
+        <meshBasicMaterial ref={markerRef} color="red" transparent={true} opacity={1}/>
+      </mesh>
+    </Float>
+    </group>
   )
 }
 
