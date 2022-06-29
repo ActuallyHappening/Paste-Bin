@@ -1,8 +1,11 @@
 import React from 'react'
 
-const Coin = () => {
+const Coin = ({...props}) => {
   return (
-    <div>Coin</div>
+    <mesh {...props}>
+      <sphereBufferGeometry args={[1, 15, 15]} />
+      <meshBasicMaterial color="yellow" />
+    </mesh>
   )
 }
 
