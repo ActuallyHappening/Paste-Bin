@@ -2,8 +2,8 @@ import { Cloud, OrbitControls, PerspectiveCamera, Preload, Sky, Stars } from '@r
 import React from 'react'
 
 export const topLevelPropsForCamera = {
-  fov: 75,
-  position: [7, 5, 6],
+  // fov: 75,
+  // position: [7, 5, 6],
 }
 
 const Camera = () => {
