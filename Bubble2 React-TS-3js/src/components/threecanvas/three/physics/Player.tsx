@@ -1,11 +1,11 @@
 import { useBox, usePlane, useSphere } from '@react-three/cannon'
 import { useCursor } from '@react-three/drei'
 import { useFrame } from '@react-three/fiber'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 
 
-const Player = ({_ref}) => {
+const Player = ({_ref, posRef}) => {
   const [hovered, setHovered] = useState(false)
   const [boxRef, api] = useSphere(() => ({type: "Kinematic", position: [0, 5, 0]}))
   useCursor(hovered) /* Sets cursor to grabbing */
@@ -18,6 +18,10 @@ const Player = ({_ref}) => {
     }
     pos[1] = 2
     api.position.set(pos[0], pos[1], pos[2])
+  })
+  useEffect(() => {
+    const unsubscribe = api.position.subscribe(pos => posRef.current = pos)
+    return unsubscribe
   })
   return (
     <>

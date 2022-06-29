@@ -24,7 +24,7 @@ function findGroundIntersectionPoint(e, uuid) {
 function Ground({_ref, ...props}) {
   const pointRef = useRef()
   const [debugPos, setDebugPos] = useState<number[]>([0, 0, 0])
-  const [ref, api] = usePlane(() => ({ rotation: [-π / 2, 0, 0], ...props }))
+  const [planeRef, api] = usePlane(() => ({ rotation: [-π / 2, 0, 0], ...props }))
   return (
     <>
     <Points>
@@ -32,9 +32,9 @@ function Ground({_ref, ...props}) {
       <Point ref={pointRef} color="red" position={debugPos}/>
     </Points>
     <mesh
-      ref={ref}
+      ref={planeRef}
       onPointerMove={e => {
-        console.log("Moved mouse to:", e.point)
+        // console.log("Moved mouse to:", e.point)
         _ref.current = e.point.toArray()
         setDebugPos(e.point.toArray())
       }}
@@ -47,12 +47,13 @@ function Ground({_ref, ...props}) {
 
 const PhysicsStuff = () => {
   const debugPosRef = useRef<THREE.Vector3>()
+  const playerPosRef = useRef([0, 0, 0])
   return (
-    <Physics>
-      <Debug color="green">
-        <Coin />
+    <Physics iterations={6}>
+      <Debug color="green" scale={1.1}>
+        <Coin playerPosRef={playerPosRef}/>
         <Ground _ref={debugPosRef}/>
-        <Player _ref={debugPosRef}/>
+        <Player _ref={debugPosRef} posRef={playerPosRef}/>
       </Debug>
     </Physics>
   )
