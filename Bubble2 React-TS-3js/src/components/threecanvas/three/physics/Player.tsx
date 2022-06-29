@@ -7,13 +7,16 @@ import { useState } from 'react'
 
 const Player = ({_ref}) => {
   const [hovered, setHovered] = useState(false)
-  const [boxRef, api] = useSphere(() => ({type: "kinematic", position: [0, 5, 0]}))
+  const [boxRef, api] = useSphere(() => ({type: "Kinematic", position: [0, 5, 0]}))
   useCursor(hovered) /* Sets cursor to grabbing */
   useFrame(() => {
-    // _ref.current = boxRef
-    Math.random() < 0.001 ? console.log(_ref.current) : null
-    const pos = _ref.current.toArray()
-    pos[1] += 3
+    //Math.random() < 0.001 ? console.log("player point:", _ref.current) : null
+    let pos = _ref.current ? _ref.current : [0, 0, 0]//.toArray()
+    if (!pos) {
+      console.log("Player point not valid :(")
+      return
+    }
+    pos[1] = 2
     api.position.set(pos[0], pos[1], pos[2])
   })
   return (
