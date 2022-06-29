@@ -4,6 +4,7 @@ import DEBUG from './DEBUG'
 import Player from './physics/Player'
 import { Physics, usePlane } from '@react-three/cannon'
 import PhysicsStuff from './physics/PhysicsStuff'
+import NotPhysics from './not-physics/NotPhysics'
 
 const MyCanvas = () => {
   return (
@@ -13,7 +14,8 @@ const MyCanvas = () => {
       >
       <DEBUG />
       <Camera />
-      <PhysicsStuff />
+      {/* <PhysicsStuff /> */}
+      <NotPhysics />
     </Canvas>
     </>
   )
