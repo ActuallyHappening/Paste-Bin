@@ -2,11 +2,16 @@ import { Point, Points } from "@react-three/drei"
 import { useFrame } from "@react-three/fiber"
 import { useEffect, useState } from "react"
 
-const Ground = ({exposePoint}) => {
+const Ground = ({ exposePoint }) => {
   const [point, setPoint] = useState([0, 2, 0])
-  useEffect(() => {
-    if (!exposePoint?.current) return
+  useFrame(() => {
+    // if (!exposePoint?.current) {
+    //   console.log("exposePoint is null: ", exposePoint)
+    // } else {
+    //   console.log("exposePoint is not null: ", exposePoint?.current, point)
+    // }
     exposePoint.current = point
+    
   })
   return (
     <>
