@@ -16,8 +16,10 @@ const Player = ({_ref, posRef}) => {
       console.log("Player point not valid :(")
       return
     }
-    pos[1] = 2
-    api.position.set(pos[0], pos[1], pos[2])
+    pos[0] = posRef.current[0] - pos[0]
+    pos[1] = 0
+    pos[2] = posRef.current[2] - pos[0]
+    api.velocity.set(pos[0], pos[1], pos[2])
   })
   useEffect(() => {
     const unsubscribe = api.position.subscribe(pos => posRef.current = pos)

@@ -36,9 +36,9 @@ const Coin = ({playerPosRef}) => {
       const coinPos = currentPos.current as [number, number, number]
       const distance = v3(playerPos).distanceTo(v3(coinPos))
       // console.log("coin distance calc", playerPos, coinPos)
-      if (distance < touchDistance) {
-        console.log("TOUCHING! distance:", distance)
-      }
+      // if (distance < touchDistance) {
+      //   console.log("TOUCHING! distance:", distance)
+      // }
       setTouching(distance < touchDistance)
     }
   })
