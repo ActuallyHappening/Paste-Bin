@@ -46,11 +46,11 @@ const Coin = ({playerPosRef}) => {
     <>
     <mesh ref={ref}>
       <sphereBufferGeometry args={[1, 20, 20]} />
-      <meshPhongMaterial color="yellow" />
+      <meshBasicMaterial color="yellow" />
     </mesh>
     <mesh>
       <boxGeometry />
-      <meshStandardMaterial color={touching ? "yellow" : "green"} />
+      <meshBasicMaterial color={touching ? "yellow" : "green"} />
     </mesh>
     </>
   )
