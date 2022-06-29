@@ -26,7 +26,7 @@ const Player = ({_ref}) => {
       onPointerOut={() => setHovered(false)}
       ref={boxRef}
     >
-      <sphereBufferGeometry args={[1, 1, 1]} />
+      <sphereBufferGeometry args={[1, 20, 20]} />
       <meshStandardMaterial color="black" />
     </mesh>
     </>

@@ -2,6 +2,7 @@ import { Debug, Physics, useBox, usePlane } from '@react-three/cannon'
 import { Point, Points } from '@react-three/drei'
 import React, { useRef, useState } from 'react'
 import { useEffect } from 'react'
+import Coin from './Coin'
 import Player from './Player'
 
 const π = Math.PI
@@ -48,7 +49,8 @@ const PhysicsStuff = () => {
   const debugPosRef = useRef<THREE.Vector3>()
   return (
     <Physics>
-      <Debug color="black" scale={1.1}>
+      <Debug color="green">
+        <Coin />
         <Ground _ref={debugPosRef}/>
         <Player _ref={debugPosRef}/>
       </Debug>
