@@ -47,7 +47,7 @@ const ThreeGlobe = ({ dituMeshs: _dituMeshs, hideDev }: {dituMeshs: Array<DITUMe
         <axesHelper args={[500]}/>
       </>
       }
-      <Stars radius={100} depth={35} count={500} factor={5} fade speed={3} />
+      <Stars radius={100} depth={600} count={500} factor={5} fade speed={3} />
       <TrackballControls makeDefault noZoom noPan/>
       {/* <perspectiveCamera ref={cameraRef} attach="camera" position={[0, 10, 400]} fov={55} far={1000} /> */}
 

@@ -1,4 +1,4 @@
-import { Float, Sparkles } from '@react-three/drei';
+import { Float, Html, Sparkles } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
 import { useEffect, useRef, useState } from 'react';
 import { MeshBasicMaterial } from 'three';
@@ -66,6 +66,9 @@ export const HouseMeshMarker = ({ flash: _flash = true }: {flash?: boolean}) => 
         <meshBasicMaterial ref={markerRef} color="red" transparent={true} opacity={1}/>
       </mesh>
     </Float>
+    <Html>
+      HTML
+    </Html>
     </group>
   )
 }
